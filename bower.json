@@ -3,10 +3,9 @@
   "description": "mobile,shareable swipe-survey creation",
   "main": "index.js",
   "authors": [
-    "ZHUTS <zhutsell@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/zhuts/thesis",
+  "homepage": "https://github.com/Reactor-76/thesis",
   "private": true,
   "ignore": [
     "**/.*",
