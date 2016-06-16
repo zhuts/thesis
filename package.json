@@ -1,0 +1,28 @@
+{
+  "name": "apexswipe",
+  "version": "1.0.0",
+  "description": "mobile,shareable swipe-survey creation",
+  "main": "index.js",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.18",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server/server.js",
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reactor-76/thesis.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Reactor-76/thesis/issues"
+  },
+  "homepage": "https://github.com/Reactor-76/thesis#readme"
+}

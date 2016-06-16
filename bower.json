@@ -1,0 +1,21 @@
+{
+  "name": "apexswipe",
+  "description": "mobile,shareable swipe-survey creation",
+  "main": "index.js",
+  "authors": [
+    "ZHUTS <zhutsell@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zhuts/thesis",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react-native": "^0.27.2"
+  }
+}
