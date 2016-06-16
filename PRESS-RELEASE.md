@@ -18,6 +18,7 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Takes your favorite swipe technology and applies it to all your important choices you make on a daily basis.
+  > Simplifies your decision making process for a variety of everyday tasks using swipe technology and the search engines you are accustomed to
 
 ## Sub-Heading ##
   > For anyone who wants to simplify their decision making process.
@@ -26,19 +27,21 @@ Once the project moves into development, the press release can be used as a touc
   > Apex Swiper gives you the opportunity to create collections of all the important decisions you make in life.  Create, swipe, and share with your friends. Decision making is hard.  Choices are plentify.  Let's simplify that process.
   
 ## Problem ##
-  > Decision making is hard.  Choices are plentify.  Let's simplify that process.
+  > Decision making is hard.  Choices are plentiful.  Let's simplify that process by introducing an easy to use system that allows  you to swipe to choose from the possible options.
 
 ## Solution ##
   > Swipe and polling made easy.
 
 ## Quote from You ##
-  > "This made"
+  > "Swipe your way through the choices you already make!"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > 1. Download the app from the play store
+  > 2. Enter a search query into the engine you want to use
+  > 3. Start swiping to save a collection!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Before I started using ApexSwipe, I felt overwhelmed by all the decisions that using e-commerce sites made me make on a daily basis.  Now I can shop to my heart's content using the tinder-style interface that I am so comfortable with."
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Sounds interesting? Check out ApexSwipe in the Google Play store today!
