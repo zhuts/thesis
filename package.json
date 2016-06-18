@@ -1,22 +1,22 @@
 {
   "name": "apexswipe",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "mobile,shareable swipe-survey creation",
-  "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
   "dependencies": {
+    "react": "^15.1.0",
+    "react-native": "0.27.2",
     "bower": "^1.7.9",
-    "chai": "^3.5.0",
     "express": "^4.13.4",
-    "mocha": "^2.5.3",
     "mongodb": "^2.1.18",
     "socket.io": "^1.4.6",
     "yelp": "^1.0.1"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "test",
-    "start": "node index.js",
-    "postinstall": "bower install"
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
   },
   "repository": {
     "type": "git",

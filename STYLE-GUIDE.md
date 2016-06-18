@@ -14,7 +14,7 @@ When writing any block of code that is logically subordinate to the line immedia
 
         // bad:
         if(condition){
-        action();
+          action();
         }
         ```
 
