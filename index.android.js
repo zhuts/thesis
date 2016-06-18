@@ -4,29 +4,80 @@
  * @flow
  */
 
+var mockCard = [
+  {searchParam:"Puppies"}
+];
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  Image,
   Text,
   View
 } from 'react-native';
 
-class thesis extends Component {
+class thesis extends React.Component{
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js Hello world!
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
+      <View className="fullscreen">
+        <searchResults />
+        <swipeCard />
+        <leftSwipeBtn />
+        <rightSwipeBtn />
       </View>
-    );
+    )
+  }
+}
+
+class SearchResults extends React.Component{
+  render() {
+    return (
+      <Text></Text>
+    )
+  }
+}
+
+class SwipeCard extends React.Component{
+  render() {
+    return (
+      <View>
+        <cardTitle />
+        <cardPic />
+      </View>
+    )
+  }
+}
+
+class CardTitle extends React.Component{
+  render() {
+    return (
+      <Text></Text>
+    )
+  }
+}
+
+class CardPic extends React.Component{
+  render() {
+    return (
+      <View className="card-img"></View>
+    )
+  }
+}
+
+class LeftSwipeBtn extends React.Component{
+  render() {
+    return (
+      <button></button>
+    )
+  }
+}
+
+class RightSwipeBtn extends React.Component{
+  render() {
+    return (
+      <button></button>
+    )
   }
 }
 
