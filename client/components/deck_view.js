@@ -1,5 +1,12 @@
-let deckView = React.createClass({
-  render: function() {
+import React, {
+  StyleSheet,
+  PropTypes,
+  View,
+  Text,
+} from 'react-native';
+
+export default class DeckView extends React.Component{
+  render() {
     return (
       <div className="fullscreen">
         <searchResults />
@@ -9,18 +16,18 @@ let deckView = React.createClass({
       </div>
     )
   }
-});
+};
 
-let searchResults = React.createClass({
-  render: function() {
+class SearchResults extends React.Component({
+  render() {
     return (
       <h2></h2>
     )
   }
 });
 
-let swipeCard = React.createClass({
-  render: function() {
+class SwipeCard extends React.Component({
+  render() {
     return (
       <div>
         <cardTitle />
@@ -30,32 +37,32 @@ let swipeCard = React.createClass({
   }
 });
 
-let cardTitle = React.createClass({
-  render: function() {
+class CardTitle extends React.Component({
+  render() {
     return (
       <h2></h2>
     )
   }
 });
 
-let cardPic = React.createClass({
-  render: function() {
+class CardPic extends React.Component({
+  render() {
     return (
       <div className="card-img"></div>
     )
   }
 });
 
-let leftSwipeBtn = React.createClass({
-  render: function() {
+class LeftSwipeBtn extends React.Component({
+  render() {
     return (
       <button></button>
     )
   }
 });
 
-let rightSwipeBtn = React.createClass({
-  render: function() {
+class RightSwipeBtn extends React.Component({
+  render() {
     return (
       <button></button>
     )
