@@ -66,7 +66,10 @@ export default class deckView extends React.Component{
     let mock = mockCard[0];
     let {pan, enter} = this.state;
     let [translateX, translateY] = [pan.x, pan.y];
-    let animatedCard = {transform: [{translateX}, {translateY}]};
+    let rotate = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]});
+    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]})
+    let scale = enter;
+    let animatedCard = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity};
 
     return (
       <View style={styles.container}>
