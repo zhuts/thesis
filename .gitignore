@@ -1,6 +1,8 @@
 # OSX
 #
 .DS_Store
+.floo
+.flooignore
 
 # Xcode
 #
