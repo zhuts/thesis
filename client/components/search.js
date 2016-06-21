@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import helpers from '../util/helpers';
 import * as actions from '../actions/actions';
 
-
 class SearchComponent extends Component {
   
   constructor(props) {
@@ -51,6 +50,7 @@ class SearchComponent extends Component {
           <Text style={styles.label}>Search</Text>
           <TextInput
             style={styles.input}
+   
             value={this.state.search}
             onChangeText={(text) => this.setState({search: text})}
           />
