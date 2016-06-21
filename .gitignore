@@ -42,4 +42,4 @@ android/app/libs
 android/keystores/debug.keystore
 
 # API KEYS
-server/apiKeys.js
+api.keys.js
