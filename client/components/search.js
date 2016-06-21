@@ -6,10 +6,12 @@ import {
   TouchableHighlight, 
   StyleSheet 
 } from 'react-native';
-// import Yelp from '../util/yelpAPI';
+import { connect } from 'react-redux';
+import helpers from '../util/helpers';
+import * as actions from '../actions/actions';
 
 
-export default class SearchComponent extends Component {
+class SearchComponent extends Component {
   
   constructor(props) {
     super(props);
@@ -20,15 +22,26 @@ export default class SearchComponent extends Component {
   }
   
   onSearch(term, location) {
-    // console.log(term, location);
     // this.setState({
     //   search: '',
     //   location:''
     // })
+    const { dispatch, currentDeck } = this.props;
     if (this.state.search !== '' && this.state.location !== '') {
+      helpers.searchYelp(this.state.search, this.state.location, (yelpData) => {
+        const data = yelpData.map( (business) => { 
+          return {
+            ...business,
+            like: undefined
+          }
+        });
+        // console.log(data);
+        dispatch( actions.buildDeck(data) );
+        // console.log('currentDeck', currentDeck);
+      });
       this.props.navigator.push({ name: 'deckView' });
+      
     }
-    
   }
   
   render() {
@@ -91,3 +104,6 @@ const styles = StyleSheet.create({
     
   }
 })
+
+export default connect()(SearchComponent);
+
