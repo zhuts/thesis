@@ -9,7 +9,6 @@ import {
   Image,
   Text,
   View,
-  TouchableHighlight,
   Animated,
   PanResponder
 } from 'react-native';
@@ -74,13 +73,6 @@ export default class deckView extends React.Component{
 
     return (
       <View style={styles.container}>
-      <TouchableHighlight
-          style={styles.back}
-          underlayColor={'lightblue'}
-          onPress={() => { this.props.navigator.pop() }}
-         >
-          <Text>Back</Text>
-        </TouchableHighlight>
         <View style={styles.searchResultsContainer}>
           <Text style={styles.searchResults}>{mock.searchParam}</Text>
         </View>
@@ -158,15 +150,5 @@ const styles = StyleSheet.create({
     right: 20,
   },
   rightSwipeText:{
-  },
-  back: {
-    width: 40,
-    height: 20,
-    justifyContent: 'flex-start',
-    alignSelf: 'flex-start',
-    position: 'absolute',
-    borderColor: 'blue', 
-    borderWidth: 1,
-    borderRadius: 5,
   }
 });
