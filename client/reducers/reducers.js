@@ -1,18 +1,30 @@
-export var nameOfReducer = (state = 'default state', action) => {
+export const searchTermReducer = (state = '', action) => {
   switch (action.type) {
-    case 'ACTION_TYPE':
-      return ;
+    case 'SET_SEARCH_TERM':
+      return action.searchTerm;
     default:
       return state;
   }
 };
 
+export const searchLocationReducer = (state = '', action) => {
+  switch (action.type) {
+    case 'SET_LOCATION':
+      return action.searchLocation;
+    default:
+      return state;
+  }
+};
 
-// export var deckReducer = (state = [], action) => {
-//   switch (action.type) {
-//     case 'UPDATE_DECK':
-//       return [ action.deck, ...state ];
-//     default:
-//       return state;
-//   }
-// };
+export const buildDeckReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'BUILD_DECK':
+      return [
+        ...state,
+        ...action.yelpData
+      ];
+    default:
+      return state;
+  }
+};
+

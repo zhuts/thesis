@@ -1,9 +1,18 @@
-export const actionName = () => {
+// export const actionName = () => {
+//   return {
+//     type: 'ACTION_NAME'
+//     // other
+//   }
+// }
+
+export const buildDeck = (yelpData) => {
   return {
-    type: 'ACTION_NAME'
-    // other
+    type: 'BUILD_DECK',
+    yelpData 
   }
 }
+
+
 
 
 'ADD_CARDS' // BUILD DECK AFTER SEARCHING
