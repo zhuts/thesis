@@ -8,7 +8,6 @@ import {
   Animated,
   PanResponder
 } from 'react-native';
-
 import Main from './client/main';
 
 AppRegistry.registerComponent('thesis', () => Main);
