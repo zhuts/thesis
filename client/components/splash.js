@@ -20,7 +20,6 @@ export default class SplashComponent extends Component {
     this.props.navigator.push({ name: 'results' });
   }
 
-
   render() {
     return (
       <View style={styles.container}>
