@@ -14,16 +14,18 @@ const Routes = {
 export default class Nav extends Component {
   renderScene(route, navigator) {
     const Component = Routes[route.name];
-    return <Component route={route} />
+    return <Component route={route} navigator={navigator} />
   }
   
   render() {
-    <Navigator
-      style={styles.container}
-      initialRoute={{name: 'search'}}
-      renderScene={this.renderScene.bind(this)}
-      configureScene={ () => { return Navigator.SceneConfigs.FloatFromRight; }}
-    />
+    return (
+      <Navigator
+        style={styles.container}
+        initialRoute={{name: 'search'}}
+        renderScene={this.renderScene.bind(this)}
+        configureScene={ () => { return Navigator.SceneConfigs.FloatFromRight; }}
+      />
+    )
   }
 }
 

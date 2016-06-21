@@ -8,6 +8,8 @@ import {
   Animated,
   PanResponder
 } from 'react-native';
-import DeckView from './client/components/deck_view'
+import DeckView from './client/components/deck_view';
+import Search from './client/components/search';
+import Nav from './client/components/nav'
 
-AppRegistry.registerComponent('thesis', () => DeckView);
+AppRegistry.registerComponent('thesis', () => Nav);
