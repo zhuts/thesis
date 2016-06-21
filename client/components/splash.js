@@ -16,7 +16,7 @@ export default class SplashComponent extends Component {
   toSwipe() {
     this.props.navigator.push({ name: 'deckView' });
   }
-  toResult(){
+  toResult() {
     this.props.navigator.push({ name: 'results' });
   }
 
