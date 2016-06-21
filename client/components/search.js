@@ -46,6 +46,15 @@ class SearchComponent extends Component {
   render() {
     return (
       <View style={styles.container}>
+      
+        <TouchableHighlight
+          style={styles.back}
+          underlayColor={'lightblue'}
+          onPress={() => { this.props.navigator.pop() }}
+        >
+          <Text>Back</Text>
+        </TouchableHighlight>
+        
         <View style={styles.container}>
           <Text style={styles.label}>Search</Text>
           <TextInput
@@ -79,7 +88,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 30
   },
   input: {
     padding: 5,
@@ -100,8 +110,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 10
   },
-  label: {
-    
+  back: {
+    width: 40,
+    height: 20,
+    alignSelf: 'flex-start',
+    borderColor: 'blue', 
+    borderWidth: 1,
+    borderRadius: 5,
   }
 })
 
