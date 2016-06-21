@@ -20,11 +20,14 @@ export default class SearchComponent extends Component {
   }
   
   onSearch(term, location) {
-    console.log(term, location);
-    this.setState({
-      search: '',
-      location:''
-    })
+    // console.log(term, location);
+    // this.setState({
+    //   search: '',
+    //   location:''
+    // })
+    if (this.state.search !== '' && this.state.location !== '') {
+      this.props.navigator.push({ name: 'deckView' });
+    }
     
   }
   

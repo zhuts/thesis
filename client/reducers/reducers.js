@@ -8,13 +8,11 @@ export var nameOfReducer = (state = 'default state', action) => {
 };
 
 
-/*export var nameOfReducer = (state = [], action) => {
-  switch (action.type) {
-    case 'UPDATE_DECK':
-      return [
-        //new deck
-      ];
-    default:
-      return state;
-  }
-};*/
+// export var deckReducer = (state = [], action) => {
+//   switch (action.type) {
+//     case 'UPDATE_DECK':
+//       return [ action.deck, ...state ];
+//     default:
+//       return state;
+//   }
+// };
