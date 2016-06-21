@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, Navigator } from 'react-native';
+import { StyleSheet, Navigator, View, Text, Image } from 'react-native';
 
 // import components for our routes
 import Search from './search';
 import DeckView from './deck_view';
 import Splash from './splash';
+import Saved from './saved';
 
 const Routes = {
   search: Search,
   deckView: DeckView,
-  splash: Splash
+  splash: Splash,
+  results: Saved
   // add more routes 'name': component   
 }
 
