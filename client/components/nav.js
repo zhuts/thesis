@@ -3,12 +3,12 @@ import { StyleSheet, Navigator } from 'react-native';
 
 // import components for our routes
 import Search from './search';
-import DeckView from './deck_view';
+import DeckViewNew from './deck_view_new';
 import Splash from './splash';
 
 const Routes = {
   search: Search,
-  deckView: DeckView,
+  deckView: DeckViewNew,
   splash: Splash
   // add more routes 'name': component   
 }
