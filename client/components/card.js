@@ -57,6 +57,7 @@ class Card extends Component {
     return (
       <View style={styles.container}>
         
+        <Image style={styles.img} source={{uri:business.image_url} || require('../assets/yelp-logo-large.png')} />
         
         <Text style={{fontSize: 35}}>
           { business.name }
@@ -84,6 +85,10 @@ const styles = StyleSheet.create({
   },
   business: {
     fontSize: 30,
+  },
+  img: {
+    height: 300,
+    width: 300
   }
 })
 

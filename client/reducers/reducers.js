@@ -26,6 +26,11 @@ export const searchReducer = (state = {term: '', location: ''}, action) => {
         ...state,
         location: action.location
       }
+    case 'RESET_SEARCH':
+      return {
+        term: '',
+        location: ''
+      }
     default:
       return state;
   }
@@ -37,6 +42,12 @@ export const buildDeckReducer = (state = [], action) => {
       return [
         ...action.yelpData
       ]
+    // case 'TOGGLE_LIKE':
+    //   if (!state.currentDeck[action.id]) {
+    //     return state;
+    //   }
+    //   state.currentDeck[action.id].liked = action.liked;
+    //   return state
     default:
       return state;
   }
@@ -46,21 +57,22 @@ export const buildDeckReducer = (state = [], action) => {
 export const changeCardReducer = (state = 0, action) => {
   switch (action.type) {
     case 'CHANGE_CARD':
-      state.currentCard++;
-      return state;
+      // state.currentCard = action.currentCard;
+      return state + 1
     default:
       return state;
   }
 }
 
-export const toggleLikeReducer = (state = false, action) => {
-  switch (action.type) {
-    case 'TOGGLE_LIKE':
-      // if (state.currentDeck[state.currentCard].id === action.id) {
-        state.currentDeck[state.currentCard].liked = action.liked;
-      // }
-      return state;
-    default:
-      return state;
-  }
-}
+//INDIVIDUAL CARD METHODS, 
+// const toggleLikeReducer = (state = false, action) => {
+//   switch (action.type) {
+//     case 'TOGGLE_LIKE':
+//       // if (state.currentDeck[state.currentCard].id === action.id) {
+//         state.currentDeck[state.currentCard].liked = action.liked;
+//       // }
+//       return state;
+//     default:
+//       return state;
+//   }
+// }

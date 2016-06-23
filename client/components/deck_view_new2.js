@@ -16,13 +16,23 @@ import * as action from '../actions/actions';
 let SWIPE_THRESHOLD = 120;
 
 class deckViewNew extends React.Component{
+  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pan: new Animated.ValueXY(),
+      enter: new Animated.Value(0.5),
+    }
+  }
 
   componentDidMount() {
     this._animateEntrance();
   }
+
   _animateEntrance() {
     Animated.spring(
-      this.props.enter,
+      this.state.enter,
       { toValue: 1, friction: 8 }
     ).start();
   }
@@ -30,30 +40,44 @@ class deckViewNew extends React.Component{
   componentWillMount() {
     this._panResponder = PanResponder.create({
       
-      onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
-//sets x,y to 0 when finger is detected  
+      onMoveShouldSetPanResponder: () => true,
+      
+      onMoveShouldSetPanResponderCapture: () => true,
+      
+      //sets x,y to 0 when finger is detected  
       onPanResponderGrant: (evt, gestureState) => {
         //set x,y to 0
-        this.props.pan.setOffset({x: this.props.pan.x._value, y: this.props.pan.y._value});
-        this.props.pan.setValue({x: 0, y: 0});
+        this.state.pan.setOffset({
+          x: this.state.pan.x._value, 
+          y: this.state.pan.y._value
+        });
+        this.state.pan.setValue({
+          x: 0, 
+          y: 0
+        });
       },
-//value of x,y change relative to where finger started
+      
+      //value of x,y change relative to where finger started
       onPanResponderMove: Animated.event([
-        null, {dx: this.props.pan.x, dy: this.props.pan.y}
+        null, 
+        {
+          dx: this.state.pan.x, 
+          dy: this.state.pan.y
+        }
       ]),
-//returns 
-      onPanResponderRelease: () => {
-        if (this.props.pan.x._value > SWIPE_THRESHOLD) {      
+      
+      onPanResponderRelease: (e, {vx, vy}) => {
+        
+        if (this.state.pan.x._value > SWIPE_THRESHOLD) {      
           this._resetState(true)
-        } else if (this.props.pan.x._value < -SWIPE_THRESHOLD){          
+        } else if (this.state.pan.x._value < -SWIPE_THRESHOLD){          
           this._resetState(false)
         } 
-        Animated.spring(this.props.pan, {
+        Animated.spring(this.state.pan, {
           toValue: 0
-        });       
+        });    
       },
-
+      
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderTerminate: (evt, gestureState) => {
         // Another component has become the responder, so this gesture
@@ -65,39 +89,6 @@ class deckViewNew extends React.Component{
         return true;
       },
     })
-
-  }
-  componentDidUpdate(prevProps, prevState) {
-    this._panResponder = PanResponder.create({      
-      onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
-//sets x,y to 0 when finger is detected  
-      onPanResponderGrant: (evt, gestureState) => {
-        //set x,y to 0
-        this.props.pan.setOffset({x: this.props.pan.x._value, y: this.props.pan.y._value});
-        this.props.pan.setValue({x: 0, y: 0});
-      },
-//value of x,y change relative to where finger started
-      onPanResponderMove: Animated.event([
-        null, {dx: this.props.pan.x, dy: this.props.pan.y}
-      ]),
-//returns 
-      onPanResponderRelease: () => {
-        if (this.props.pan.x._value > SWIPE_THRESHOLD) {      
-          this._resetState(true)
-        } else if (this.props.pan.x._value < -SWIPE_THRESHOLD){          
-          this._resetState(false)
-        } 
-        Animated.spring(this.props.pan, {
-          toValue: 0
-        });       
-      },
-      onShouldBlockNativeResponder: (evt, gestureState) => {
-        // Returns whether this component should block native components from becoming the JS
-        // responder. Returns true by default. Is currently only supported on android.
-        return true;
-      }
-    })    
   }
 
   _changePage(){
@@ -108,26 +99,23 @@ class deckViewNew extends React.Component{
 
   _resetState(liked){
     // this.props.toggleLikeClick(liked);
-    this.props.pan = new Animated.ValueXY();
-    this.props.enter = new Animated.Value(0.5);
+    this.state.pan.setValue({x: 0, y: 0});
+    this.state.enter.setValue(0);
     this.props.changeCardSwipe();
     this._animateEntrance();
   }
-  shouldComponentUpdate(nextProps, nextState){
-    // return a boolean value
-    return true;
-  }
-  render() {
-   
-    let [translateX, translateY] = [this.props.pan.x, this.props.pan.y];
-    let rotate = this.props.pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]});
-    let opacity = this.props.pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]})
-    let scale = this.props.enter;
-    let animatedCard = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity};
-    const { currentDeck, currentCard } = this.props;
 
-          // <Text style={styles.cardTitleStyle}>{mock.cardTitle}</Text>
-          // <Image style={styles.cardPicStyle} source={{uri: 'mock.cardPic'}} />
+  render() {
+    
+    const { pan, enter } = this.state;
+    const { currentDeck, currentCard } = this.props;
+    
+    let [translateX, translateY] = [pan.x, pan.y];
+    let rotate = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]});
+    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]})
+    let scale = enter;
+    let animatedCard = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity};
+    
     return (
       <View style={styles.container}>
         <View style={styles.searchResultsContainer}>
@@ -141,8 +129,8 @@ class deckViewNew extends React.Component{
         </Animated.View>
 
         <TouchableOpacity 
-        style={styles.leftSwipeBtn}
-        onPress={() => {{this.props.changeCardSwipe(this.props.currentCard)} {this._changePage()}}}>
+          style={styles.leftSwipeBtn}
+          onPress={() => {{this.props.changeCardSwipe(this.props.currentCard)} {this._changePage()}}}>
           <Text>LEFT</Text>
         </TouchableOpacity>
 
@@ -177,7 +165,7 @@ const styles = StyleSheet.create({
     margin: 10
   },
   swipeCard: {
-    borderWidth: 5,
+    // borderWidth: 5,
     borderRadius: 5,
     borderColor: '#000',
     width: 300,
@@ -219,8 +207,6 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return { 
-    pan: new Animated.ValueXY(),
-    enter: new Animated.Value(0.5),
     searchParam: state.search,
     currentCard: state.currentCard,
     currentDeck: state.currentDeck    
