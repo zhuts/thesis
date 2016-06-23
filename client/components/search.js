@@ -26,7 +26,7 @@ class SearchComponent extends Component {
           }
         });
         buildDeck(data);
-        navigator.push({ name: 'results' });
+        navigator.push({ name: 'deckView' });
       });
     }
   }
@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   back: {
-   width: 40,
-   height: 20,
-   padding: 50,
-   alignSelf: 'flex-start',
-   borderColor: 'blue', 
-   borderWidth: 1,
-   borderRadius: 5,
-  }
+    width: 60,
+    height: 20,
+    alignItems: 'center',
+    alignSelf: 'flex-start', 
+    borderColor: 'blue',
+    borderWidth: 1,
+    borderRadius: 5,
+  },
 })
 
 const mapStateToProps = (state) => {

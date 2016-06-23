@@ -13,8 +13,7 @@ export const configure = () => {
     // currentDeck: deckReducer
     search: searchReducer,
     currentDeck: buildDeckReducer,
-    changeCardReducer: changeCardReducer,
-    toggleLikeReducer: toggleLikeReducer
+    currentCard: changeCardReducer
   })
   const store = createStore(reducer, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f

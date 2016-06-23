@@ -3,7 +3,7 @@ import { StyleSheet, Navigator } from 'react-native';
 
 // import components for our routes
 import Search from './search';
-import DeckViewNew from './deck_view_new';
+import DeckViewNew from './deck_view_new2';
 import Splash from './splash';
 import Results from './saved';
 

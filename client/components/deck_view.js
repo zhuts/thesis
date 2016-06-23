@@ -86,7 +86,7 @@ export default class deckView extends React.Component{
         </View>
         <Animated.View style={[styles.swipeCard, animatedCard]} {...this._panResponder.panHandlers}>
           <Text style={styles.cardTitleStyle}>{mock.cardTitle}</Text>
-          <Image style={styles.cardPicStyle} source={{uri: 'mock.cardPic'}} />
+          <Image style={styles.cardPicStyle} source={require('../../testAssets/apple2.jpg')} />
         </Animated.View>
 
         <View style={styles.leftSwipeBtn}>

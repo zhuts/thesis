@@ -21,38 +21,42 @@ class SavedComponent extends Component {
   }
   render() {
     var _scrollView: ScrollView;
-    const { currentDeck } = this.props;
+    const { currentDeck, navigator } = this.props;
     
     return (  
       <View style={styles.container}>
-
-        <Image
-          style={styles.logo}
-          source={require('../assets/yelp-logo-large.png')}
-        />
+        
+        <View style={styles.navigation}>
+          <TouchableHighlight
+            style={styles.back}
+            underlayColor={'lightblue'}
+            onPress={() => { navigator.push({ name: 'splash' }) }}
+           >
+            <Text>Back</Text>
+          </TouchableHighlight>
+          
+          <Image
+            style={styles.logo}
+            source={require('../assets/yelp-logo-large.png')}
+          />
+        </View>
         
         <ScrollView
+          style={[styles.scrollView]}
           ref={(scrollView) => { _scrollView = scrollView; }}
           automaticallyAdjustContentInsets={false}    
           scrollEventThrottle={200}
-          style={[styles.scrollView]}>
+        >
           {currentDeck.map(createCard)}
         </ScrollView>
         
         <TouchableOpacity
           style={styles.topButton}
-          onPress={() => { _scrollView.scrollTo({y: 0}); }}>
+          onPress={() => { _scrollView.scrollTo({y: 0}); }}
+        >
           <Text>Scroll to top</Text>
         </TouchableOpacity>
-        
-        <TouchableHighlight
-          style={styles.back}
-          underlayColor={'lightblue'}
-          onPress={() => { navigator.pop() }}
-         >
-          <Text>Back</Text>
-        </TouchableHighlight>
-        
+
       </View>
     );
   }
@@ -95,21 +99,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  navigation: {
+    padding: 20
+  },
   logo: {
-    marginTop: 20,
     alignSelf: 'center'
+  },
+  back: {
+    width: 60,
+    height: 20,
+    alignItems: 'center',
+    borderColor: 'blue', 
+    borderWidth: 1,
+    borderRadius: 5,
   },
   scrollView: {
     backgroundColor: '#009900',
-    height: 350,
-    marginTop: 10
-  },
-  text: {
-    fontSize: 20,
-    color: '#888888',
-    left: 80,
-    top: 20,
-    height: 40,
+    marginTop: 10,
+    height: 400
   },
   button:  {
     flexDirection: 'row', 
@@ -118,13 +125,8 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: 'lightgrey',
     borderRadius: 3,
-    alignItems: 'stretch',
+    alignItems: 'stretch'
   },
-  // buttonContents: {
-  //   flexDirection: 'row',
-  //   width: 64,
-  //   height: 64,
-  // },
   topButton: {
     height: 40,
     margin: 7,
@@ -144,16 +146,6 @@ const styles = StyleSheet.create({
   rating: {
     width: 50, 
     height: 10
-  },
-  back: {
-    width: 40,
-    height: 20,
-    justifyContent: 'flex-start',
-    alignSelf: 'flex-start',
-    position: 'absolute',
-    borderColor: 'blue', 
-    borderWidth: 1,
-    borderRadius: 5,
   }
 });
 const mapStateToProps = (state) => {
