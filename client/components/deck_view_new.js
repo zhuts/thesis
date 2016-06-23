@@ -1,7 +1,3 @@
-const mockCard = [
-  {searchParam:"New Computers", cardTitle:"Apple IIe", cardPic:"./testAssets/apple2-100009966-orig.jpg"}
-];
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -18,16 +14,15 @@ import * as action from '../actions/actions';
 
 class deckViewNew extends React.Component{
   render() {
-    let mock = mockCard[0];
-    
+          // <Text style={styles.cardTitleStyle}>{mock.cardTitle}</Text>
+          // <Image style={styles.cardPicStyle} source={{uri: 'mock.cardPic'}} />
     return (
       <View style={styles.container}>
         <View style={styles.searchResultsContainer}>
-          <Text style={styles.searchResults}>{mock.searchParam}</Text>
+          <Text style={styles.searchResults}>{this.props.searchParam.term}</Text>
         </View>
         <Animated.View style={[styles.swipeCard]}>
-          <Text style={styles.cardTitleStyle}>{mock.cardTitle}</Text>
-          <Image style={styles.cardPicStyle} source={{uri: 'mock.cardPic'}} />
+
         </Animated.View>
 
         <View style={styles.leftSwipeBtn}>
@@ -106,7 +101,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return { 
-    searchParam: state.searchParam,
+    searchParam: state.search,
     currentCard: state.currentCard,
     currentDeck: state.currentDeck
   }

@@ -1,17 +1,18 @@
 import { createStore, combineReducers, compose } from 'redux';
 // import all reducers
 import {
+  searchReducer,
+  buildDeckReducer,
   changeCardReducer,
-  toggleLikeReducer
+  toggleLikeReducer,
 } from '../reducers/reducers';
 
 export const configure = () => {
   const reducer = combineReducers({
     // state prop and corresponding reducer
     // currentDeck: deckReducer
-    // searchTerm: searchTermReducer,
-    // searchLocation: searchLocationReducer,
-    // currentDeck: buildDeckReducer
+    search: searchReducer,
+    currentDeck: buildDeckReducer,
     changeCardReducer: changeCardReducer,
     toggleLikeReducer: toggleLikeReducer
   })
@@ -21,3 +22,16 @@ export const configure = () => {
   
   return store;
 }
+
+
+/*
+state = {
+  search = {
+    term: '',
+    location: ''
+  },
+  currentDeck = [],
+  currentCard = 0,
+  
+}
+*/

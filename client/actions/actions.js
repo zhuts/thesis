@@ -16,12 +16,26 @@
 // buildDeck action will first empty currentDeck,
 // then adds new cards per deck based on yelp data (mvp)
 
+export const searchTerm = (term) => {
+  return {
+    type: 'SEARCH_TERM',
+    term
+  };
+};
+
+export const searchLocation = (location) => {
+  return {
+    type: 'SEARCH_LOCATION',
+    location
+  };
+};
+
 export const buildDeck = (yelpData) => {
   return {
     type: 'BUILD_DECK',
-    yelpData 
-  }
-}
+    yelpData
+  };
+};
 
 // this action will increment currentCard by 1 until it hits currentDeck.length
 // when it hits currentDeck.length, switch to results page
@@ -43,3 +57,5 @@ export const toggleLike = (id, liked) => {
     liked
   }
 }
+
+
