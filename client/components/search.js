@@ -10,40 +10,31 @@ import { connect } from 'react-redux';
 import helpers from '../util/helpers';
 import * as actions from '../actions/actions';
 
+
 class SearchComponent extends Component {
   
-  constructor(props) {
-    super(props);
-    this.state = {
-      search: '',
-      location: ''  
-    }
-  }
-  
   onSearch(term, location) {
-    // this.setState({
-    //   search: '',
-    //   location:''
-    // })
-    const { dispatch, currentDeck } = this.props;
-    if (this.state.search !== '' && this.state.location !== '') {
-      helpers.searchYelp(this.state.search, this.state.location, (yelpData) => {
+    
+    const { navigator, buildDeck } = this.props;
+    
+    if (term !== '' && location !== '') {
+      helpers.searchYelp(term, location, (yelpData) => {
         const data = yelpData.map( (business) => { 
           return {
             ...business,
             like: undefined
           }
         });
-        // console.log(data);
-        dispatch( actions.buildDeck(data) );
-        // console.log('currentDeck', currentDeck);
+        buildDeck(data);
+        navigator.push({ name: 'results' });
       });
-      this.props.navigator.push({ name: 'deckView' });
-      
     }
   }
   
   render() {
+    
+    const { term, location, searchTerm, searchLocation } = this.props;
+    
     return (
       <View style={styles.container}>
         <TouchableHighlight
@@ -57,22 +48,21 @@ class SearchComponent extends Component {
           <Text style={styles.label}>Search</Text>
           <TextInput
             style={styles.input}
-   
-            value={this.state.search}
-            onChangeText={(text) => this.setState({search: text})}
+            value={term}
+            onChangeText={(text) => { searchTerm(text) }}
           />
           
           <Text style={styles.label}>Location</Text>
           <TextInput
             style={styles.input}
-            value={this.state.location}
-            onChangeText={(text) => this.setState({location: text})}
+            value={location}
+            onChangeText={(location) => { searchLocation(location) }}
           />
           
           <TouchableHighlight
             style={styles.search}
             underlayColor={'lightblue'}
-            onPress={() => {this.onSearch(this.state.search, this.state.location)}}
+            onPress={() => {this.onSearch(term, location)}}
           >
             <Text>Build</Text>
           </TouchableHighlight>
@@ -86,7 +76,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 20
   },
   input: {
     padding: 5,
@@ -110,6 +101,7 @@ const styles = StyleSheet.create({
   back: {
    width: 40,
    height: 20,
+   padding: 50,
    alignSelf: 'flex-start',
    borderColor: 'blue', 
    borderWidth: 1,
@@ -117,5 +109,20 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect()(SearchComponent);
+const mapStateToProps = (state) => {
+  return {
+    term: state.search.term,
+    location: state.search.location
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchTerm: (term) => {dispatch(actions.searchTerm(term))},
+    searchLocation: (location) => {dispatch(actions.searchLocation(location))},
+    buildDeck: (data) => {dispatch(actions.buildDeck(data))}
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchComponent);
 

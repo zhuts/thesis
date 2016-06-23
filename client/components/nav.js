@@ -5,12 +5,13 @@ import { StyleSheet, Navigator } from 'react-native';
 import Search from './search';
 import DeckViewNew from './deck_view_new';
 import Splash from './splash';
+import Results from './saved';
 
 const Routes = {
   search: Search,
   deckView: DeckViewNew,
+  results: Results,
   splash: Splash
-  // add more routes 'name': component   
 }
 
 export default class Nav extends Component {

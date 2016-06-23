@@ -56,10 +56,7 @@ class Card extends Component {
     const { business } = this.props;
     return (
       <View style={styles.container}>
-        <Image 
-          source={{ uri: business.image_url }}
-          style={{width: 320, height: 320}}
-        />
+        
         
         <Text style={{fontSize: 35}}>
           { business.name }
@@ -74,7 +71,6 @@ class Card extends Component {
           { business.review_count } Reviews
         </Text>
         
-        <Image source={ require('../assets/yelp') } />
       </View>
     );
   }

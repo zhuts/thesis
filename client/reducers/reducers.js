@@ -1,47 +1,49 @@
-// export const searchTermReducer = (state = '', action) => {
-//   switch (action.type) {
-//     case 'SET_SEARCH_TERM':
-//       return action.searchTerm;
-//     default:
-//       return state;
-//   }
+// const mockData = {
+//   search: {
+//     term: '',
+//     location: ''
+//   },
+//   currentCard: 0,
+//   currentDeck: [{ 
+//     id: 0,
+//     cardType: 'yelp',
+//     cardTitle: '',
+//     cardPic: 'url',
+//     liked: false,
+//     votedOn: false
+//   }]
 // };
 
-// export const searchLocationReducer = (state = '', action) => {
-//   switch (action.type) {
-//     case 'SET_LOCATION':
-//       return action.searchLocation;
-//     default:
-//       return state;
-//   }
-// };
-
-// export const buildDeckReducer = (state = {}, action) => {
-//   switch (action.type) {
-//     case 'BUILD_DECK':
-//       return [
-//         ...state,
-//         ...action.yelpData
-//       ];
-//     default:
-//       return state;
-//   }
-// };
-
-const mockData = {
-  searchParam: '',
-  currentCard: 0,
-  currentDeck: [{ 
-    id: 0,
-    cardType: 'yelp',
-    cardTitle: '',
-    cardPic: 'url',
-    liked: false,
-    votedOn: false
-  }]
+export const searchReducer = (state = {term: '', location: ''}, action) => {
+  switch (action.type) {
+    case 'SEARCH_TERM': 
+      return {
+        ...state,
+        term: action.term
+      }
+    case 'SEARCH_LOCATION':
+      return {
+        ...state,
+        location: action.location
+      }
+    default:
+      return state;
+  }
 };
 
-export const changeCardReducer = (state = mockData, action) => {
+export const buildDeckReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'BUILD_DECK':
+      return [
+        ...action.yelpData
+      ]
+    default:
+      return state;
+  }
+};
+
+
+export const changeCardReducer = (state = 0, action) => {
   switch (action.type) {
     case 'CHANGE_CARD':
       state.currentCard++;
@@ -51,7 +53,7 @@ export const changeCardReducer = (state = mockData, action) => {
   }
 }
 
-export const toggleLikeReducer = (state = mockData, action) => {
+export const toggleLikeReducer = (state = false, action) => {
   switch (action.type) {
     case 'TOGGLE_LIKE':
       // if (state.currentDeck[state.currentCard].id === action.id) {

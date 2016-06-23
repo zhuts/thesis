@@ -1,104 +1,171 @@
-// import React, { Component } from 'react';
-// import { 
-//   View, 
-//   TextInput,
-//   Text,
-//   TouchableHighlight, 
-//   StyleSheet,
-//   ScrollView,
-//   TouchableOpacity,
-//   Image
-// } from 'react-native';
-// import { connect } from 'react-redux';
-// import helpers from '../util/helpers';
-// import * as actions from '../actions/actions';
+import React, { Component } from 'react';
+import { 
+  View, 
+  TextInput,
+  Text,
+  TouchableHighlight, 
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Linking,
+  Image
+} from 'react-native';
+import Card from './card';
+import { connect } from 'react-redux';
+import helpers from '../util/helpers';
+import * as actions from '../actions/actions';
 
-// export default class SavedComponent extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   render() {
-//     var _scrollView: ScrollView;
-//     return (  
+class SavedComponent extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    var _scrollView: ScrollView;
+    const { currentDeck } = this.props;
+    
+    return (  
+      <View style={styles.container}>
 
-//        <View>
-//         <ScrollView
-//           ref={(scrollView) => { _scrollView = scrollView; }}
-//           automaticallyAdjustContentInsets={false}
-//           onScroll={() => { console.log('onScroll!'); }}
-//           scrollEventThrottle={200}
-//           style={styles.scrollView}>
-//           {THUMBS.map(createThumbRow)}
-//         </ScrollView>
-//         <TouchableOpacity
-//           style={styles.button}
-//           onPress={() => { _scrollView.scrollTo({y: 0}); }}>
-//           <Text>Scroll to top</Text>
-//         </TouchableOpacity>
-//         <TouchableHighlight
-//           style={styles.back}
-//           underlayColor={'lightblue'}
-//           onPress={() => { this.props.navigator.pop() }}
-//          >
-//           <Text>Back</Text>
-//         </TouchableHighlight>
-//       </View>
-//     );
-//   }
-// }
+        <Image
+          style={styles.logo}
+          source={require('../assets/yelp-logo-large.png')}
+        />
+        
+        <ScrollView
+          ref={(scrollView) => { _scrollView = scrollView; }}
+          automaticallyAdjustContentInsets={false}    
+          scrollEventThrottle={200}
+          style={[styles.scrollView]}>
+          {currentDeck.map(createCard)}
+        </ScrollView>
+        
+        <TouchableOpacity
+          style={styles.topButton}
+          onPress={() => { _scrollView.scrollTo({y: 0}); }}>
+          <Text>Scroll to top</Text>
+        </TouchableOpacity>
+        
+        <TouchableHighlight
+          style={styles.back}
+          underlayColor={'lightblue'}
+          onPress={() => { navigator.pop() }}
+         >
+          <Text>Back</Text>
+        </TouchableHighlight>
+        
+      </View>
+    );
+  }
+}
 
-// class Thumb extends Component{
-//   shouldComponentUpdate(nextProps, nextState) {
-//     return false;
-//   }
-//   render() {
-//     return (
-//       <View style={styles.button}>
-//         <Image style={styles.img} source={{uri:this.props.uri}} />
-//       </View>
-//     );
-//   }
-// };
-// var THUMBS = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'];
-// const createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
+     
+class ScrollCard extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+  render() {
+    
+    const { business } = this.props;
+    return (
+      <View style={styles.button}>
+        <View>
+          <Image style={styles.img} source={{uri:business.image_url}} />
+        </View>
+        
+        <View style={styles.description}>
+          <Text>{ business.name }</Text>
+          <Image style={styles.rating} source={{uri:business.rating_img_url_small}} />
+          <Text>{ business.review_count } Reviews</Text>
+          <TouchableHighlight
+            style={{height: 40}}
+            onPress={() => { Linking.openURL(business.url).catch(err => console.error('An error occurred', err)) }}
+           >
+            <Text>Check Reviews</Text>
+          </TouchableHighlight>
+          
+        </View>
+      </View>
+    );
+  }
+};
 
-// var styles = StyleSheet.create({
-//   scrollView: {
-//     backgroundColor: '#6A85B1',
-//     height: 400,
-//   },
-//   text: {
-//     fontSize: 20,
-//     color: '#888888',
-//     left: 80,
-//     top: 20,
-//     height: 40,
-//   },
-//   button:  { 
-//     height: 200,
-//     margin: 7,
-//     padding: 5,
-//     alignItems: 'center',
-//     backgroundColor: '#eaeaea',
-//     borderRadius: 3,
-//   },
-//   buttonContents: {
-//     flexDirection: 'row',
-//     width: 64,
-//     height: 64,
-//   },
-//   img: {
-//     width: 64,
-//     height: 64,
-//   },
-//   back: {
-//     width: 40,
-//     height: 20,
-//     justifyContent: 'flex-start',
-//     alignSelf: 'flex-start',
-//     position: 'absolute',
-//     borderColor: 'blue', 
-//     borderWidth: 1,
-//     borderRadius: 5,
-//   }
-// });
+const createCard = (business, i) => <ScrollCard key={i} business={business} />;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  logo: {
+    marginTop: 20,
+    alignSelf: 'center'
+  },
+  scrollView: {
+    backgroundColor: '#009900',
+    height: 350,
+    marginTop: 10
+  },
+  text: {
+    fontSize: 20,
+    color: '#888888',
+    left: 80,
+    top: 20,
+    height: 40,
+  },
+  button:  {
+    flexDirection: 'row', 
+    height: 200,
+    margin: 7,
+    padding: 5,
+    backgroundColor: 'lightgrey',
+    borderRadius: 3,
+    alignItems: 'stretch',
+  },
+  // buttonContents: {
+  //   flexDirection: 'row',
+  //   width: 64,
+  //   height: 64,
+  // },
+  topButton: {
+    height: 40,
+    margin: 7,
+    padding: 5,
+    alignItems: 'center',
+    backgroundColor: 'lightgrey',
+    borderRadius: 3,
+  },
+  img: {
+    width: 175,
+    height: 175,
+  },
+  description: {
+    flexWrap: 'wrap',
+    marginLeft: 10
+  },
+  rating: {
+    width: 50, 
+    height: 10
+  },
+  back: {
+    width: 40,
+    height: 20,
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-start',
+    position: 'absolute',
+    borderColor: 'blue', 
+    borderWidth: 1,
+    borderRadius: 5,
+  }
+});
+const mapStateToProps = (state) => {
+  return {
+    currentDeck: state.currentDeck
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchTerm: (term) => {dispatch(actions.searchTerm(term))},
+   }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SavedComponent);
