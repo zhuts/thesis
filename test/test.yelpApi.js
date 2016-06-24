@@ -2,7 +2,7 @@ var assert = require('assert');
 var expect = require('chai').expect;
 var Yelp = require('yelp');
 
-describe('Yelp API', function () {
+xdescribe('Yelp API', function () {
   
   before(function(done) {
     // query yelp api for 1 restaurant entry  
