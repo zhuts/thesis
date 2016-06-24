@@ -6,17 +6,13 @@ import {
   TouchableHighlight, 
   StyleSheet 
 } from 'react-native';
-import { connect } from 'react-redux';
 import helpers from '../util/helpers';
 import * as actions from '../actions/actions';
 
 
-class SearchComponent extends Component {
-  
+export default class SearchComponent extends Component {
   onSearch(term, location) {
-    
     const { navigator, buildDeck } = this.props;
-    
     if (term !== '' && location !== '') {
       helpers.searchYelp(term, location, (yelpData) => {
         const data = yelpData.map( (business) => { 
@@ -30,11 +26,9 @@ class SearchComponent extends Component {
       });
     }
   }
-  
+
   render() {
-    
-    const { term, location, searchTerm, searchLocation } = this.props;
-    
+    const { term, location, searchTerm, searchLocation, onSearch } = this.props;
     return (
       <View style={styles.container}>
         <TouchableHighlight
@@ -62,7 +56,7 @@ class SearchComponent extends Component {
           <TouchableHighlight
             style={styles.search}
             underlayColor={'lightblue'}
-            onPress={() => {this.onSearch(term, location)}}
+            onPress={() => { this.onSearch(term, location) }}
           >
             <Text>Build</Text>
           </TouchableHighlight>
@@ -109,20 +103,5 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state) => {
-  return {
-    term: state.search.term,
-    location: state.search.location
-  }
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    searchTerm: (term) => {dispatch(actions.searchTerm(term))},
-    searchLocation: (location) => {dispatch(actions.searchLocation(location))},
-    buildDeck: (data) => {dispatch(actions.buildDeck(data))}
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchComponent);
 
