@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, Navigator } from 'react-native';
 
 // import components for our routes
-import Search from './search';
-import DeckViewNew from './deck_view_new2';
+import Search from '../containers/searchContainer';
+import DeckViewNew from '../containers/deckViewContainer';
 import Splash from './splash';
-import Results from './saved';
+import Results from '../containers/savedContainer';
 
 const Routes = {
   search: Search,

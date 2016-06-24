@@ -10,12 +10,11 @@ import {
   TouchableOpacity
 } from 'react-native';
 import Card from './card';
-import { connect } from 'react-redux';
 import * as action from '../actions/actions';
 
 let SWIPE_THRESHOLD = 120;
 
-class deckViewNew extends React.Component{
+export default class deckViewNew extends Component{
   
   constructor(props) {
     super(props);
@@ -112,7 +111,7 @@ class deckViewNew extends React.Component{
     
     let [translateX, translateY] = [pan.x, pan.y];
     let rotate = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]});
-    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]})
+    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]});
     let scale = enter;
     let animatedCard = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity};
     
@@ -204,20 +203,3 @@ const styles = StyleSheet.create({
   rightSwipeText:{
   }
 });
-
-function mapStateToProps(state) {
-  return { 
-    searchParam: state.search,
-    currentCard: state.currentCard,
-    currentDeck: state.currentDeck    
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    // toggleLikeClick: (id, liked) => { dispatch(action.toggleLike(id, liked)) },
-    changeCardSwipe: (id) => { dispatch(action.changeCard(id)) }
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(deckViewNew);

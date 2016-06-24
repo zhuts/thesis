@@ -10,12 +10,11 @@ import {
   Linking,
   Image
 } from 'react-native';
-import Card from './card';
-import { connect } from 'react-redux';
+import ScrollCard from './scrollCard';
 import helpers from '../util/helpers';
 import * as actions from '../actions/actions';
 
-class SavedComponent extends Component {
+export default class SavedComponent extends Component {
   constructor(props) {
     super(props);
   }
@@ -61,37 +60,6 @@ class SavedComponent extends Component {
     );
   }
 }
-
-     
-class ScrollCard extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return false;
-  }
-  render() {
-    
-    const { business } = this.props;
-    return (
-      <View style={styles.button}>
-        <View>
-          <Image style={styles.img} source={{uri:business.image_url}} />
-        </View>
-        
-        <View style={styles.description}>
-          <Text>{ business.name }</Text>
-          <Image style={styles.rating} source={{uri:business.rating_img_url_small}} />
-          <Text>{ business.review_count } Reviews</Text>
-          <TouchableHighlight
-            style={{height: 40}}
-            onPress={() => { Linking.openURL(business.url).catch(err => console.error('An error occurred', err)) }}
-           >
-            <Text>Check Reviews</Text>
-          </TouchableHighlight>
-          
-        </View>
-      </View>
-    );
-  }
-};
 
 const createCard = (business, i) => <ScrollCard key={i} business={business} />;
 
@@ -148,16 +116,3 @@ const styles = StyleSheet.create({
     height: 10
   }
 });
-const mapStateToProps = (state) => {
-  return {
-    currentDeck: state.currentDeck
-  }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    searchTerm: (term) => {dispatch(actions.searchTerm(term))},
-   }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SavedComponent);

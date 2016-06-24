@@ -10,16 +10,10 @@ export default class SplashComponent extends Component {
   constructor(props) {
     super(props);
   }
-  toSearch() {
-    this.props.navigator.push({ name: 'search' });
+  
+  navigate(destination) {
+    this.props.navigator.push({ name: destination });
   }
-  toSwipe() {
-    this.props.navigator.push({ name: 'deckView' });
-  }
-  toResult() {
-    this.props.navigator.push({ name: 'results' });
-  }
-
 
   render() {
     return (
@@ -29,21 +23,21 @@ export default class SplashComponent extends Component {
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
-            onPress={() => {this.toSearch()}}
+            onPress={() => {this.navigate('search')}}
            >
             <Text>Search</Text>
           </TouchableHighlight>    
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
-            onPress={() => {this.toSwipe()}}
+            onPress={() => {this.navigate('deckView')}}
           >
             <Text>Swipe</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
-            onPress={() => {this.toResult()}}
+            onPress={() => {this.navigate('results')}}
           >
             <Text>Results</Text>
           </TouchableHighlight>
