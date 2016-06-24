@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import Nav from './components/nav';
-// import configureStore from './store/configureStore';
-// var store = require('configureStore').configure();
-import { configure } from './store/configureStore';
+import configure from './store/configureStore';
 const store = configure();
 
 // testing the store => remove later

@@ -1,27 +1,13 @@
-import { createStore, combineReducers, compose } from 'redux';
-// import all reducers
-import {
-  searchReducer,
-  buildDeckReducer,
-  changeCardReducer,
-  toggleLikeReducer,
-} from '../reducers/reducers';
+import { createStore, compose } from 'redux';
+import rootReducer from '../reducers/rootReducer';
 
-export const configure = () => {
-  const reducer = combineReducers({
-    // state prop and corresponding reducer
-    // currentDeck: deckReducer
-    search: searchReducer,
-    currentDeck: buildDeckReducer,
-    currentCard: changeCardReducer
-  })
-  const store = createStore(reducer, compose(
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  ));
-  
+export default configure = () => {
+  const store = createStore(
+    rootReducer, compose(
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    ));
   return store;
 }
-
 
 /*
 state = {
