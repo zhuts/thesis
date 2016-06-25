@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "mobile,shareable swipe-survey creation",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "server": "node index.js",
-    "test": "mocha --compilers js:babel-core/register --recursive test"
+    "start": "node node_modules/react-native/local-cli/cli.js start",<<<<<<< e1d17168a67a38c22119d79eeda8a67e808c45b1
+    "server": "node index.js",=======
+    "test": "mocha --compilers js:babel-core/register --recursive test --reporter nyan"
+>>>>>>> fixes configure store
   },
   "dependencies": {
     "babel-preset-react-native-stage-0": "^1.0.1",
