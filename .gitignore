@@ -4,6 +4,8 @@ bower_components/
 .DS_Store
 .floo
 .flooignore
+../client/components/auth0-credentials.js
+../server/auth0.config.js
 
 # Xcode
 #
