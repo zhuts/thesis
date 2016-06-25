@@ -4,7 +4,7 @@ var io = require('socket.io')(http);
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var jwt = require('express-jwt');
-var auth0 = require('./auth0.config.js')
+var auth0 = require('./auth0.js')
 
 var yelpRouter = require('./routes/yelpRouter');
 var deckRouter = require('./routes/deckRouter');

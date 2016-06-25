@@ -41,14 +41,14 @@ export default class SplashComponent extends Component {
             <Text>Results</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            style={styles.button}
+            style={styles.friend}
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('friends')}}
           >
             <Text>Friends List</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            style={styles.button}
+            style={styles.saved}
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('saved')}}
           >
@@ -82,5 +82,35 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     marginTop: 10
+  },
+  friend: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    width: 100,
+    height: 75,
+    borderColor: 'black', 
+    borderWidth: 1,
+    borderRadius: 5,
+    position: 'absolute',
+    bottom: 20,
+    padding: 20,
+    borderRadius: 5,
+    left: 20
+  },
+  saved: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    width: 100,
+    height: 75,
+    borderColor: 'black', 
+    borderWidth: 1,
+    borderRadius: 5,
+    position: 'absolute',
+    bottom: 20,
+    padding: 20,
+    borderRadius: 5,
+    right: 20
   }
 })
