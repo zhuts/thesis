@@ -1,5 +1,6 @@
 # OSX
 #
+bower_components/
 .DS_Store
 .floo
 .flooignore
