@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import { StyleSheet, Navigator } from 'react-native';
+import { StyleSheet, Navigator, Text, TouchableHighlight } from 'react-native';
 
 // import components for our routes
 import Search from '../containers/searchContainer';
 import DeckViewNew from '../containers/deckViewContainer';
 import Splash from './splash';
 import Results from '../containers/savedContainer';
+import Login from './login';
+import Profile from './profile-view';
+import Welcome from './welcome-view';
 
 const Routes = {
   search: Search,
   deckView: DeckViewNew,
   results: Results,
-  splash: Splash
+  splash: Splash,
+  login: Login,
+  Welcome: Welcome
 }
 
 export default class Nav extends Component {
@@ -26,14 +31,59 @@ export default class Nav extends Component {
         style={styles.container}
         initialRoute={{name: 'splash'}}
         renderScene={this.renderScene.bind(this)}
+        navigationBar={
+             <Navigator.NavigationBar
+               style={ styles.nav }
+               routeMapper={NavigationBarRouteMapper} />
+             }
         configureScene={ () => { return Navigator.SceneConfigs.FloatFromRight; }}
       />
     )
   }
 }
 
+var NavigationBarRouteMapper = {
+  LeftButton(route, navigator, index, navState) {
+    if(index > 0) {
+      return (
+        <TouchableHighlight
+          underlayColor="transparent"
+          onPress={() => { if (index > 0) { navigator.pop() } }}>
+          <Text style={ styles.leftNavButtonText }>Back</Text>
+        </TouchableHighlight>)
+    }
+    else { return null }
+  },
+
+  RightButton(route, navigator, index, navState) {
+    return null
+  },
+
+  Title(route, navigator, index, navState) {
+    return <Text style={ styles.title }>ApexSwipe</Text>
+  }
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  title: {
+    marginTop:4,
+    fontSize:16
+  },
+  leftNavButtonText: {
+    fontSize: 18,
+    marginLeft:13,
+    marginTop:2
+  },
+  rightNavButtonText: {
+    fontSize: 18,
+    marginRight:13,
+    marginTop:2
+  },
+  nav: {
+    height: 60,
+    backgroundColor: '#efefef'
   }
 });
