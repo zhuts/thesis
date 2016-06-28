@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var auth0 = require('../auth0.config.js');
+var auth0 = require('../auth0.js');
 var request = require('request');
 
 router.get('/', (req, res) => {
