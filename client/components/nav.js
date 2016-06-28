@@ -5,10 +5,12 @@ import { StyleSheet, Navigator, Text, TouchableHighlight } from 'react-native';
 import Search from '../containers/searchContainer';
 import DeckViewNew from '../containers/deckViewContainer';
 import Splash from './splash';
-import Results from '../containers/savedContainer';
+import Results from '../containers/resultsContainer';
 import Login from './login';
 import Profile from './profile-view';
 import Welcome from './welcome-view';
+import Friends from './friendsList';
+import Saved from './savedDecks';
 
 const Routes = {
   search: Search,
@@ -16,7 +18,9 @@ const Routes = {
   results: Results,
   splash: Splash,
   login: Login,
-  Welcome: Welcome
+  welcome: Welcome,
+  friends: Friends,
+  saved: Saved
 }
 
 export default class Nav extends Component {
@@ -36,7 +40,13 @@ export default class Nav extends Component {
                style={ styles.nav }
                routeMapper={NavigationBarRouteMapper} />
              }
-        configureScene={ () => { return Navigator.SceneConfigs.FloatFromRight; }}
+        configureScene={ (route) => {
+          if (route.name === 'friends') {
+            return Navigator.SceneConfigs.FloatFromLeft;
+          } else {
+            return Navigator.SceneConfigs.FloatFromRight;
+          }
+        }}
       />
     )
   }

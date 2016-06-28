@@ -18,7 +18,6 @@ export default class SplashComponent extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text style={styles.heading}>APEX SWIPE</Text>
         <View style={styles.container}>
           <TouchableHighlight
             style={styles.button}
@@ -40,6 +39,20 @@ export default class SplashComponent extends Component {
             onPress={() => {this.navigate('results')}}
           >
             <Text>Results</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            underlayColor={'lightblue'}
+            onPress={() => {this.navigate('friends')}}
+          >
+            <Text>Friends List</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            underlayColor={'lightblue'}
+            onPress={() => {this.navigate('saved')}}
+          >
+            <Text>Saved Decks</Text>
           </TouchableHighlight>
         </View>
       </View>
