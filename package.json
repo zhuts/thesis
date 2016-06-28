@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "server": "node index.js",
-    "test": "mocha --compilers js:babel-core/register --recursive test"
+    "test": "mocha --compilers js:babel-core/register --recursive test --reporter nyan"
   },
   "dependencies": {
     "babel-preset-react-native-stage-0": "^1.0.1",
