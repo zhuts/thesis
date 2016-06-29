@@ -95,18 +95,18 @@ module.exports = {
     });
   },
   
-  // removeFriend: function(req, res) {
-  //   var user_id = req.params.user_id;
-  //   var friendId = req.body.user_id;
+  removeFriend: function(req, res) {
+    var user_id = req.params.user_id;
+    var friendId = req.body.friend_id;
     
-  //   deckController.removeFriend(user_id, friendId, function(err) {
-  //     if(err) {
-  //       console.log(err);
-  //       res.sendStatus(400)
-  //     } else {
-  //       res.sendStatus(200)
-  //     }
-  //   })
-  // },
+    deckController.removeFriend(user_id, friendId, function(err) {
+      if(err) {
+        console.log(err);
+        res.sendStatus(400)
+      } else {
+        res.sendStatus(200)
+      }
+    })
+  },
   
 }
