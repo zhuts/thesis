@@ -27,7 +27,31 @@ export const buildDeckYelp = (yelpData) => {
   };
 };
 
+<<<<<<< 274703e13a0f104ced16666d4e46a993210aaf2c
 // this action will increment currentCard by 1
+=======
+// export const buildDeckYelp = (term,location) => {
+//   let yelpData;
+//   if (term !== '' && location !== '') {
+//     helpers.searchYelp(term, location, (yelp) => {
+//       yelpData = yelp.map( (business) => { 
+//         return {
+//           ...business,
+//           like: undefined
+//         }
+//       });
+//     });
+//   }
+  
+//   return {
+//     type:"BUILD_DECK",
+//     yelpData
+//   }
+// };
+
+// this action will increment currentCard by 1 until it hits currentDeck.length
+// when it hits currentDeck.length, switch to results page
+>>>>>>> factors out styles, adds aws packages
 
 export const nextCard = () => {
   return {

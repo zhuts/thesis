@@ -1,3 +1,7 @@
+# AWS
+#
+.env
+
 # OSX
 #
 bower_components/
