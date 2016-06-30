@@ -11,6 +11,7 @@ import Profile from './profile-view';
 import Welcome from './welcome-view';
 import Friends from './friendsList';
 import Saved from './savedDecks';
+import Camera from './camera';
 
 const Routes = {
   search: Search,
@@ -20,7 +21,8 @@ const Routes = {
   login: Login,
   welcome: Welcome,
   friends: Friends,
-  saved: Saved
+  saved: Saved,
+  camera: Camera
 }
 
 export default class Nav extends Component {
@@ -28,7 +30,7 @@ export default class Nav extends Component {
     const Component = Routes[route.name];
     return <Component route={route} navigator={navigator} splash={splash} />
   }
-  
+
   render() {
     return (
       <Navigator

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { 
-  View, 
+import {
+  View,
   Text,
-  TouchableHighlight, 
-  StyleSheet 
+  TouchableHighlight,
+  StyleSheet
 } from 'react-native';
 
 export default class SplashComponent extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   navigate(destination) {
     this.props.navigator.push({ name: destination });
   }
@@ -25,7 +25,7 @@ export default class SplashComponent extends Component {
             onPress={() => {this.navigate('search')}}
            >
             <Text>Search</Text>
-          </TouchableHighlight>    
+          </TouchableHighlight>
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
@@ -39,6 +39,13 @@ export default class SplashComponent extends Component {
             onPress={() => {this.navigate('results')}}
           >
             <Text>Results</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            underlayColor={'lightblue'}
+            onPress={() => {this.navigate('camera')}}
+          >
+            <Text>Camera</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.friend}
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
     padding: 5,
     width: 300,
     height: 75,
-    borderColor: 'black', 
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
     marginTop: 10
@@ -89,7 +96,7 @@ const styles = StyleSheet.create({
     padding: 5,
     width: 100,
     height: 75,
-    borderColor: 'black', 
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
     position: 'absolute',
@@ -104,7 +111,7 @@ const styles = StyleSheet.create({
     padding: 5,
     width: 100,
     height: 75,
-    borderColor: 'black', 
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
     position: 'absolute',
