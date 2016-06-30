@@ -27,6 +27,6 @@ router.get('/', (req, res) => {
 
 router.get('/friends/:user_id', handlers.getFriends);
 router.post('/friends/:user_id', handlers.addFriend);
-// router.delete('/friends/:user_id', handler.removeFriend);
+router.delete('/friends/:user_id', handlers.removeFriend);
 
 module.exports = router;

@@ -5,10 +5,11 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "server": "node index.js",
-    "test": "mocha --compilers js:babel-core/register --recursive test --reporter nyan"
+    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --recursive test --reporter nyan"
   },
   "dependencies": {
     "babel-preset-react-native-stage-0": "^1.0.1",
+    "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "express": "^4.13.4",
     "express-jwt": "^3.4.0",
@@ -26,6 +27,7 @@
     "request": "^2.72.0",
     "socket.io": "^1.4.6",
     "tcomb-form-native": "^0.5.1",
+    "underscore": "^1.8.3",
     "yelp": "^1.0.1"
   },
   "devDependencies": {
@@ -39,7 +41,8 @@
     "chai": "^3.5.0",
     "deep-freeze-strict": "^1.1.1",
     "expect": "^1.20.1",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "supertest": "^1.2.0"
   },
   "repository": {
     "type": "git",

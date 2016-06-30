@@ -31,12 +31,11 @@ module.exports = {
   
   addDeck: function(req, res) {
     var deck = req.body;
-    
     deckController.addDeck(deck, function(err, deck) {
       if(err) {
         res.status(500).send(err);
       } else {
-        res.status(201).send('New Deck Added');
+        res.status(201).send(deck);
       }
     });
   },
@@ -50,7 +49,7 @@ module.exports = {
         console.log(err);
         res.sendStatus(400)
       } else {
-        res.sendStatus(200)
+        res.status(200).send(deck);
       }
     })
   },
@@ -86,27 +85,27 @@ module.exports = {
     var user_id = req.params.user_id;
     var friend = req.body;
     
-    friendsController.addFriend(user_id, friend, function(err, friends) {
+    friendsController.addFriend(user_id, friend, function(err, list) {
       if(err) {
         res.status(500).send(err);
       } else {
-        res.status(201).send('New Friend Added');
+        res.status(201).send(list);
       }
     });
   },
   
-  // removeFriend: function(req, res) {
-  //   var user_id = req.params.user_id;
-  //   var friendId = req.body.user_id;
+  removeFriend: function(req, res) {
+    var user_id = req.params.user_id;
+    var friendId = req.body.friend_id;
     
-  //   deckController.removeFriend(user_id, friendId, function(err) {
-  //     if(err) {
-  //       console.log(err);
-  //       res.sendStatus(400)
-  //     } else {
-  //       res.sendStatus(200)
-  //     }
-  //   })
-  // },
+    friendsController.removeFriend(user_id, friendId, function(err, list) {
+      if(err) {
+        console.log(err);
+        res.sendStatus(400)
+      } else {
+        res.status(200).send(list)
+      }
+    })
+  },
   
 }
