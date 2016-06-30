@@ -19,12 +19,12 @@ describe('Friends Controller', function() {
     mongoose.connect(dbURI, done);
   });
   
-  after(function(done) {
-    mongoose.disconnect(function() {
-      console.log('Mongodb connection closed');
-      done();
-    });
-  });
+  // after(function(done) {
+  //   mongoose.disconnect(function() {
+  //     console.log('Mongodb connection closed');
+  //     done();
+  //   });
+  // });
   
   afterEach(function(done) {
     clearDB(done);
@@ -68,9 +68,9 @@ describe('Friends Controller', function() {
     Friends.findOne({user_id: user_id})
       .exec(function(err, user) {
         var friendId = user.list[0]._id;
-        friendsController.removeFriend(user_id, friendId, function(err, user) {
-          expect(user.list.length).to.equal(1);
-          expect(user.list[0].email).to.equal('threenull@threemail.com');
+        friendsController.removeFriend(user_id, friendId, function(err, friendsList) {
+          expect(friendsList.length).to.equal(1);
+          expect(friendsList[0].email).to.equal('threenull@threemail.com');
           done();
         });
       })
