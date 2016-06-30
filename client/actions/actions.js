@@ -58,16 +58,45 @@ export const toggleLikeFalse = (id) => {
   }
 }
 
+export const getUsers = (users) => {
+  return {
+    type: 'GET_USERS',
+    users
+  }
+}
+
+//================================================
+
+//Camera Actions
+
+
+//================================================
+
+//takePictureSuccess will increment a counter by one, so that the proper
+//number of pics are pulled from the cameraRoll in buildImageDeck
 export const takePictureSuccess = () => {
   return {
     type: 'TAKE_PICTURE_SUCCESS'
   }
 }
-
-export const getUsers = (users) => {
+//changeToCameraMode will set a state boolean so that the deckview will render
+//images instead of yelp cards
+export const changeToCameraMode = () => {
   return {
-    type: 'GET_USERS',
-    users
+    type: 'CAMERA_MODE'
+  }
+}
+//will create deck out of images from cameraRoll
+export const buildImageDeck = (images) => {
+  return {
+    type: 'BUILD_IMAGE_DECK',
+    images
+  };
+}
+//will toggle status of loading images in deckview
+export const doneLoading = () => {
+  return {
+    type: 'DONE_LOADING'
   }
 }
 

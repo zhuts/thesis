@@ -1,23 +1,22 @@
 import { connect } from 'react-redux';
 import helpers from '../util/helpers';
-import DeckViewComponent from '../components/deck_view';
+import ImageCardComponent from '../components/imageCard';
 import * as action from '../actions/actions';
 
 const mapStateToProps = (state) => {
   return {
-    searchParam: state.search,
     currentCard: state.currentCard,
     currentDeck: state.currentDeck,
+    isLoading: state.isLoading,
     numOfPics: state.camera.picsTaken,
-    cameraMode: state.camera.mode
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeCardSwipe: () => { dispatch(action.nextCard()) },
-    buildImageDeck: (images) => { dispatch(action.buildImageDeck(images)) }
+    buildImageDeck: (images) => { dispatch(action.buildImageDeck(images)) },
+    doneLoading: () => { dispatch(action.doneLoading()) }
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeckViewComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ImageCardComponent);

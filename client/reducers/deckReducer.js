@@ -4,6 +4,10 @@ export default (state = [], action) => {
       return [
         ...action.yelpData
       ]
+    case 'BUILD_IMAGE_DECK':
+      return [
+        ...action.images
+      ]
     case 'TOGGLE_LIKE_TRUE':
       return Array.prototype.map.call(state,card =>{
         if(card.id !== action.id){

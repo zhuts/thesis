@@ -5,8 +5,14 @@ import * as action from '../actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    takePictureSuccess: () => { dispatch(action.takePictureSuccess()) }
+    takePictureSuccess: () => { dispatch(action.takePictureSuccess()) },
+    changeToCameraMode: () => { dispatch(action.changeToCameraMode()) }
   }
 };
+// const mapStateToProps = (state) => {
+//   return {
+//     mode: state.camera.mode
+//   }
+// }
 
 export default connect(null, mapDispatchToProps)(CameraComponent);
