@@ -21,6 +21,11 @@ var s3Router = require('./routes/s3Router');
 //   audience: process.env.AUTH0_CLIENT_ID// auth0.clientID
 // })
 
+//AWS requires
+var AWS = require('aws-sdk');
+var S3_BUCKET = process.env.s3_BUCKET
+
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
