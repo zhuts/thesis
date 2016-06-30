@@ -36,7 +36,7 @@ export default class CameraComponent extends Component {
   takePicture() {
     if (this.camera) {
       this.camera.capture()
-        .then((data) => console.log(data))
+        .then(() => this.props.takePictureSuccess())
         .catch((err) => console.log(err));
     }
   }
