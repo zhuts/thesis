@@ -1,7 +1,7 @@
 // const mockData = {
 //   searchParam: '',
 //   currentCard: '',
-//   currentDeck: [{ 
+//   currentDeck: [{
 //     id:0,
 //     cardType: 'yelp',
 //     cardTitle: '',
@@ -48,12 +48,12 @@ export const buildDeck = (yelpData) => {
 
 export const changeCard = (id) => {
   return {
-    type: 'CHANGE_CARD',  
+    type: 'CHANGE_CARD',
     id
   }
 }
 
-// toggleLike will search currentDeck, find matching id and will toggle like 
+// toggleLike will search currentDeck, find matching id and will toggle like
 // and it will also toggle votedOn to true
 
 export const toggleLike = (id, liked) => {
@@ -64,4 +64,8 @@ export const toggleLike = (id, liked) => {
   }
 }
 
-
+export const takePictureSuccess = () => {
+  return {
+    type: 'TAKE_PICTURE_SUCCESS'
+  }
+}

@@ -11,7 +11,7 @@ import Profile from './profile-view';
 import Welcome from './welcome-view';
 import Friends from './friendsList';
 import Saved from './savedDecks';
-import Camera from './camera';
+import Camera from '../containers/cameraContainer';
 
 const Routes = {
   search: Search,
