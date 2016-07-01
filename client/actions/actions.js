@@ -69,3 +69,10 @@ export const takePictureSuccess = () => {
     type: 'TAKE_PICTURE_SUCCESS'
   }
 }
+
+export const getUsers = (users) => {
+  return {
+    type: 'GET_USERS',
+    users
+  }
+}

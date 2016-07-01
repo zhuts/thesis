@@ -9,10 +9,11 @@ import {
 
 export default class FriendsListComponent extends Component {
   render() {
+    const { users } = this.props;
     return (
       <View style={styles.container}>
         <Text>Friends List</Text>
-        <Text>This is where your friends will fill up!</Text>
+        {users.map((user) => {return <Text key={user.user_id}>{user.email}</Text>})}
       </View>
     )
   }
