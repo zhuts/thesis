@@ -15,6 +15,21 @@ export default {
       .catch(function(err) {
         console.log(err);
       })
+  },
+
+  getUsers: (callback) => {
+    const url = `http://localhost:3000/users`;
+    fetch(url)
+      .then(function(response) {               
+        return response.json() ;
+      })
+      .then(function(user) {
+        // console.log(data.businesses);
+        callback(user);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
   }
   
 };

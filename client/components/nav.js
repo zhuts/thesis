@@ -4,12 +4,12 @@ import { StyleSheet, Navigator, Text, TouchableHighlight } from 'react-native';
 // import components for our routes
 import Search from '../containers/searchContainer';
 import DeckViewNew from '../containers/deckViewContainer';
-import Splash from './splash';
+import Splash from '../containers/splashContainer';
 import Results from '../containers/resultsContainer';
 import Login from './login';
 import Profile from './profile-view';
 import Welcome from './welcome-view';
-import Friends from './friendsList';
+import Friends from '../containers/friendsListContainer';
 import Saved from './savedDecks';
 import Camera from '../containers/cameraContainer';
 

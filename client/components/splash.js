@@ -5,8 +5,14 @@ import {
   TouchableHighlight,
   StyleSheet
 } from 'react-native';
+import helpers from '../util/helpers'
 
 export default class SplashComponent extends Component {
+  componentDidMount() {
+    const { getUsers } = this.props;
+    helpers.getUsers((users) => {getUsers(users)});
+  }
+
   constructor(props) {
     super(props);
   }
