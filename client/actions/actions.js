@@ -68,6 +68,7 @@ export const prevCard = () => {
 // toggleLike will search currentDeck, find matching id and will toggle like
 // and it will also toggle votedOn to true
 
+<<<<<<< 6bd7194d00f195d9dcc96dfe86f141951b43279c
 export const toggleLikeTrue = (id) => {
   return {
     type: 'TOGGLE_LIKE_TRUE',
@@ -79,6 +80,21 @@ export const toggleLikeFalse = (id) => {
   return {
     type: 'TOGGLE_LIKE_FALSE',
     id
+=======
+export const toggleLikeTrue = (currentCard, currentDeck) => {
+  return {
+    type: 'TOGGLE_LIKE_TRUE',
+    currentCard,
+    currentDeck
+  }
+}
+
+export const toggleLikeFalse = (currentCard, currentDeck) => {
+  return {
+    type: 'TOGGLE_LIKE_FALSE',
+    currentCard,
+    currentDeck
+>>>>>>> adds liked actions
   }
 }
 

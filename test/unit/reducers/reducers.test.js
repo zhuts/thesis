@@ -110,6 +110,7 @@ describe('Reducers', () => {
 
       df(stateBefore);
       expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
+
     });
   });
 
@@ -154,10 +155,10 @@ describe('Reducers', () => {
         users: [{email: '123@example.com', user_id: '123'}, { email: '456@example.com', user_id: '456' }],
         id: '456'
       };
-      
       const afterState = [ { email: '456@example.com', user_id: '456' } ];
       df(beforeState);
       expect(friendsReducer(beforeState, action)).toEqual(afterState);
+
     });
   });
   
