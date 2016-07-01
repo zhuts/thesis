@@ -22,27 +22,38 @@ describe ('Apex Swipe actions', () => {
 		});
 	});
 
-	it ('buildDeck should create BUILD_DECK action', () => {
-		expect(actions.buildDeck({data: "goes here"})).toEqual({
-			type: 'BUILD_DECK',
+	it ('buildDeckYelp should create BUILD_DECK_YELP action', () => {
+		expect(actions.buildDeckYelp({data: "goes here"})).toEqual({
+			type: 'BUILD_DECK_YELP',
 			yelpData: {data: "goes here"}
 		});
 	});
 
-	it ('changeCard should create CHANGE_CARD action', () => {
-		expect(actions.changeCard(99)).toEqual({
-			type: 'CHANGE_CARD',
-			id: 99
+	it ('changeCard should create NEXT_CARD action', () => {
+		expect(actions.nextCard()).toEqual({
+			type: 'NEXT_CARD'
 		});
 	});
 
-	it ('toggleLike should create TOGGLE_LIKE action', () => {
-		expect(actions.toggleLike(77, true)).toEqual({
-			type: 'TOGGLE_LIKE',
-			id: 77,
-			liked: true
+	it ('prevCard should create PREV_CARD action', () => {
+		expect(actions.prevCard()).toEqual({
+			type: 'PREV_CARD'
 		});
 	});
+
+	it ('toggleLikeTrue should create TOGGLE_LIKE_TRUE action', () => {
+		expect(actions.toggleLikeTrue(77)).toEqual({
+			type: 'TOGGLE_LIKE_TRUE',
+			id: 77
+		});
+	});
+	it ('toggleLikeFalse should create TOGGLE_LIKE_FALSE action', () => {
+		expect(actions.toggleLikeFalse(77)).toEqual({
+			type: 'TOGGLE_LIKE_FALSE',
+			id: 77
+		});
+	});
+
 });
 
 

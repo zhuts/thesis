@@ -1,55 +1,82 @@
-const mockCard = [
-  {searchParam:"New Computers", cardTitle:"Apple IIe", cardPic:"./testAssets/apple2-100009966-orig.jpg"}
-];
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
   Image,
   Text,
   View,
-  TouchableHighlight,
   Animated,
-  PanResponder
+  PanResponder,
+  TouchableOpacity
 } from 'react-native';
+import Card from './card';
+import * as action from '../actions/actions';
+import styles from '../assets/styles';
 
-export default class deckView extends React.Component{
+let SWIPE_THRESHOLD = 120;
+
+export default class deckView extends Component{
+  
   constructor(props) {
     super(props);
 
     this.state = {
       pan: new Animated.ValueXY(),
-      enter: new Animated.Value(0.5)
-    };
+      enter: new Animated.Value(0.5),
+    }
   }
 
   componentDidMount() {
+    this._animateEntrance();
+  }
 
+  _animateEntrance() {
+    Animated.spring(
+      this.state.enter,
+      { toValue: 1, friction: 8 }
+    ).start();
   }
 
   componentWillMount() {
     this._panResponder = PanResponder.create({
       
-      onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
-//sets x,y to 0 when finger is detected  
+      onMoveShouldSetPanResponder: () => true,
+      
+      onMoveShouldSetPanResponderCapture: () => true,
+      
+      //sets x,y to 0 when finger is detected  
       onPanResponderGrant: (evt, gestureState) => {
         //set x,y to 0
-        this.state.pan.setOffset({x: this.state.pan.x._value, y: this.state.pan.y._value});
-        this.state.pan.setValue({x: 0, y: 0});
+        this.state.pan.setOffset({
+          x: this.state.pan.x._value, 
+          y: this.state.pan.y._value
+        });
+        this.state.pan.setValue({
+          x: 0, 
+          y: 0
+        });
       },
-//value of x,y change relative to where finger started
+      
+      //value of x,y change relative to where finger started
       onPanResponderMove: Animated.event([
-        null, {dx: this.state.pan.x, dy: this.state.pan.y}
+        null, 
+        {
+          dx: this.state.pan.x, 
+          dy: this.state.pan.y
+        }
       ]),
-//returns 
-      onPanResponderRelease: () => {
+      
+      onPanResponderRelease: (e, {vx, vy}) => {
+        
+        if (this.state.pan.x._value > SWIPE_THRESHOLD) {      
+          this._resetState(true)
+        } else if (this.state.pan.x._value < -SWIPE_THRESHOLD){          
+          this._resetState(false)
+        } 
         Animated.spring(this.state.pan, {
           toValue: 0
-        }).start();
+        });    
       },
-
+      
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderTerminate: (evt, gestureState) => {
         // Another component has become the responder, so this gesture
@@ -63,110 +90,56 @@ export default class deckView extends React.Component{
     })
   }
 
+  _changePage(){
+    if (this.props.currentCard >= 15) {
+      this.props.navigator.push({ name: 'results' });
+    }
+  }
+
+  _resetState(liked){
+    // this.props.toggleLikeClick(liked);
+    this.state.pan.setValue({x: 0, y: 0});
+    this.state.enter.setValue(0);
+    this.props.changeCardSwipe();
+    this._animateEntrance();
+  }
+
   render() {
-    let mock = mockCard[0];
-    let {pan, enter} = this.state;
+    
+    const { pan, enter } = this.state;
+    const { currentDeck, currentCard } = this.props;
+    
     let [translateX, translateY] = [pan.x, pan.y];
     let rotate = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]});
-    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]})
+    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]});
     let scale = enter;
     let animatedCard = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity};
-
+    
     return (
       <View style={styles.container}>
-        <TouchableHighlight
-           style={styles.back}
-           underlayColor={'lightblue'}
-           onPress={() => { this.props.navigator.pop() }}
-        >
-          <Text>Back</Text>
-        </TouchableHighlight>
         <View style={styles.searchResultsContainer}>
-          <Text style={styles.searchResults}>{mock.searchParam}</Text>
+          <Image
+            source={require('../assets/yelp-logo-large.png')}
+          />
+          <Text style={styles.searchResults}>{this.props.searchParam.term}</Text>
         </View>
         <Animated.View style={[styles.swipeCard, animatedCard]} {...this._panResponder.panHandlers}>
-          <Text style={styles.cardTitleStyle}>{mock.cardTitle}</Text>
-          <Image style={styles.cardPicStyle} source={require('../../testAssets/apple2.jpg')} />
+          <Card business={currentDeck[currentCard]} />
         </Animated.View>
 
-        <View style={styles.leftSwipeBtn}>
+        <TouchableOpacity 
+          style={styles.leftSwipeBtn}
+          onPress={() => {{this.props.changeCardSwipe()} {this._changePage()}}}>
           <Text>LEFT</Text>
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.rightSwipeBtn}>
+        <TouchableOpacity 
+          style={styles.rightSwipeBtn}
+          onPress={() => {{this.props.changeCardSwipe()} {this._changePage()}}}>
           <Text>RIGHT</Text>
-        </View>
+        </TouchableOpacity>
 
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F3FCFF'
-  },
-  searchResultsContainer:{
-    position: 'absolute',
-    left:0,
-    top:0
-  },
-  searchResults:{
-    padding: 30,
-    fontSize: 20,   
-    textAlign: 'left',
-    margin: 10
-  },
-  swipeCard: {
-    borderWidth: 5,
-    borderRadius: 5,
-    borderColor: '#000',
-    width: 300,
-    height: 300
-  },
-  cardTitleStyle:{
-    position: 'absolute',
-    left:0,
-    top:0,
-    color: '#888'
-  },
-  cardPicStyle:{
-    width: 200,
-    height: 200
-  },
-  leftSwipeBtn:{
-    borderColor: 'red',
-    borderWidth: 2,
-    position: 'absolute',
-    bottom: 20,
-    padding: 20,
-    borderRadius: 5,
-    left: 20,
-  },
-  leftSwipeText:{
-  },
-  rightSwipeBtn:{
-    borderColor: 'green',
-    borderWidth: 2,
-    position: 'absolute',
-    padding: 20,
-    bottom: 20,
-    borderRadius: 5,
-    right: 20,
-  },
-  rightSwipeText:{
-  },
-  back: {
-   width: 40,
-   height: 20,
-   justifyContent: 'flex-start',
-   alignSelf: 'flex-start',
-   position: 'absolute',
-   borderColor: 'blue', 
-   borderWidth: 1,
-   borderRadius: 5,
-  }
-});

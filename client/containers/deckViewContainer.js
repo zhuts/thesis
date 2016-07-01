@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import helpers from '../util/helpers';
-import DeckViewComponent from '../components/deck_view_new2';
+import DeckViewComponent from '../components/deck_view';
 import * as action from '../actions/actions';
 
 const mapStateToProps = (state) => {
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // toggleLikeClick: (id, liked) => { dispatch(action.toggleLike(id, liked)) },
-    changeCardSwipe: (id) => { dispatch(action.changeCard(id)) }
+    changeCardSwipe: () => { dispatch(action.nextCard()) }
   }
 };
 

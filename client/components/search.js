@@ -3,16 +3,16 @@ import {
   View, 
   TextInput,
   Text,
-  TouchableHighlight, 
-  StyleSheet 
+  TouchableHighlight
 } from 'react-native';
 import helpers from '../util/helpers';
 import * as actions from '../actions/actions';
-
+import styles from '../assets/styles';
 
 export default class SearchComponent extends Component {
+  
   onSearch(term, location) {
-    const { navigator, buildDeck } = this.props;
+    const { navigator, buildDeckYelp } = this.props;
     if (term !== '' && location !== '') {
       helpers.searchYelp(term, location, (yelpData) => {
         const data = yelpData.map( (business) => { 
@@ -21,7 +21,7 @@ export default class SearchComponent extends Component {
             like: undefined
           }
         });
-        buildDeck(data);
+        buildDeckYelp(data);
         navigator.push({ name: 'deckView' });
       });
     }
@@ -66,42 +66,7 @@ export default class SearchComponent extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20
-  },
-  input: {
-    padding: 5,
-    height: 40,
-    width: 200,
-    borderColor: 'black', 
-    borderWidth: 1,
-    borderRadius: 5,
-    margin: 4
-  },
-  search: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
-    height: 40,
-    borderColor: 'black', 
-    borderWidth: 1,
-    borderRadius: 5,
-    marginTop: 10
-  },
-  back: {
-    width: 60,
-    height: 20,
-    alignItems: 'center',
-    alignSelf: 'flex-start', 
-    borderColor: 'blue',
-    borderWidth: 1,
-    borderRadius: 5,
-  },
-})
+
 
 
 

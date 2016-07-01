@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, Navigator, Text, TouchableHighlight } from 'react-native';
+import {
+  Navigator,
+  Text,
+  TouchableHighlight,
+  StyleSheet
+} from 'react-native';
+// import styles from '../assets/styles';
+
 
 // import components for our routes
 import Search from '../containers/searchContainer';
-import DeckViewNew from '../containers/deckViewContainer';
 import Splash from '../containers/splashContainer';
+import DeckView from '../containers/deckViewContainer';
 import Results from '../containers/resultsContainer';
 import Login from './login';
 import Profile from './profile-view';
@@ -15,7 +22,7 @@ import Camera from '../containers/cameraContainer';
 
 const Routes = {
   search: Search,
-  deckView: DeckViewNew,
+  deckView: DeckView,
   results: Results,
   splash: Splash,
   login: Login,
@@ -34,7 +41,7 @@ export default class Nav extends Component {
   render() {
     return (
       <Navigator
-        style={styles.container}
+        style={styles.navContainer}
         initialRoute={{name: 'splash'}}
         renderScene={this.renderScene.bind(this)}
         navigationBar={
@@ -99,3 +106,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#efefef'
   }
 });
+

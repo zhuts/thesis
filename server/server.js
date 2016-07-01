@@ -2,6 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var morgan = require('morgan');
+var multer = require('multer');
 var bodyParser = require('body-parser');
 var jwt = require('express-jwt');
 
@@ -14,6 +15,7 @@ if(node_env === undefined) {
 var yelpRouter = require('./routes/yelpRouter');
 var deckRouter = require('./routes/deckRouter');
 var userRouter = require('./routes/userRouter');
+var s3Router = require('./routes/s3Router');
 // var jwtCheck = jwt({
 //   secret: new Buffer(process.env.AUTH0_CLIENT_SECRET), // new Buffer(auth0.clientSecret),
 //   audience: process.env.AUTH0_CLIENT_ID// auth0.clientID
@@ -26,5 +28,6 @@ app.use(bodyParser.json());
 app.use('/yelpSearch', yelpRouter);
 app.use('/decks', deckRouter);
 app.use('/users', userRouter);
+app.use('/sign_s3', s3Router);
 
 module.exports = http;

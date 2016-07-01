@@ -1,7 +1,8 @@
 export default (state = 0, action) => {
   switch (action.type) {
-    case 'CHANGE_CARD':
-      // state.currentCard = action.currentCard;
+    case 'PREV_CARD':
+      return state - 1
+    case 'NEXT_CARD':
       return state + 1
     default:
       return state;

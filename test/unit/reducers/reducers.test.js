@@ -1,9 +1,8 @@
 import expect from 'expect';
 import df from 'deep-freeze-strict';
 import searchReducer from '../../../client/reducers/searchReducer';
-import buildDeckReducer from '../../../client/reducers/buildDeckReducer';
-import changeCardReducer from '../../../client/reducers/changeCardReducer';
-// import toggleLikeReducer from '../../../client/reducers/toggleLikeReducer';
+import deckReducer from '../../../client/reducers/deckReducer';
+import currentCardReducer from '../../../client/reducers/currentCardReducer';
 
 describe('Reducers', () => {
   
@@ -39,7 +38,7 @@ describe('Reducers', () => {
     });
   });
   
-  describe('buildDeckReducer', () => {
+  describe('deckReducer', () => {
     
     // sample data
     const sampleData = [
@@ -50,43 +49,89 @@ describe('Reducers', () => {
         rating: 4.0,
         rating_img_url_large: "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/ccf2b76faa2c/ico/stars/v1/stars_large_4.png", 
         review_count: 1415, 
-        like: false
+        liked: false
       }
     ]
     
-    it('should build a new deck', () => {
+    it('should build a new Yelp deck', () => {
       const action = {
-        type: 'BUILD_DECK',
+        type: 'BUILD_DECK_YELP',
         yelpData: [
           ...sampleData
         ]
       };
       
-      const state = buildDeckReducer(df([]), df(action));
+      const state = deckReducer(df([]), df(action));
       expect(state.length).toEqual(1);
       expect(state[0].name).toEqual(action.yelpData[0].name);
       expect(state[0].review_count).toEqual(action.yelpData[0].review_count);
     });
-    
-    xit('should toggle a card\'s LIKE', () => {
+
+    it('should toggle current card\'s liked property to true within the current deck', () => {
+      const stateBefore = [
+        {id: 1, liked: false},
+        {id: 2, liked: false},
+        {id: 3, liked: false}
+      ];
+
       const action = {
-        type: 'TOGGLE_LIKE',
-        currentCard: 0
+        type: 'TOGGLE_LIKE_TRUE',
+        id: 2
       };
       
-      const state = buildDeckReducer(df(sampleData), df(action));
-      expect(state[0].like).toEqual(true);
+      const stateAfter = [    
+        {id: 1, liked: false},
+        {id: 2, liked: true},
+        {id: 3, liked: false}
+      ];
+
+      df(stateBefore);
+      expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+
+    it('should toggle current card\'s liked property to true within the current deck', () => {
+      const stateBefore = [
+        {id: 1, liked: true},
+        {id: 2, liked: true},
+        {id: 3, liked: true}
+      ];
+
+      const action = {
+        type: 'TOGGLE_LIKE_FALSE',
+        id: 2
+      };
+      
+      const stateAfter = [    
+        {id: 1, liked: true},
+        {id: 2, liked: false},
+        {id: 3, liked: true}
+      ];
+
+      df(stateBefore);
+      expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
     });
   });
-  
-  describe('changeCardReducer', () => {
-    it('should update the current Card', () => {
+
+  describe('currentCardReducer', () => {
+    it('should go to the next card', () => {
+      const stateBefore = 0;
       const action = {
-        type: 'CHANGE_CARD',
+        type: 'NEXT_CARD'
       };
+      const stateAfter = 1;
+
+      df(stateBefore);
+      expect(currentCardReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+    it('should go to the previous card', () => {
+      const stateBefore = 1;
+      const action = {
+        type: 'PREV_CARD'
+      };
+      const stateAfter = 0;
       
-      const state = changeCardReducer(df(0), df(action));
-      expect(state).toEqual(1);
+      df(stateBefore);
+      expect(currentCardReducer(stateBefore, action)).toEqual(stateAfter);
     });
   });
   

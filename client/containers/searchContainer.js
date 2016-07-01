@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     searchTerm: (term) => {dispatch(actions.searchTerm(term))},
     searchLocation: (location) => {dispatch(actions.searchLocation(location))},
-    buildDeck: (data) => {dispatch(actions.buildDeck(data))}
+    buildDeckYelp: (data) => {dispatch(actions.buildDeckYelp(data))}
   }
 };
 

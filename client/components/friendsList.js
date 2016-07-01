@@ -3,9 +3,9 @@ import {
   View, 
   TextInput,
   Text,
-  TouchableHighlight, 
-  StyleSheet 
+  TouchableHighlight
 } from 'react-native';
+import styles from '../assets/styles';
 
 export default class FriendsListComponent extends Component {
   render() {
@@ -19,11 +19,3 @@ export default class FriendsListComponent extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20
-  }
-})

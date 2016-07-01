@@ -1,20 +1,4 @@
-// const mockData = {
-//   searchParam: '',
-//   currentCard: '',
-//   currentDeck: [{
-//     id:0,
-//     cardType: 'yelp',
-//     cardTitle: '',
-//     cardPic: 'url',
-//     liked: false,
-//     votedOn: false
-//   }]
-// };
-
-// const yelpMockData = {};
-
-// buildDeck action will first empty currentDeck,
-// then adds new cards per deck based on yelp data (mvp)
+import helpers from '../util/helpers';
 
 export const searchTerm = (term) => {
   return {
@@ -36,31 +20,41 @@ export const resetSearch = () => {
   };
 };
 
-export const buildDeck = (yelpData) => {
+export const buildDeckYelp = (yelpData) => {
   return {
-    type: 'BUILD_DECK',
+    type: 'BUILD_DECK_YELP',
     yelpData
   };
 };
 
-// this action will increment currentCard by 1 until it hits currentDeck.length
-// when it hits currentDeck.length, switch to results page
+// this action will increment currentCard by 1
 
-export const changeCard = (id) => {
+export const nextCard = () => {
   return {
-    type: 'CHANGE_CARD',
-    id
+    type: 'NEXT_CARD'
+  }
+}
+
+export const prevCard = () => {
+  return {
+    type: 'PREV_CARD'
   }
 }
 
 // toggleLike will search currentDeck, find matching id and will toggle like
 // and it will also toggle votedOn to true
 
-export const toggleLike = (id, liked) => {
+export const toggleLikeTrue = (id) => {
   return {
-    type: 'TOGGLE_LIKE',
-    id,
-    liked
+    type: 'TOGGLE_LIKE_TRUE',
+    id
+  } 
+}
+
+export const toggleLikeFalse = (id) => {
+  return {
+    type: 'TOGGLE_LIKE_FALSE',
+    id
   }
 }
 
