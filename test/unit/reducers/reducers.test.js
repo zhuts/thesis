@@ -5,6 +5,7 @@ import deckReducer from '../../../client/reducers/deckReducer';
 import currentCardReducer from '../../../client/reducers/currentCardReducer';
 import friendsReducer from '../../../client/reducers/friendsReducer';
 
+
 describe('Reducers', () => {
   
   describe('searchReducer', () => {
@@ -110,7 +111,6 @@ describe('Reducers', () => {
 
       df(stateBefore);
       expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
-
     });
   });
 
@@ -158,7 +158,6 @@ describe('Reducers', () => {
       const afterState = [ { email: '456@example.com', user_id: '456' } ];
       df(beforeState);
       expect(friendsReducer(beforeState, action)).toEqual(afterState);
-
     });
   });
   
