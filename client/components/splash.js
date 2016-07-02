@@ -9,8 +9,9 @@ import helpers from '../util/helpers'
 
 export default class SplashComponent extends Component {
   componentDidMount() {
-    const { getUsers } = this.props;
+    const { getUsers, getFriends, profile } = this.props;
     helpers.getUsers((users) => {getUsers(users)});
+    helpers.getFriends((friends) => {getFriends(friends)});
   }
 
   constructor(props) {

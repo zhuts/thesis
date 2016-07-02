@@ -3,6 +3,7 @@ import df from 'deep-freeze-strict';
 import searchReducer from '../../../client/reducers/searchReducer';
 import deckReducer from '../../../client/reducers/deckReducer';
 import currentCardReducer from '../../../client/reducers/currentCardReducer';
+import friendsReducer from '../../../client/reducers/friendsReducer';
 
 describe('Reducers', () => {
   
@@ -132,6 +133,21 @@ describe('Reducers', () => {
       
       df(stateBefore);
       expect(currentCardReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+  });
+
+  describe('friendsReducer', () => {
+    it('should add a friend', () => {
+      const beforeState = [];
+      const action = {
+        type: 'ADD_FRIEND',
+        users: [{email: '123@example.com', user_id: '123'}, { email: '456@example.com', user_id: '456' }],
+        id: '456'
+      };
+      
+      const afterState = [ { email: '456@example.com', user_id: '456' } ];
+      df(beforeState);
+      expect(friendsReducer(beforeState, action)).toEqual(afterState);
     });
   });
   

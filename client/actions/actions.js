@@ -70,3 +70,32 @@ export const getUsers = (users) => {
     users
   }
 }
+
+export const getFriends = (friends) => {
+  return {
+    type: 'GET_FRIENDS',
+    friends
+  }
+}
+
+export const addFriend = (users, id) => {
+  return {
+    type: 'ADD_FRIEND',
+    users,
+    id
+  }
+}
+
+export const setProfile = (profile) => {
+  return {
+    type: 'SET_PROFILE',
+    profile
+  }
+}
+
+export const setToken = (token) => {
+  return {
+    type: 'SET_TOKEN',
+    token
+  }
+}

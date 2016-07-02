@@ -36,6 +36,7 @@ var WelcomeView = React.createClass({
     );
   },
   _onLogin: function() {
+    const { profile, token, setProfile, setToken } = this.props;
     lock.show({
       closable: true,
     }, (err, profile, token) => {
@@ -43,12 +44,15 @@ var WelcomeView = React.createClass({
         console.log(err);
         return;
       }
+      setProfile(profile);
+      setToken(token);
+
       this.props.navigator.push({
         name: 'splash',
-        passProps: {
-          profile: profile,
-          token: token,
-        }
+        // passProps: {
+        //   profile: profile,
+        //   token: token,
+        // }
       });
     });
   },

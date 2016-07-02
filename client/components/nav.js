@@ -15,7 +15,7 @@ import DeckView from '../containers/deckViewContainer';
 import Results from '../containers/resultsContainer';
 import Login from './login';
 import Profile from './profile-view';
-import Welcome from './welcome-view';
+import Welcome from '../containers/welcomeContainer';
 import Friends from '../containers/friendsListContainer';
 import Saved from './savedDecks';
 import Camera from '../containers/cameraContainer';
@@ -41,8 +41,8 @@ export default class Nav extends Component {
   render() {
     return (
       <Navigator
-        style={styles.navContainer}
-        initialRoute={{name: 'splash'}}
+        style={styles.container}
+        initialRoute={{name: 'welcome'}}
         renderScene={this.renderScene.bind(this)}
         navigationBar={
              <Navigator.NavigationBar

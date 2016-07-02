@@ -47,10 +47,19 @@ describe ('Apex Swipe actions', () => {
 			id: 77
 		});
 	});
+
 	it ('toggleLikeFalse should create TOGGLE_LIKE_FALSE action', () => {
 		expect(actions.toggleLikeFalse(77)).toEqual({
 			type: 'TOGGLE_LIKE_FALSE',
 			id: 77
+		});
+	});
+
+	it ('addFriend should create ADD_FRIEND action', () => {
+		expect(actions.addFriend([{userid:123}], '1321897')).toEqual({
+			type: 'ADD_FRIEND',
+			users: [{userid:123}],
+			id: '1321897'
 		});
 	});
 
