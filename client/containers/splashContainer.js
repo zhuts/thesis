@@ -3,6 +3,12 @@ import helpers from '../util/helpers';
 import SplashComponent from '../components/splash';
 import * as action from '../actions/actions';
 
+const mapStateToProps = (state) => {
+  return {
+    currentDeck: state.currentDeck
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     // toggleLikeClick: (id, liked) => { dispatch(action.toggleLike(id, liked)) },
@@ -11,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(null, mapDispatchToProps)(SplashComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(SplashComponent);

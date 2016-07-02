@@ -23,6 +23,7 @@ export default class SplashComponent extends Component {
   }
 
   render() {
+    const { currentDeck } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.container}>
@@ -36,7 +37,11 @@ export default class SplashComponent extends Component {
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
-            onPress={() => {this.navigate('deckView')}}
+            onPress={() => {
+              if (currentDeck.length !== 0) {
+                this.navigate('deckView')
+              }
+            }}
           >
             <Text>Swipe</Text>
           </TouchableHighlight>
