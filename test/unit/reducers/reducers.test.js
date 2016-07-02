@@ -114,6 +114,16 @@ describe('Reducers', () => {
   });
 
   describe('currentCardReducer', () => {
+    it('should reset currentCard to 0 when a new deck is built', () => {
+      const stateBefore = 2;
+      const action = {
+        type: 'BUILD_DECK_YELP'
+      }
+      const stateAfter = 0;
+      df(stateBefore);
+      expect(currentCardReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+
     it('should go to the next card', () => {
       const stateBefore = 0;
       const action = {
