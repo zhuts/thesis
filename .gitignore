@@ -47,3 +47,13 @@ android/keystores/debug.keystore
 server/apiKeys.js
 server/auth0.js
 .env
+
+# database stuff
+server/db/journal/
+server/db/diagnostic.data/
+server/db/_mdb_catalog.wt
+server/db/WiredTiger
+server/db/WiredTiger.lock
+server/db/WiredTiger.turtle
+server/db/WiredTiger.wt
+server/db/WiredTigerLAS.wt

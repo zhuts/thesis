@@ -1,9 +1,17 @@
 //this reducer will increment a state counter by one, so that the number
-//of photos taken by the user is the number of photos pulled from the cameraRoll 
-export default (state = 0, action) => {
+//of photos taken by the user is the number of photos pulled from the cameraRoll
+export default (state = {picsTaken: 0, mode: false}, action) => {
   switch (action.type) {
     case 'TAKE_PICTURE_SUCCESS':
-      return state + 1
+      return {
+        ...state,
+        picsTaken: state.picsTaken + 1
+      }
+    case 'CAMERA_MODE':
+      return {
+       ...state,
+       mode: true
+      }
     default:
       return state;
   }

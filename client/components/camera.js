@@ -17,6 +17,7 @@ export default class CameraComponent extends Component {
     super(props);
 
     this.camera = null;
+    this.props.changeToCameraMode();
 
     this.state = {
       camera: {
