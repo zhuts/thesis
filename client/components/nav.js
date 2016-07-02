@@ -17,8 +17,11 @@ import Login from './login';
 import Profile from './profile-view';
 import Welcome from '../containers/welcomeContainer';
 import Friends from '../containers/friendsListContainer';
-import Saved from './savedDecks';
 import Camera from '../containers/cameraContainer';
+import ViewDecks from '../containers/viewDecksContainer';
+import ViewDeckResults from '../containers/viewDeckResultsContainer';
+import ViewDeckSwipe from '../containers/viewDeckSwipeContainer';
+
 
 const Routes = {
   search: Search,
@@ -28,8 +31,10 @@ const Routes = {
   login: Login,
   welcome: Welcome,
   friends: Friends,
-  saved: Saved,
-  camera: Camera
+  camera: Camera,
+  saved: ViewDecks,
+  viewDeckResult: ViewDeckResults,
+  viewDeckSwipe: ViewDeckSwipe
 }
 
 export default class Nav extends Component {

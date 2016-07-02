@@ -60,6 +60,26 @@ module.exports = {
     })
   },
   
+  updateDeckSwiped: function(deckId, userId, callback) {
+    
+    Deck.findById(deckId, function(err, deck) {
+      if(err) {
+        callback(err);
+        return;
+      }
+      var swiped = deck.shared.id(userId);
+      swiped.swiped = true;
+      deck.save(function(err, deck) {
+        if(err) {
+          callback(err);
+        } else {
+          callback(null, deck);
+        }
+      });
+      
+    })
+  },
+  
   deleteOneDeck: function(deckId, user_id, callback) {
     
     Deck.findOneAndRemove({_id: deckId, user_id: user_id}, function(err, deck) {

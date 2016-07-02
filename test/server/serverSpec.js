@@ -13,7 +13,7 @@ describe('API', function() {
   
   describe('Deck API', function() {
     
-    var deckId, cardId;
+    var deckId, cardId, userId;
     var clearDeckDB = function(done) {
       mongoose.connection.collections['decks'].remove(done);
     }
@@ -40,6 +40,7 @@ describe('API', function() {
         Deck.create(deck, function(err, deck) {
           deckId = deck._id;
           cardId = deck.deck[0]._id;
+          userId = deck.shared[0]._id;
           done();
         });
       })
@@ -78,7 +79,7 @@ describe('API', function() {
           expect(res.body.length).to.equal(1);
         })
         .end(done);
-    })    
+    });   
     
     it('should return all the decks shared with the user', function(done) {
       request(app)
@@ -89,7 +90,7 @@ describe('API', function() {
           expect(res.body.length).to.equal(1);
         })
         .end(done);
-    })   
+    });
     
     it('should update the "like" count for a particular card of a particular deck and return that deck', function(done) {
       request(app)
@@ -102,7 +103,21 @@ describe('API', function() {
           expect(res.body.deck[0].likes).to.equal(1);
         })
         .end(done);
-    })
+    });
+    
+    it('should update a user\'s status as to when the user swiped through a shared deck' , function(done) {
+      request(app)
+        .put('/decks/shared/' + deckId)
+        .send({
+          userId: userId
+        })
+        .expect(200)
+        .expect(function(res) {
+          console.log(res.body);
+          expect(res.body.shared[0].swiped).to.equal(true);
+        })
+        .end(done);
+    });
     
     it('should delete a specified deck', function(done) {
       request(app)
@@ -117,7 +132,7 @@ describe('API', function() {
           })
         })
         .end(done);
-    })
+    });
   })
   
   describe('Friends API', function() {

@@ -71,7 +71,7 @@ export default class SplashComponent extends Component {
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('saved')}}
           >
-            <Text>Saved Decks</Text>
+            <Text>View Decks</Text>
           </TouchableHighlight>
         </View>
       </View>

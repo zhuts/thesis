@@ -43,8 +43,20 @@ module.exports = {
   updateOneCard: function(req, res) {
     var deckId = req.params.id;
     var cardId = req.body.cardId;
-    
     deckController.updateOneCard(deckId, cardId, function(err, deck) {
+      if(err) {
+        console.log(err);
+        res.sendStatus(400)
+      } else {
+        res.status(200).send(deck);
+      }
+    })
+  },
+  
+  updateDeckSwiped: function(req, res) {
+    var deckId = req.params.id;
+    var userId = req.body.userId;
+    deckController.updateDeckSwiped(deckId, userId, function(err, deck) {
       if(err) {
         console.log(err);
         res.sendStatus(400)
@@ -78,7 +90,6 @@ module.exports = {
         res.status(200).send(list);
       }
     })
-
   },
   
   addFriend: function(req, res) {

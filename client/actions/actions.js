@@ -135,3 +135,36 @@ export const setToken = (token) => {
     token
   }
 }
+
+export const setUserDecks = (userDecks) => {
+  return {
+    type: 'SET_USER_DECKS',
+    userDecks
+  }
+}
+
+export const setSharedDecks = (sharedDecks) => {
+  return {
+    type: 'SET_SHARED_DECKS',
+    sharedDecks
+  }
+}
+
+export const setCurrentViewDeck = (currentViewDeck) => {
+  return {
+    type: 'SET_CURRENT_VIEW_DECK',
+    currentViewDeck
+  }
+}
+
+export const changeCurrentViewCard = () => {
+  return {
+    type: 'CHANGE_CURRENT_VIEW_CARD'
+  }
+}
+
+export const resetCurrentViewCard = () => {
+  return {
+    type: 'RESET_CURRENT_VIEW_CARD'
+  }
+}

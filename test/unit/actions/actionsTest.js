@@ -62,6 +62,82 @@ describe ('Apex Swipe actions', () => {
 			id: '1321897'
 		});
 	});
+	
+	it ('setUserDecks should create SET_USER_DECKS action', () => {
+		const userDecks = [
+			{
+	      user_id: '22222',
+	      name: 'Dresses',
+	      deck: [ 
+	        {
+	          name: 'Dress 1',
+	          imageUrl: 'http://www.example.com/3',
+	          likes: 0
+	        }
+	      ],
+	      shared: []
+	    }
+	  ];
+	  
+		expect(actions.setUserDecks(userDecks)).toEqual({
+			type: 'SET_USER_DECKS',
+			userDecks
+		})
+	});
+	
+	it ('setSharedDecks should create SET_SHARED_DECKS action', () => {
+		const sharedDecks = [
+			{
+	      user_id: '22222',
+	      name: 'Dresses',
+	      deck: [ 
+	        {
+	          name: 'Dress 1',
+	          imageUrl: 'http://www.example.com/3',
+	          likes: 0
+	        }
+	      ],
+	      shared: []
+	    }
+	  ];
+	  
+		expect(actions.setSharedDecks(sharedDecks)).toEqual({
+			type: 'SET_SHARED_DECKS',
+			sharedDecks
+		})
+	});
+	
+	it ('setCurrentViewDeck should create SET_CURRENT_VIEW_DECK action', () => {
+		const currentViewDeck = {
+      user_id: '22222',
+      name: 'Dresses',
+      deck: [ 
+        {
+          name: 'Dress 1',
+          imageUrl: 'http://www.example.com/3',
+          likes: 0
+        }
+      ],
+      shared: []
+    };
+	    	  
+		expect(actions.setCurrentViewDeck(currentViewDeck)).toEqual({
+			type: 'SET_CURRENT_VIEW_DECK',
+			currentViewDeck
+		})
+	});
+	
+	it ('changeCurrentViewCard should create CHANGE_CURRENT_VIEW_CARD action', () => { 	  
+		expect(actions.changeCurrentViewCard()).toEqual({
+			type: 'CHANGE_CURRENT_VIEW_CARD'
+		})
+	});
+	
+	it ('resetCurrentViewCard should create RESET_CURRENT_VIEW_CARD action', () => { 	  
+		expect(actions.resetCurrentViewCard()).toEqual({
+			type: 'RESET_CURRENT_VIEW_CARD'
+		})
+	});
 
 	it ('takePictureSuccess should create TAKE_PICTURE_SUCCESS action', () => {
 		expect(actions.takePictureSuccess()).toEqual({

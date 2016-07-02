@@ -163,6 +163,26 @@ describe('Deck Controller', function() {
       })
   });
   
+  it('should have a method that updates the deck when a user has voted on a deck that\'s been shared', function(done) {
+    var user_id = '11111';
+    Deck.find({user_id: user_id})
+      .exec(function(err, decks) {
+        if(err) {
+          console.log(err);
+        } else {
+          var deckId = decks[0]._id;
+          var sharedUserId = decks[0].shared[0]._id;
+          deckController.updateDeckSwiped(deckId, sharedUserId, function(err, deck) {
+            if(err) {
+              console.log(err);
+            };
+            expect(deck.shared[0].swiped).to.equal(true);
+            done();
+          })
+        }
+      })
+  });
+  
   it('should have a method that deletes a deck', function(done) {
     var user_id = '11111';
     Deck.find({user_id: user_id})
