@@ -63,6 +63,29 @@ describe ('Apex Swipe actions', () => {
 		});
 	});
 
+	it ('takePictureSuccess should create TAKE_PICTURE_SUCCESS action', () => {
+		expect(actions.takePictureSuccess()).toEqual({
+			type: 'TAKE_PICTURE_SUCCESS'
+		});
+	});
+
+	it ('cameraModeOn should create CAMERA_MODE_ON action', () => {
+		expect(actions.cameraModeOn()).toEqual({
+			type: 'CAMERA_MODE_ON'
+		});
+	});
+
+	it ('cameraModeOff should create CAMERA_MODE_OFF action', () => {
+		expect(actions.cameraModeOff()).toEqual({
+			type: 'CAMERA_MODE_OFF'
+		});
+	});
+
+	it ('buildImageDeck should create BUILD_IMAGE_DECK action', () => {
+		expect(actions.buildImageDeck({data: "goes here"})).toEqual({
+			type: 'BUILD_IMAGE_DECK',
+			images: {data: "goes here"}
+		});
+	});
+
 });
-
-

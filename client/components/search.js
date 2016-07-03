@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { 
-  View, 
+import {
+  View,
   TextInput,
   Text,
   TouchableHighlight
@@ -10,18 +10,19 @@ import * as actions from '../actions/actions';
 import styles from '../assets/styles';
 
 export default class SearchComponent extends Component {
-  
+
   onSearch(term, location) {
-    const { navigator, buildDeckYelp } = this.props;
+    const { navigator, buildDeckYelp, cameraModeOff } = this.props;
     if (term !== '' && location !== '') {
       helpers.searchYelp(term, location, (yelpData) => {
-        const data = yelpData.map( (business) => { 
+        const data = yelpData.map( (business) => {
           return {
             ...business,
             like: undefined
           }
         });
         buildDeckYelp(data);
+        cameraModeOff();
         navigator.push({ name: 'deckView' });
       });
     }
@@ -45,14 +46,14 @@ export default class SearchComponent extends Component {
             value={term}
             onChangeText={(text) => { searchTerm(text) }}
           />
-          
+
           <Text style={styles.label}>Location</Text>
           <TextInput
             style={styles.input}
             value={location}
             onChangeText={(location) => { searchLocation(location) }}
           />
-          
+
           <TouchableHighlight
             style={styles.search}
             underlayColor={'lightblue'}
@@ -65,8 +66,3 @@ export default class SearchComponent extends Component {
     );
   }
 }
-
-
-
-
-

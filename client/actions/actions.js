@@ -48,7 +48,7 @@ export const toggleLikeTrue = (id) => {
   return {
     type: 'TOGGLE_LIKE_TRUE',
     id
-  } 
+  }
 }
 
 export const toggleLikeFalse = (id) => {
@@ -79,11 +79,18 @@ export const takePictureSuccess = () => {
     type: 'TAKE_PICTURE_SUCCESS'
   }
 }
-//changeToCameraMode will set a state boolean so that the deckview will render
+//cameraModeOn will set a state boolean so that the deckview will render
 //images instead of yelp cards
-export const changeToCameraMode = () => {
+export const cameraModeOn = () => {
   return {
-    type: 'CAMERA_MODE'
+    type: 'CAMERA_MODE_ON'
+  }
+}
+//changeToCameraMode will set a state boolean so that the deckview will render
+//yelpCards instead of images
+export const cameraModeOff = () => {
+  return {
+    type: 'CAMERA_MODE_OFF'
   }
 }
 //will create deck out of images from cameraRoll
