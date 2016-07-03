@@ -6,7 +6,7 @@ import * as action from '../actions/actions';
 const mapDispatchToProps = (dispatch) => {
   return {
     takePictureSuccess: () => { dispatch(action.takePictureSuccess()) },
-    changeToCameraMode: () => { dispatch(action.changeToCameraMode()) }
+    cameraModeOn: () => { dispatch(action.cameraModeOn()) }
   }
 };
 // const mapStateToProps = (state) => {

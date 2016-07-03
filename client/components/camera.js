@@ -11,14 +11,14 @@ import {
 import Camera from 'react-native-camera';
 import * as action from '../actions/actions';
 
-
+//camera component provides camera functionality, and saves pictures to cameraRoll on capture
 export default class CameraComponent extends Component {
   constructor(props) {
     super(props);
 
     this.camera = null;
-    this.props.changeToCameraMode();
-
+    this.props.cameraModeOn();
+    //state is internal to component since only used by camera
     this.state = {
       camera: {
         aspect: Camera.constants.Aspect.fill,

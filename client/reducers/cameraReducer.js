@@ -7,10 +7,15 @@ export default (state = {picsTaken: 0, mode: false}, action) => {
         ...state,
         picsTaken: state.picsTaken + 1
       }
-    case 'CAMERA_MODE':
+    case 'CAMERA_MODE_ON':
       return {
        ...state,
        mode: true
+      }
+    case 'CAMERA_MODE_OFF':
+      return {
+        ...state,
+        mode: false
       }
     default:
       return state;
