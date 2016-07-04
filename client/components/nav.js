@@ -72,7 +72,13 @@ var NavigationBarRouteMapper = {
       return (
         <TouchableHighlight
           underlayColor="transparent"
-          onPress={() => { if (index > 0) { navigator.pop() } }}>
+          onPress={() => { if (route.name === 'results' && index === 4) {
+            for (var i=0; i<2; i++) {
+              navigator.pop();
+            }
+          } else { 
+            navigator.pop(); 
+          }  }}>
           <Text style={ styles.leftNavButtonText }>Back</Text>
         </TouchableHighlight>)
     }

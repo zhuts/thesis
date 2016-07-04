@@ -11,7 +11,9 @@ export default (state = [], action) => {
           newFriend = Object.assign(user);
         }
       })
-      return [...state, newFriend];
+      if (_.indexOf(state, newFriend) === -1) {
+        return [...state, newFriend];
+      }
     default:
       return state;
   }

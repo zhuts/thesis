@@ -9,15 +9,21 @@ import {
 import * as action from '../actions/actions';
 
 
-export default class Friend extends Component {
+export default class User extends Component {
+  componentDidMount() {
+    const { id, user, users, addFriend } = this.props;
+    console.log(this.props);
+  }
+
   render() {
-    const { id, friend } = this.props;
+    const { id, user, users, addFriend } = this.props;
     return (
       <TouchableHighlight
         style={styles.user}
         underlayColor={'lightgreen'}
+        onPress={() => {addFriend(users, id)}}
       >
-        <Text>{ friend.email }</Text>
+        <Text>{ user.email }</Text>
       </TouchableHighlight>
     );
   }

@@ -25,15 +25,7 @@ export default class ResultsComponent extends Component {
     return (  
       <View style={styles.container}>
         
-        <View style={styles.navigation}>
-          <TouchableHighlight
-            style={styles.back}
-            underlayColor={'lightblue'}
-            onPress={() => { navigator.push({ name: 'splash' }) }}
-           >
-            <Text>Back</Text>
-          </TouchableHighlight>
-          
+        <View style={styles.header}>
           <Image
             style={styles.logo}
             source={require('../assets/yelp-logo-large.png')}
@@ -67,8 +59,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  navigation: {
-    padding: 20
+  header: {
+    padding: 20,
+    marginTop: 50
   },
   logo: {
     alignSelf: 'center'
