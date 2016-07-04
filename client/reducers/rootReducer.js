@@ -7,6 +7,10 @@ import usersReducer from './usersReducer';
 import friendsReducer from './friendsReducer';
 import welcomeReducer from './welcomeReducer';
 import loadingReducer from './loadingReducer';
+import viewUserDecksReducer from './viewUserDecksReducer';
+import viewSharedDecksReducer from './viewSharedDecksReducer';
+import viewCurrentViewDeckReducer from './viewCurrentViewDeckReducer';
+import viewChangeCurrentViewCardReducer from './viewChangeCurrentViewCardReducer';
 
 const rootReducer = combineReducers({
   currentDeck: buildDeck,
@@ -16,7 +20,11 @@ const rootReducer = combineReducers({
   users: usersReducer,
   friends: friendsReducer,
   welcome: welcomeReducer,
-  isLoading: loadingReducer
+  isLoading: loadingReducer,
+  userDecks: viewUserDecksReducer,
+  sharedDecks: viewSharedDecksReducer,
+  currentViewDeck: viewCurrentViewDeckReducer,
+  currentViewCard: viewChangeCurrentViewCardReducer,
 });
 
 export default rootReducer;

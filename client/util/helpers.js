@@ -66,6 +66,80 @@ export default {
       .catch(function(err) {
         console.log(err);
       })
+  },
+  
+  getUserCreatedDecks: (userid, callback) => {
+    const url = `http://localhost:3000/decks/${userid}`;
+    fetch(url)
+      .then(function(response) {
+        return response.json() 
+      })
+      .then(function(userDecks) {
+        callback(userDecks);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  },
+  
+  getUserSharedDecks: (userid, callback) => {
+    const url = `http://localhost:3000/decks/shared/${userid}`;
+    fetch(url)
+      .then(function(response) {
+        return response.json() 
+      })
+      .then(function(sharedDecks) {
+        callback(sharedDecks);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  },
+  
+  updateLikeCount: (deckid, cardid, callback) => {
+    const url = `http://localhost:3000/decks/${deckid}`;
+    const request = new Request(url, {
+      method: 'PUT',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        cardId: cardid
+      })
+    })
+    fetch(request)
+      .then(function(response) {
+        return response.json() 
+      })
+      .then(function(response) {
+        callback(response);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  },
+  
+  updateSwipeStatus: (deckid, userId, callback) => {
+    const url = `http://localhost:3000/decks/shared/${deckid}`;
+    const request = new Request(url, {
+      method: 'PUT',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        userId: userId
+      })
+    })
+    fetch(request)
+      .then(function(response) {
+        return response.json() 
+      })
+      .then(function(response) {
+        callback(response);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
   }
 };
 
