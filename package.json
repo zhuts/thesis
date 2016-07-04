@@ -22,6 +22,7 @@
     "nodemon": "^1.9.2",
     "react": "^15.1.0",
     "react-native": "0.27.2",
+    "react-native-aws3": "0.0.1",
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
     "react-native-lock": "^0.3.0",
     "react-redux": "^4.4.5",
