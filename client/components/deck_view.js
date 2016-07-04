@@ -141,7 +141,7 @@ export default class deckView extends Component{
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
     if(currentCard < currentDeck.length - 1) {
-      changeCardSwipe();
+      changeCardSwipe();      
       this._animateEntrance();
       } else {
         this._changePage();
@@ -183,13 +183,19 @@ export default class deckView extends Component{
 
         <TouchableOpacity
           style={styles.leftSwipeBtn}
-          onPress={() => {{this._resetState()}}}>
+          onPress={() => {
+            { this.props.toggleLikeFalse(currentCard) }
+            {this._resetState()};
+          }}>
           <Text>LEFT</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.rightSwipeBtn}
-          onPress={() => {{this._resetState()}}}>
+          onPress={() => {
+            { this.props.toggleLikeTrue(currentCard) }
+            {this._resetState()};
+          }}>
           <Text>RIGHT</Text>
         </TouchableOpacity>
 

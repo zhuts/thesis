@@ -71,20 +71,20 @@ describe('Reducers', () => {
 
     it('should toggle current card\'s liked property to true within the current deck', () => {
       const stateBefore = [
-        {id: 1, liked: false},
-        {id: 2, liked: false},
-        {id: 3, liked: false}
+        {like: false},
+        {like: false},
+        {like: false}
       ];
 
       const action = {
         type: 'TOGGLE_LIKE_TRUE',
-        id: 2
+        index: 1
       };
       
       const stateAfter = [    
-        {id: 1, liked: false},
-        {id: 2, liked: true},
-        {id: 3, liked: false}
+        {like: false},
+        {like: true},
+        {like: false}
       ];
 
       df(stateBefore);
@@ -93,20 +93,20 @@ describe('Reducers', () => {
 
     it('should toggle current card\'s liked property to true within the current deck', () => {
       const stateBefore = [
-        {id: 1, liked: true},
-        {id: 2, liked: true},
-        {id: 3, liked: true}
+        {like: true},
+        {like: true},
+        {like: true}
       ];
 
       const action = {
         type: 'TOGGLE_LIKE_FALSE',
-        id: 2
+        index: 1
       };
       
       const stateAfter = [    
-        {id: 1, liked: true},
-        {id: 2, liked: false},
-        {id: 3, liked: true}
+        {like: true},
+        {like: false},
+        {like: true}
       ];
 
       df(stateBefore);

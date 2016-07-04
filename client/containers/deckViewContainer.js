@@ -16,6 +16,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeCardSwipe: () => { dispatch(action.nextCard()) },
+    toggleLikeTrue: (id) => { dispatch(action.toggleLikeTrue(id)) },
+    toggleLikeFalse: (id) => { dispatch(action.toggleLikeFalse(id)) },
     buildImageDeck: (images) => { dispatch(action.buildImageDeck(images)) }
   }
 };

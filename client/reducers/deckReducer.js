@@ -1,3 +1,17 @@
+const toggleTrue = (card) => {
+  return{
+    ...card,
+    like: true
+  };
+};
+
+const toggleFalse = (card) => {
+  return{
+    ...card,
+    like: false
+  };
+};
+
 export default (state = [], action) => {
   switch (action.type) {
     case 'BUILD_DECK_YELP':
@@ -9,26 +23,15 @@ export default (state = [], action) => {
         ...action.images
       ]
     case 'TOGGLE_LIKE_TRUE':
-      return Array.prototype.map.call(state,card =>{
-        if(card.id !== action.id){
-          return card;
-        }
-        return {
-          ...card,
-          liked: true
-        };
-      })
+      return state
+        .slice(0,action.index)
+        .concat(toggleTrue(state[action.index]))
+        .concat(state.slice(action.index+1))
     case 'TOGGLE_LIKE_FALSE':
-      return Array.prototype.map.call(state,card =>{
-        if(card.id !== action.id){
-          return card;
-        }
-        return {
-          ...card,
-          liked: false
-        };
-      })
-
+      return state
+        .slice(0,action.index)
+        .concat(toggleFalse(state[action.index]))
+        .concat(state.slice(action.index+1))
     default:
       return state
   }
