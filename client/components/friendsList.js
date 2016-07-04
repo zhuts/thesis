@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView
 } from 'react-native';
+import User from './user';
 import Friend from './friend';
 // import styles from '../assets/styles';
 
@@ -28,7 +29,7 @@ export default class FriendsListComponent extends Component {
           scrollEventThrottle={200}
         >
         {users.map((user, i) => {return (
-          <Friend
+          <User
             key={i}
             user={user} 
             users={users}
@@ -43,7 +44,12 @@ export default class FriendsListComponent extends Component {
           automaticallyAdjustContentInsets={false}    
           scrollEventThrottle={200}
         >
-        {friends.map((friend, i) => <Text key={i}>{friend.email}</Text>)}
+        {friends.map((friend, i) => {return (
+          <Friend
+            key={i}
+            friend={friend} 
+          />
+          )})}
         </ScrollView>
         
       </View>

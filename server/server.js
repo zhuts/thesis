@@ -10,7 +10,6 @@ var node_env = process.env.NODE_ENV;
 if(node_env === undefined) {
   require('dotenv').config();
 }
-// var auth0 = require('./auth0.js')
 
 var yelpRouter = require('./routes/yelpRouter');
 var deckRouter = require('./routes/deckRouter');
