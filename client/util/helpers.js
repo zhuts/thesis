@@ -140,6 +140,25 @@ export default {
       .catch(function(err) {
         console.log(err);
       })
+  },
+
+  loadToS3: (uri, name){
+    let file = {
+      // `uri` can also be a file system path (i.e. file://)
+      uri: "assets-library://asset/asset.PNG?id=655DBE66-8008-459C-9358-914E1FB532DD&ext=PNG",
+      name: "image.png",
+      type: "image/png"
+    }
+
+    let options = {
+      keyPrefix: "uploads/",
+      bucket: "your-bucket",
+      region: "us-east-1",
+      accessKey: "your-access-key",
+      secretKey: "your-secret-key",
+      successActionStatus: 201
+    }
+
   }
 };
 
