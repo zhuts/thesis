@@ -3,7 +3,8 @@ import {
   View,
   TextInput,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } from 'react-native';
 import helpers from '../util/helpers';
 import * as actions from '../actions/actions';
@@ -40,6 +41,10 @@ export default class SearchComponent extends Component {
           <Text>Back</Text>
         </TouchableHighlight>
         <View style={styles.container}>
+          <Image
+            source={require('../assets/yelp-logo-large.png')}
+            style={{width: 166, height: 40, padding: 40}}
+          />
           <Text style={styles.label}>Search</Text>
           <TextInput
             style={styles.input}

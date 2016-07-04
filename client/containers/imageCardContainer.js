@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
     currentCard: state.currentCard,
     currentDeck: state.currentDeck,
     isLoading: state.isLoading,
-    numOfPics: state.camera.picsTaken,
+    numOfPics: state.camera.picsTaken
   }
 }
 

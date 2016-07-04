@@ -21,6 +21,7 @@ import Camera from '../containers/cameraContainer';
 import ViewDecks from '../containers/viewDecksContainer';
 import ViewDeckResults from '../containers/viewDeckResultsContainer';
 import ViewDeckSwipe from '../containers/viewDeckSwipeContainer';
+import ImageCard from '../containers/imageCardContainer';
 
 
 const Routes = {
@@ -34,7 +35,8 @@ const Routes = {
   camera: Camera,
   saved: ViewDecks,
   viewDeckResult: ViewDeckResults,
-  viewDeckSwipe: ViewDeckSwipe
+  viewDeckSwipe: ViewDeckSwipe,
+  iamgeCard: ImageCard
 }
 
 export default class Nav extends Component {
@@ -117,4 +119,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#efefef'
   }
 });
-

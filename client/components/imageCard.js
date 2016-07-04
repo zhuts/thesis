@@ -23,7 +23,8 @@
       const images = pics.map( (image) => {
         return {
           ...image,
-          like: undefined
+          like: undefined,
+          pick: undefined
         }
       });
       buildImageDeck(images);
@@ -42,13 +43,14 @@
     }
     render() {
       // IMAGECARD COMPONENT EXPECTS PROPS CALLED IMAGE TO BE PASSED TO IT
-      const { img, isLoading } = this.props;
+      const { img, isLoading, numOfPics } = this.props;
       console.log(this.props);
       return (
         <View style={styles.container}>
          {isLoading ?
-          <Text>Loading</Text> :
-          <Image style={styles.image} source={{uri:img.uri}}/>
+           (numOfPics === 0 ? <Text>No pictures! Hit back to navigate to Camera</Text>
+           : <Text>Loading</Text>)
+           : <Image style={styles.image} source={{uri:img.uri}}/>
          }
         </View>
       );
@@ -64,6 +66,17 @@
     image: {
       height: 300,
       width: 300
+    },
+    button: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 5,
+      width: 300,
+      height: 75,
+      borderColor: 'black',
+      borderWidth: 1,
+      borderRadius: 5,
+      marginTop: 10
     }
   })
 

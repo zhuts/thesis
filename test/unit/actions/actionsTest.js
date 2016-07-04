@@ -61,13 +61,13 @@ describe ('Apex Swipe actions', () => {
 			friendsList: [{userid:123}]
 		});
 	});
-	
+
 	it ('setUserDecks should create SET_USER_DECKS action', () => {
 		const userDecks = [
 			{
 	      user_id: '22222',
 	      name: 'Dresses',
-	      deck: [ 
+	      deck: [
 	        {
 	          name: 'Dress 1',
 	          imageUrl: 'http://www.example.com/3',
@@ -77,19 +77,19 @@ describe ('Apex Swipe actions', () => {
 	      shared: []
 	    }
 	  ];
-	  
+
 		expect(actions.setUserDecks(userDecks)).toEqual({
 			type: 'SET_USER_DECKS',
 			userDecks
 		})
 	});
-	
+
 	it ('setSharedDecks should create SET_SHARED_DECKS action', () => {
 		const sharedDecks = [
 			{
 	      user_id: '22222',
 	      name: 'Dresses',
-	      deck: [ 
+	      deck: [
 	        {
 	          name: 'Dress 1',
 	          imageUrl: 'http://www.example.com/3',
@@ -99,18 +99,18 @@ describe ('Apex Swipe actions', () => {
 	      shared: []
 	    }
 	  ];
-	  
+
 		expect(actions.setSharedDecks(sharedDecks)).toEqual({
 			type: 'SET_SHARED_DECKS',
 			sharedDecks
 		})
 	});
-	
+
 	it ('setCurrentViewDeck should create SET_CURRENT_VIEW_DECK action', () => {
 		const currentViewDeck = {
       user_id: '22222',
       name: 'Dresses',
-      deck: [ 
+      deck: [
         {
           name: 'Dress 1',
           imageUrl: 'http://www.example.com/3',
@@ -119,20 +119,20 @@ describe ('Apex Swipe actions', () => {
       ],
       shared: []
     };
-	    	  
+
 		expect(actions.setCurrentViewDeck(currentViewDeck)).toEqual({
 			type: 'SET_CURRENT_VIEW_DECK',
 			currentViewDeck
 		})
 	});
-	
-	it ('changeCurrentViewCard should create CHANGE_CURRENT_VIEW_CARD action', () => { 	  
+
+	it ('changeCurrentViewCard should create CHANGE_CURRENT_VIEW_CARD action', () => {
 		expect(actions.changeCurrentViewCard()).toEqual({
 			type: 'CHANGE_CURRENT_VIEW_CARD'
 		})
 	});
-	
-	it ('resetCurrentViewCard should create RESET_CURRENT_VIEW_CARD action', () => { 	  
+
+	it ('resetCurrentViewCard should create RESET_CURRENT_VIEW_CARD action', () => {
 		expect(actions.resetCurrentViewCard()).toEqual({
 			type: 'RESET_CURRENT_VIEW_CARD'
 		})
@@ -162,5 +162,28 @@ describe ('Apex Swipe actions', () => {
 			images: {data: "goes here"}
 		});
 	});
+
+	it ('togglePickTrue should create TOGGLE_PICK_TRUE action', () => {
+		expect(actions.togglePickTrue(2)).toEqual({
+			type: 'TOGGLE_PICK_TRUE',
+			index: 2
+		});
+	});
+
+	it ('togglePickFalse should create TOGGLE_PICK_FALSE action', () => {
+		expect(actions.togglePickFalse(2)).toEqual({
+			type: 'TOGGLE_PICK_FALSE',
+			index: 2
+		});
+	});
+
+	it ('pickImageDeck should create PICK_IMAGE_DECK action', () => {
+		expect(actions.pickImageDeck({data: "goes here"})).toEqual({
+			type: 'PICK_IMAGE_DECK',
+			deck: {data: "goes here"}
+
+		});
+	});
+
 
 });

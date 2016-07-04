@@ -106,6 +106,25 @@ export const doneLoading = () => {
     type: 'DONE_LOADING'
   }
 }
+//will toggle whether or not user would like to add picture to deck
+export const togglePickTrue = (index) => {
+  return {
+    type: 'TOGGLE_PICK_TRUE',
+    index
+  }
+}
+export const togglePickFalse = (index) => {
+  return {
+    type: 'TOGGLE_PICK_FALSE',
+    index
+  }
+}
+export const pickImageDeck = (deck) => {
+  return {
+    type: 'PICK_IMAGE_DECK',
+    deck
+  }
+}
 
 export const getFriends = (friends) => {
   return {

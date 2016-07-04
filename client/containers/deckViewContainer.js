@@ -18,7 +18,9 @@ const mapDispatchToProps = (dispatch) => {
     changeCardSwipe: () => { dispatch(action.nextCard()) },
     toggleLikeTrue: (index) => { dispatch(action.toggleLikeTrue(index)) },
     toggleLikeFalse: (index) => { dispatch(action.toggleLikeFalse(index)) },
-    buildImageDeck: (images) => { dispatch(action.buildImageDeck(images)) }
+    buildImageDeck: (images) => { dispatch(action.buildImageDeck(images)) },
+    togglePickTrue: (id) => { dispatch(action.togglePickTrue(id))},
+    togglePickFalse: (id) => { dispatch(action.togglePickFalse(id))}
   }
 };
 
