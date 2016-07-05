@@ -1,6 +1,6 @@
-# Reactor-76 Thesis Project
+# ApexSwipe
 
-> Apex Swipe
+> Reactor-76 Thesis Project
 
 ## Team
 
@@ -20,16 +20,17 @@
 
 ## Usage
 
-> Some usage instructions
+> Runs best on iOS Xcode simulator, android+gradle is kind of buggy
 
 ## Requirements
 
 - Node x
 - Express x
 - React _._._
+- React-Native
 - Redux
-- Webpack 
-
+- React-Native Package Manager
+- Grunt(not needed to run locally)
 
 ## Development
 
@@ -38,9 +39,10 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
 ```
+If new to React-Native, it is highly recommended that you follow:
+[React-Native Getting Started](https://facebook.github.io/react-native/docs/getting-started.html)
 
 ### Roadmap
 
