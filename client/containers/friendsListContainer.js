@@ -16,7 +16,8 @@ const mapDispatchToProps = (dispatch) => {
     // toggleLikeClick: (id, liked) => { dispatch(action.toggleLike(id, liked)) },
     getUsers: (users) => { dispatch(action.getUsers(users)) },
     getFriends: (friends) => { dispatch(action.getFriends(friends)) },
-    addFriend: (users, id) => { dispatch(action.addFriend(users, id)) }
+    addFriend: (users, id) => { dispatch(action.addFriend(users, id)) },
+    addToShared: (user) => { dispatch(action.addToShared(user)) }
   }
 };
 

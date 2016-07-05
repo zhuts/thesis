@@ -18,7 +18,7 @@ export default class FriendsListComponent extends Component {
 
   render() {
     var _scrollView: ScrollView;
-    const { users, friends, addFriend, profile } = this.props;
+    const { users, friends, addFriend, profile, addToShared } = this.props;
     return (
       <View style={styles.container}>
         <Text>Users List</Text>

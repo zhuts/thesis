@@ -22,6 +22,7 @@ import ViewDecks from '../containers/viewDecksContainer';
 import ViewDeckResults from '../containers/viewDeckResultsContainer';
 import ViewDeckSwipe from '../containers/viewDeckSwipeContainer';
 import ImageCard from '../containers/imageCardContainer';
+import WhoToShare from '../containers/whoToShareContainer';
 
 
 const Routes = {
@@ -36,7 +37,8 @@ const Routes = {
   saved: ViewDecks,
   viewDeckResult: ViewDeckResults,
   viewDeckSwipe: ViewDeckSwipe,
-  iamgeCard: ImageCard
+  imageCard: ImageCard,
+  whoToShare: WhoToShare
 }
 
 export default class Nav extends Component {
@@ -49,7 +51,7 @@ export default class Nav extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{name: 'splash'}}
+        initialRoute={{name: 'welcome'}}
         renderScene={this.renderScene.bind(this)}
         navigationBar={
              <Navigator.NavigationBar
@@ -74,8 +76,8 @@ var NavigationBarRouteMapper = {
       return (
         <TouchableHighlight
           underlayColor="transparent"
-          onPress={() => { if (route.name === 'results' && index === 4) {
-            for (var i=0; i<2; i++) {
+          onPress={() => { if (route.name === 'friends' && index === 4) {
+            for (var i=0; i<4; i++) {
               navigator.pop();
             }
           } else { 

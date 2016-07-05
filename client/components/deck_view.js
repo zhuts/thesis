@@ -136,11 +136,11 @@ export default class deckView extends Component{
   _changePage(){
     if (this.props.cameraMode) {
       //const deck = this.props.currentDeck.filter(item => item.pick)
-      this.props.navigator.push({ name: 'friends' });
+      this.props.navigator.push({ name: 'whoToShare' });
       // this._pickImageDeck(deck);
     }
     else if(this.props.currentCard >= 15) {
-      this.props.navigator.push({ name: 'friends' });
+      this.props.navigator.push({ name: 'whoToShare' });
     }
   }
   _pickImageDeck(deck){
