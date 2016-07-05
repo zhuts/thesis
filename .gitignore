@@ -47,6 +47,7 @@ android/keystores/debug.keystore
 server/apiKeys.js
 server/auth0.js
 .env
+client/util/s3credentials.js
 
 # database stuff
 server/db/data/

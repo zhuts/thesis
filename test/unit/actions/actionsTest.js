@@ -197,4 +197,11 @@ describe ('Apex Swipe actions', () => {
 		});
 	});
 
+	it ('changeLocAfterUpload should create CHANGE_LOC_AFTER_UPLOAD action', () => {
+		expect(actions.changeLocAfterUpload(4,'http://s3bucket.com')).toEqual({
+			type: 'CHANGE_LOC_AFTER_UPLOAD',
+			index: 4,
+			uri: 'http://s3bucket.com'
+		});
+	});
 });

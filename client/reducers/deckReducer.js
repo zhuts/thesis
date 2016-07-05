@@ -27,8 +27,20 @@ const togglePickFalse = (card) => {
   };
 };
 
+const changeURI = (card, uri) => {
+  return{
+    ...card,
+    uri: uri
+  };
+};
+
 export default (state = [], action) => {
   switch (action.type) {
+    case 'CHANGE_LOC_AFTER_UPLOAD':
+      return state
+        .slice(0,action.index)
+        .concat(changeURI(state[action.index], action.uri))
+        .concat(state.slice(action.index+1))
     case 'BUILD_DECK_YELP':
       return [
         ...action.yelpData

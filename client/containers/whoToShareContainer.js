@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
     user_id: state.welcome.profile.userId,
     currentDeck: state.currentDeck,
     shared: state.shared,
-    friends: state.friends,
+    friends: state.friends
   }
 }
 

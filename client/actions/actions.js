@@ -49,6 +49,7 @@ export const nextCard = () => {
     type: 'NEXT_CARD'
   }
 }
+
 //will decrement currentCard by 1
 export const prevCard = () => {
   return {
@@ -86,6 +87,7 @@ export const takePictureSuccess = () => {
     type: 'TAKE_PICTURE_SUCCESS'
   }
 }
+
 
 //will set a state boolean so that the deckview will render
 //images instead of yelp cards- default is true
@@ -338,10 +340,25 @@ export const fetchSharedDecks = (userid, callback) => {
   }
 }
 
+
 //will trigger when a user picks a friend to share deck with
 export const addToShared = (shareList) => {
   return {
     type: 'ADD_TO_SHARED',
     shareList
+}
+
+export const removeFromShared = (user) => {
+  return {
+    type: 'REMOVE_FROM_SHARED',
+    user
+  }
+}
+
+export const changeLocAfterUpload = (index, uri) => {
+  return {
+    type: 'CHANGE_LOC_AFTER_UPLOAD',
+    index,
+    uri
   }
 }

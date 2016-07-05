@@ -159,6 +159,25 @@ describe('Reducers', () => {
       expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
     });
 
+    it('should change current card\'s uri when uploaded', () => {
+      const stateBefore = [
+        {uri:'somewhere/on/the/phone'}
+      ];
+
+      const action = {
+        type: 'CHANGE_LOC_AFTER_UPLOAD',
+        index: 0,
+        uri: 's3bucket.inthecloud.somewhere'
+      };
+
+      const stateAfter = [
+        {uri: 's3bucket.inthecloud.somewhere'}
+      ];
+
+      df(stateBefore);
+      expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+
     xit('should filter the currentDeck to only picked images', () => {
       const action = {
         type: 'PICK_IMAGE_DECK',
