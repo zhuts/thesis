@@ -167,3 +167,102 @@ export const resetCurrentViewCard = () => {
     type: 'RESET_CURRENT_VIEW_CARD'
   }
 }
+
+export const showYelp = () => {
+  return {
+    type: 'SHOW_YELP'
+  }
+}
+
+export const fetchUserDecks = (userid) => {
+  return (dispatch, getState) => {
+    helpers.getUserCreatedDecks(userid, (userDecks) => {
+      const set = () => {
+        userDecks.reverse();
+        dispatch( setUserDecks(userDecks) );
+      };
+      const decks = userDecks.length;
+      let count = 0;
+      userDecks.forEach( (deck, i) => {
+        if(deck.type === 'yelp') {
+          dispatch( showYelp() );
+          const setDeck = () => {
+            userDecks[i] = deck;
+          }
+          const length = deck.deck.length;
+          let done = 0;
+          deck.deck.forEach((card, j) => {
+            helpers.getYelpBusiness(card.name, (business) => {
+              deck.deck[j] = {
+                ...business,
+                _id: card._id
+              };
+              done++;
+              if(done === length) {
+                setDeck();
+                count++;
+              };
+              if(count === decks) {
+                set();
+              }
+            });
+          })
+        } else {
+          userDecks[i] = deck;
+          count++;
+          if(count === decks) {
+            set();
+          }
+        }
+      });
+    });
+  }
+}
+
+export const fetchSharedDecks = (userid, callback) => {
+  return (dispatch, getState) => {
+    helpers.getUserSharedDecks(userid, (sharedDecks) => {
+      const set = () => {
+        sharedDecks.reverse();
+        dispatch( setSharedDecks(sharedDecks) );
+        if(callback !== undefined) {
+          callback()
+        };
+      };
+      const decks = sharedDecks.length;
+      let count = 0;
+      sharedDecks.forEach( (deck, i) => {
+        if(deck.type === 'yelp') {
+          dispatch( showYelp() );
+          const setDeck = () => {
+            sharedDecks[i] = deck;
+          }
+          const length = deck.deck.length;
+          let done = 0;
+          deck.deck.forEach((card, j) => {
+            helpers.getYelpBusiness(card.name, (business) => {
+              deck.deck[j] = {
+                ...business,
+                _id: card._id
+              };
+              done++;
+              if(done === length) {
+                setDeck();
+                count++;
+              };
+              if(count === decks) {
+                set();
+              }
+            });
+          })
+        } else {
+          sharedDecks[i] = deck;
+          count++;
+          if(count === decks) {
+            set();
+          }
+        }
+      });
+    })
+  }
+}

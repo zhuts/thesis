@@ -47,7 +47,7 @@ export default class Nav extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{name: 'welcome'}}
+        initialRoute={{name: 'splash'}}
         renderScene={this.renderScene.bind(this)}
         navigationBar={
              <Navigator.NavigationBar

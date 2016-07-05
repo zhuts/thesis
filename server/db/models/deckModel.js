@@ -8,6 +8,9 @@ var deckSchema = mongoose.Schema({
     required: true
   },
   
+  // yelp or camera
+  type: String,
+  
   // array containing user ids that user has chosen to share with
   shared: [{
     user_id: String,

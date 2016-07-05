@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { 
   View, 
   Text,
-  TouchableHighlight, 
+  TouchableOpacity, 
   StyleSheet,
   Linking,
   Image
@@ -12,26 +12,26 @@ export default class ScrollCard extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return false;
   }
+  
   render() {
-    
-    const { business } = this.props;
+    const { card, position } = this.props;
+    const style = position === 0 ? [styles.card, styles.top] : styles.card;
     return (
-      <View style={styles.button}>
+      <View style={style}>
         <View>
-          <Image style={styles.img} source={{uri:business.image_url}} />
+          <Image style={styles.img} source={{uri:card.image_url}} />
         </View>
         
         <View style={styles.description}>
-          <Text>{ business.name }</Text>
-          <Image style={styles.rating} source={{uri:business.rating_img_url_small}} />
-          <Text>{ business.review_count } Reviews</Text>
-          <TouchableHighlight
+          <Text>{ card.name }</Text>
+          <Image style={styles.rating} source={{uri:card.rating_img_url}} />
+          <Text>{ card.review_count } Reviews</Text>
+          <TouchableOpacity
             style={{height: 40}}
-            onPress={() => { Linking.openURL(business.url).catch(err => console.error('An error occurred', err)) }}
+            onPress={() => { Linking.openURL(card.url).catch(err => console.error('An error occurred', err)) }}
            >
             <Text>Check Reviews</Text>
-          </TouchableHighlight>
-          
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -39,25 +39,31 @@ export default class ScrollCard extends Component {
 };
 
 const styles = StyleSheet.create({
-  button:  {
+  card:  {
     flexDirection: 'row', 
     height: 200,
     margin: 7,
     padding: 5,
-    backgroundColor: 'lightgrey',
+    backgroundColor: '#ffffff',
     borderRadius: 3,
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+  },
+  top: {
+    borderWidth: 3,
+    borderColor: '#e6e600',
   },
   img: {
     width: 175,
     height: 175,
+    borderRadius: 5,
   },
   description: {
+    flex: 1,
     flexWrap: 'wrap',
     marginLeft: 10
   },
   rating: {
-    width: 50, 
-    height: 10
+    width: 84, 
+    height: 17,
   }
 });

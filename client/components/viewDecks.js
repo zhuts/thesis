@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { 
   View, 
   Text,
+  Image,
   ScrollView,
   StyleSheet,
 } from 'react-native';
@@ -11,20 +12,16 @@ import helpers from '../util/helpers';
 export default class ViewDecks extends Component {
   
   componentDidMount() {
-    const { setUserDecks, setSharedDecks } = this.props;
-    const userid = '11111' // should come from profile objects in state
-    
-    helpers.getUserCreatedDecks(userid, (userDecks) => {
-      setUserDecks(userDecks);
-    });
-    helpers.getUserSharedDecks(userid, (sharedDecks) => {
-      setSharedDecks(sharedDecks);
-    })
+    const { fetchUserDecks, fetchSharedDecks } = this.props;
+    const userid = this.props.user_id || '11111';
+    console.log(userid);
+    fetchUserDecks(userid);
+    fetchSharedDecks(userid);
   }
   
   renderUserDecks() {
     const { userDecks, setCurrentViewDeck, navigator } = this.props;
-    const userid = '11111' // should come from profile objects in state
+    const userid = this.props.user_id || '11111';
     
     if( userDecks.length > 0 ) {
       return (
@@ -48,14 +45,14 @@ export default class ViewDecks extends Component {
       )
     } else {
       return (
-        <Text>You have not created an decks OR Loading...</Text>  
+        <Text>You have not created any decks OR Loading...</Text>  
       )
     }
   }
   
   renderSharedDecks() {
     const { sharedDecks, setCurrentViewDeck, navigator } = this.props;
-    const userid = '11111' // should come from profile objects in state
+    const userid = this.props.user_id || '11111';
     
     if( sharedDecks.length > 0 ) {
       return (
@@ -84,16 +81,23 @@ export default class ViewDecks extends Component {
     }
   }
   
+  renderYelpLogo() {
+    return <Image 
+      source={require('../assets/yelp-logo.small.png')} 
+      style={styles.img}/>
+  }
+  
   render() {
     return (
-      <View style={[styles.container, {borderColor: 'red', borderWidth: 2}]}>
+      <View style={[styles.container]}>
+        {this.renderYelpLogo()}
         <View style={styles.decks}>
           <Text>You Created: </Text>
           {this.renderUserDecks()}
         </View>
         
         <View style={styles.decks}>
-          <Text>Shared Decks: VOTE!</Text>
+          <Text>Shared Decks: VOTE or see the top result!</Text>
           {this.renderSharedDecks()}
         </View>
       </View>
@@ -111,9 +115,13 @@ const styles = StyleSheet.create({
   decks: {
     height: 250,
     padding: 5,
-    margin: 5,
+    margin: 2,
   },
   scrollView: {
     height: 220,
+  },
+  img: {
+    marginRight: 5,
+    alignSelf: 'flex-end',
   },
 });

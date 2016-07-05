@@ -6,13 +6,16 @@ const mapStateToProps = (state) => {
   return {
     currentViewDeck: state.currentViewDeck,
     currentViewCard: state.currentViewCard,
+    user_id: state.welcome.profile.userId,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeCurrentViewCard: () => { dispatch(actions.changeCurrentViewCard()) },
-    resetCurrentViewCard: () => { dispatch(actions.resetCurrentViewCard()) }
+    resetCurrentViewCard: () => { dispatch(actions.resetCurrentViewCard()) },
+    fetchUserDecks: (userid) => { dispatch(actions.fetchUserDecks(userid)) },
+    fetchSharedDecks: (userid) => { dispatch(actions.fetchSharedDecks(userid)) }
   }
 };
 

@@ -5,12 +5,54 @@ export default {
     
     fetch(url)
       .then(function(response) {
-        console.log(response);                   
+        // console.log(response);                   
         return response.json() 
       })
       .then(function(data) {
         // console.log(data.businesses);
-        callback(data.businesses);
+        
+        const businesses = data.businesses.map( business => {
+          return {
+            id: business.id,
+            name: business.name,
+            like: 0,
+            image_url: business.image_url,
+            url: business.url,
+            review_count: business.review_count,
+            rating_img_url: business.rating_img_url,
+            rating_img_url_large: business.rating_img_url_large,
+            rating_img_url_small: business.rating_img_url_small
+          }
+        })
+        callback(businesses);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  },
+  
+  getYelpBusiness: (id, callback) => {
+    const url = `http://localhost:3000/yelpSearch/business?id=${id}`;
+    
+    fetch(url)
+      .then(function(response) {
+        // console.log(response);                   
+        return response.json() 
+      })
+      .then(function(business) {
+        const data = {
+          id: business.id,
+          name: business.name,
+          like: 0,
+          image_url: business.image_url,
+          url: business.url,
+          review_count: business.review_count,
+          rating_img_url: business.rating_img_url,
+          rating_img_url_large: business.rating_img_url_large,
+          rating_img_url_small: business.rating_img_url_small
+        }
+        // console.log(data);
+        callback(data);
       })
       .catch(function(err) {
         console.log(err);
