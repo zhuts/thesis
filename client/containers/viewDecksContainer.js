@@ -5,15 +5,17 @@ import * as actions from '../actions/actions';
 const mapStateToProps = (state) => {
   return {
     userDecks: state.userDecks,
-    sharedDecks: state.sharedDecks
+    sharedDecks: state.sharedDecks,
+    user_id: state.welcome.profile.userId,
+    showYelp: state.showYelp,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUserDecks: (userDecks) => { dispatch(actions.setUserDecks(userDecks)) },
-    setSharedDecks: (sharedDecks) => { dispatch(actions.setSharedDecks(sharedDecks)) },
-    setCurrentViewDeck: (currentViewDeck) => { dispatch(actions.setCurrentViewDeck(currentViewDeck)) }
+    setCurrentViewDeck: (currentViewDeck) => { dispatch(actions.setCurrentViewDeck(currentViewDeck)) },
+    fetchUserDecks: (userid) => { dispatch(actions.fetchUserDecks(userid)) },
+    fetchSharedDecks: (userid) => { dispatch(actions.fetchSharedDecks(userid)) }
   }
 };
 

@@ -3,11 +3,9 @@ import {
   View, 
   TextInput,
   Text,
-  TouchableHighlight, 
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Linking,
   Image
 } from 'react-native';
 import ScrollCard from './scrollCard';
@@ -18,94 +16,63 @@ export default class ResultsComponent extends Component {
   constructor(props) {
     super(props);
   }
-  render() {
-    var _scrollView: ScrollView;
-    const { currentDeck, navigator } = this.props;
+  
+  renderYelpLogo() {
+    const { currentViewDeck } = this.props;
     
-    return (  
-      <View style={styles.container}>
-        
-        <View style={styles.header}>
+    if(currentViewDeck.type === 'yelp') {
+      return (
+        <View style={styles.topBar}>       
           <Image
             style={styles.logo}
-            source={require('../assets/yelp-logo-large.png')}
+            source={require('../assets/yelp-logo-medium.png')}
           />
         </View>
+      )
+    }
+  }
+  
+  render() {
+    const { currentViewDeck, navigator } = this.props;
+    const sorted = currentViewDeck.deck.sort( (a, b) => {
+      return a.likes - b.likes;
+    }).reverse();
+    
+    return (  
+      <View style={[styles.container, {marginTop: 60}]}>
+      
+        { this.renderYelpLogo() }
         
-        <ScrollView
-          style={[styles.scrollView]}
-          ref={(scrollView) => { _scrollView = scrollView; }}
-          automaticallyAdjustContentInsets={false}    
-          scrollEventThrottle={200}
-        >
-          {currentDeck.map(createCard)}
-        </ScrollView>
-        
-        <TouchableOpacity
-          style={styles.topButton}
-          onPress={() => { _scrollView.scrollTo({y: 0}); }}
-        >
-          <Text>Scroll to top</Text>
-        </TouchableOpacity>
-
+        <View style={styles.results}>
+          <ScrollView
+            style={[styles.scrollView]}
+            automaticallyAdjustContentInsets={false}    
+            scrollEventThrottle={200}
+          >
+            {sorted.map((card, i) => <ScrollCard key={card._id} card={card} position={i}/>)}
+          </ScrollView>
+        </View>
       </View>
     );
   }
 }
 
-const createCard = (business, i) => <ScrollCard key={i} business={business} />;
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#F3FCFF'
   },
-  header: {
-    padding: 20,
-    marginTop: 50
+  topBar: {
+    padding: 5,
   },
   logo: {
-    alignSelf: 'center'
+    alignSelf: 'flex-end'
   },
-  back: {
-    width: 60,
-    height: 20,
-    alignItems: 'center',
-    borderColor: 'blue', 
-    borderWidth: 1,
-    borderRadius: 5,
+  results: {
+    flex: 1,
+    marginBottom: 60,
   },
   scrollView: {
-    backgroundColor: '#009900',
-    marginTop: 10,
     height: 400
   },
-  button:  {
-    flexDirection: 'row', 
-    height: 200,
-    margin: 7,
-    padding: 5,
-    backgroundColor: 'lightgrey',
-    borderRadius: 3,
-    alignItems: 'stretch'
-  },
-  topButton: {
-    height: 40,
-    margin: 7,
-    padding: 5,
-    alignItems: 'center',
-    backgroundColor: 'lightgrey',
-    borderRadius: 3,
-  },
-  img: {
-    width: 175,
-    height: 175,
-  },
-  description: {
-    flexWrap: 'wrap',
-    marginLeft: 10
-  },
-  rating: {
-    width: 50, 
-    height: 10
-  }
 });

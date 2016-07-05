@@ -89,7 +89,9 @@ export default class viewDeckSwipe extends Component{
   }
   
   _resetState(liked){
-    const { currentViewCard, currentViewDeck, changeCurrentViewCard, resetCurrentViewCard, navigator } = this.props;
+    const { currentViewCard, currentViewDeck, changeCurrentViewCard, resetCurrentViewCard, navigator, fetchUserDecks, fetchSharedDecks } = this.props;
+    const userid = this.props.user_id || '11111';
+    
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
     if(liked !== undefined) {
@@ -104,7 +106,6 @@ export default class viewDeckSwipe extends Component{
       changeCurrentViewCard();
       this._animateEntrance();
     } else {
-      const userid = '11111' // should come from profile objects in state
       const deckid = currentViewDeck._id;
       const swiped = _.find(currentViewDeck.shared, (user) => {
         return user.user_id === userid;
@@ -112,22 +113,27 @@ export default class viewDeckSwipe extends Component{
       // console.log('deckid', deckid, 'userid', swiped._id)      
       helpers.updateSwipeStatus(deckid, swiped._id, (response) => {
         console.log(response);
+        fetchSharedDecks(userid, function() {
+          console.log('fetched');
+        });
+        resetCurrentViewCard();
       });
       navigator.immediatelyResetRouteStack([{ name: 'saved' }]);
-      resetCurrentViewCard();
     }
   }
   
-  // renderYelp() {
-  //   return (
-  //     <View style={styles.searchResultsContainer}>
-  //       <Image
-  //         source={require('../assets/yelp-logo-large.png')}
-  //       />
-  //       <Text style={styles.searchResults}>{this.props.searchParam.term}</Text>
-  //     </View>
-  //   )
-  // }
+  renderYelp() {
+    const { currentViewDeck } = this.props;
+    console.log(currentViewDeck.type);
+    if(currentViewDeck.type === 'yelp') {
+      return (
+        <View style={styles.searchResultsContainer}>
+          <Image 
+            source={require('../assets/yelp-logo-medium.png')}/>
+        </View>
+      )
+    }
+  }
   
   renderCards() {
     const { pan, enter } = this.state;
@@ -140,14 +146,15 @@ export default class viewDeckSwipe extends Component{
     
     return (
       <Animated.View style={[styles.swipeCard, animatedCard]} {...this._panResponder.panHandlers}>
-        <ViewDeckSwipeCard card={currentViewDeck.deck[currentViewCard]} />
+        <ViewDeckSwipeCard card={currentViewDeck.deck[currentViewCard]} deck={currentViewDeck}/>
       </Animated.View>
     )
   }
 
   render() {    
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {marginTop: 60}]}>
+        { this.renderYelp() }
         { this.renderCards() }
       </View>
     )
@@ -155,15 +162,33 @@ export default class viewDeckSwipe extends Component{
 }
 
 class ViewDeckSwipeCard extends Component {
+  renderYelp() {
+    const { deck, card } = this.props;
+    if(deck.type === 'yelp') {
+      return (
+        <View>
+          <Image 
+            source={{ uri: card.rating_img_url_large }} 
+            style={{width: 166, height: 30}}
+          />
+          
+          <Text style={styles.business}>
+            { card.review_count } Reviews
+          </Text>
+        </View>
+      )
+    }
+  }
   render() {
-    const { card } = this.props;
+    const { deck, card } = this.props;
     console.log(card);
     return (
       <View style={styles.container}>
-        <Image style={{height: 400, width: 220}} source={{uri:card.imageUrl}} />
+        <Image style={{height: 300, width: 300}} source={{uri:card.image_url}} />
         <Text style={{fontSize: 35}}>
           { card.name }
         </Text>
+        { this.renderYelp() }
       </View>
     )
   }

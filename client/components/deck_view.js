@@ -131,7 +131,7 @@ export default class deckView extends Component{
       this.props.navigator.push({ name: 'splash' });
     }
     else if(this.props.currentCard >= 15) {
-      this.props.navigator.push({ name: 'results' });
+      this.props.navigator.push({ name: 'splash' });
     }
   }
 
