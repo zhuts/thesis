@@ -140,6 +140,7 @@ export default class deckView extends Component{
     // this.props.toggleLikeClick(liked);
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
+    liked ? this.props.toggleLikeTrue(this.props.currentCard) : this.props.toggleLikeFalse(this.props.currentCard);
     if(currentCard < currentDeck.length - 1) {
       changeCardSwipe();
       this._animateEntrance();
@@ -183,13 +184,13 @@ export default class deckView extends Component{
 
         <TouchableOpacity
           style={styles.leftSwipeBtn}
-          onPress={() => {{this._resetState()}}}>
+          onPress={() => {{this._resetState(false)}}}>
           <Text>LEFT</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.rightSwipeBtn}
-          onPress={() => {{this._resetState()}}}>
+          onPress={() => {{this._resetState(true)}}}>
           <Text>RIGHT</Text>
         </TouchableOpacity>
 

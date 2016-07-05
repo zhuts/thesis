@@ -44,14 +44,14 @@ describe ('Apex Swipe actions', () => {
 	it ('toggleLikeTrue should create TOGGLE_LIKE_TRUE action', () => {
 		expect(actions.toggleLikeTrue(77)).toEqual({
 			type: 'TOGGLE_LIKE_TRUE',
-			id: 77
+			index: 77
 		});
 	});
 
 	it ('toggleLikeFalse should create TOGGLE_LIKE_FALSE action', () => {
 		expect(actions.toggleLikeFalse(77)).toEqual({
 			type: 'TOGGLE_LIKE_FALSE',
-			id: 77
+			index: 77
 		});
 	});
 

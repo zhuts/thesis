@@ -50,7 +50,7 @@ describe('Reducers', () => {
         rating: 4.0,
         rating_img_url_large: "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/ccf2b76faa2c/ico/stars/v1/stars_large_4.png", 
         review_count: 1415, 
-        liked: false
+        like: false
       }
     ]
     
@@ -68,44 +68,44 @@ describe('Reducers', () => {
       expect(state[0].review_count).toEqual(action.yelpData[0].review_count);
     });
 
-    it('should toggle current card\'s liked property to true within the current deck', () => {
+    it('should toggle current card\'s like property to true within the current deck', () => {
       const stateBefore = [
-        {id: 1, liked: false},
-        {id: 2, liked: false},
-        {id: 3, liked: false}
+        {like: false},
+        {like: false},
+        {like: false}
       ];
 
       const action = {
         type: 'TOGGLE_LIKE_TRUE',
-        id: 2
+        index: 1
       };
       
       const stateAfter = [    
-        {id: 1, liked: false},
-        {id: 2, liked: true},
-        {id: 3, liked: false}
+        {like: false},
+        {like: true},
+        {like: false}
       ];
 
       df(stateBefore);
       expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
     });
 
-    it('should toggle current card\'s liked property to true within the current deck', () => {
+    it('should toggle current card\'s like property to true within the current deck', () => {
       const stateBefore = [
-        {id: 1, liked: true},
-        {id: 2, liked: true},
-        {id: 3, liked: true}
+        {like: true},
+        {like: true},
+        {like: true}
       ];
 
       const action = {
         type: 'TOGGLE_LIKE_FALSE',
-        id: 2
+        index: 1
       };
       
       const stateAfter = [    
-        {id: 1, liked: true},
-        {id: 2, liked: false},
-        {id: 3, liked: true}
+        {like: true},
+        {like: false},
+        {like: true}
       ];
 
       df(stateBefore);
