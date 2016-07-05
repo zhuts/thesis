@@ -1,3 +1,4 @@
+
 const toggleTrue = (card) => {
   return{
     ...card,
@@ -9,6 +10,20 @@ const toggleFalse = (card) => {
   return{
     ...card,
     like: false
+  };
+};
+
+const togglePickTrue = (card) => {
+  return{
+    ...card,
+    pick: true
+  };
+};
+
+const togglePickFalse = (card) => {
+  return{
+    ...card,
+    pick: false
   };
 };
 
@@ -28,10 +43,20 @@ export default (state = [], action) => {
         .concat(toggleTrue(state[action.index]))
         .concat(state.slice(action.index+1))
     case 'TOGGLE_LIKE_FALSE':
-    return state
-      .slice(0,action.index)
-      .concat(toggleFalse(state[action.index]))
-      .concat(state.slice(action.index+1))
+      return state
+        .slice(0,action.index)
+        .concat(toggleFalse(state[action.index]))
+        .concat(state.slice(action.index+1))
+    case 'TOGGLE_PICK_TRUE':
+      return state
+        .slice(0,action.index)
+        .concat(togglePickTrue(state[action.index]))
+        .concat(state.slice(action.index+1))
+    case 'TOGGLE_PICK_FALSE':
+      return state
+        .slice(0,action.index)
+        .concat(togglePickFalse(state[action.index]))
+        .concat(state.slice(action.index+1))
     default:
       return state
   }

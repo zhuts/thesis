@@ -12,30 +12,30 @@ import Card from './card';
 import ImageCard from '../containers/imageCardContainer';
 import * as action from '../actions/actions';
 import styles from '../assets/styles';
-
+//dictates when swipe is registered
 let SWIPE_THRESHOLD = 120;
-
+//component for viewing decks of cards, images or yelpData
 export default class deckView extends Component{
   constructor(props) {
     super(props);
-
+    //internal state for touch swiping
     this.state = {
       pan: new Animated.ValueXY(),
       enter: new Animated.Value(0.5),
     }
   }
-
+  //after render, animate card entrance
   componentDidMount() {
     this._animateEntrance();
   }
-
+  //card entrance animation
   _animateEntrance() {
     Animated.spring(
       this.state.enter,
       { toValue: 1, friction: 8 }
     ).start();
   }
-
+  //before render, sets touch properties
   componentWillMount() {
     this._panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
@@ -105,8 +105,14 @@ export default class deckView extends Component{
       onPanResponderRelease: (e, {vx, vy}) => {
 
         if (this.state.pan.x._value > SWIPE_THRESHOLD) {
+          if(this.props.cameraMode){
+            this.props.togglePickTrue(this.props.currentCard)
+          }
           this._resetState(true)
         } else if (this.state.pan.x._value < -SWIPE_THRESHOLD){
+          if(this.props.cameraMode){
+            this.props.togglePickFalse(this.props.currentCard)
+          }
           this._resetState(false)
         }
         Animated.spring(this.state.pan, {
@@ -126,16 +132,22 @@ export default class deckView extends Component{
       },
     })
   }
+  //called to change user view when deck is finished, conditional specifies where it redirects to
   _changePage(){
     if (this.props.cameraMode) {
-      this.props.navigator.push({ name: 'splash' });
+      //const deck = this.props.currentDeck.filter(item => item.pick)
+      this.props.navigator.push({ name: 'friends' });
+      // this._pickImageDeck(deck);
     }
     else if(this.props.currentCard >= 15) {
-      this.props.navigator.push({ name: 'splash' });
+      this.props.navigator.push({ name: 'friends' });
     }
   }
-
-  _resetState(liked){
+  _pickImageDeck(deck){
+    this.props.buildImageDeck(deck);
+  }
+  //resets state after swipe or button push
+  _resetState(liked, picked){
     const { currentCard, currentDeck, changeCardSwipe } = this.props;
     // this.props.toggleLikeClick(liked);
     this.state.pan.setValue({x: 0, y: 0});
@@ -144,17 +156,16 @@ export default class deckView extends Component{
     if(currentCard < currentDeck.length - 1) {
       changeCardSwipe();
       this._animateEntrance();
-      } else {
+    } else {
         this._changePage();
-      }
+    }
 
 
   }
-
+  //renders user view for card swiping
   render() {
-    //ternary to display yelp logo if yelp searching, otherwise photos
     const { pan, enter } = this.state;
-    const { currentDeck, currentCard, cameraMode } = this.props;
+    const { currentDeck, currentCard, cameraMode, togglePickTrue, togglePickFalse } = this.props;
 
     let [translateX, translateY] = [pan.x, pan.y];
     let rotate = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]});
@@ -164,6 +175,7 @@ export default class deckView extends Component{
 
     return (
       <View style={styles.container}>
+      {/*ternary to display yelp logo if yelp searching, otherwise photos*/}
       {cameraMode === false ?
         <View style={styles.searchResultsContainer}>
           <Image
@@ -175,22 +187,23 @@ export default class deckView extends Component{
           <Text>Photos</Text>
         </View>
       }
+      {/*ternary to display yelp cards or image cards*/}
         <Animated.View style={[styles.swipeCard, animatedCard]} {...this._panResponder.panHandlers}>
           {cameraMode === false ?
             <Card business={currentDeck[currentCard]} /> :
             <ImageCard img={currentDeck[currentCard]} />
           }
         </Animated.View>
-
+        {/*buttons with same functionality as swipe*/}
         <TouchableOpacity
           style={styles.leftSwipeBtn}
-          onPress={() => {{this._resetState(false)}}}>
+          onPress={() => { if(cameraMode){togglePickFalse(currentCard)}{this._resetState(false)}}}>
           <Text>LEFT</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.rightSwipeBtn}
-          onPress={() => {{this._resetState(true)}}}>
+          onPress={() => { if(cameraMode){togglePickTrue(currentCard)}{this._resetState(true)}}}>
           <Text>RIGHT</Text>
         </TouchableOpacity>
 

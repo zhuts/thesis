@@ -6,7 +6,8 @@ import * as action from '../actions/actions';
 const mapStateToProps = (state) => {
   return {
     currentDeck: state.currentDeck,
-    profile: state.welcome.profile
+    profile: state.welcome.profile,
+    cameraMode: state.camera.mode
   }
 }
 

@@ -21,9 +21,10 @@ export default class SplashComponent extends Component {
   navigate(destination) {
     this.props.navigator.push({ name: destination });
   }
-
+//          if (currentDeck.length !== 0 && !cameraMode) {
+  //renders home screen, each button is self explanatory
   render() {
-    const { currentDeck } = this.props;
+    const { currentDeck, cameraMode } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.container}>
@@ -37,27 +38,16 @@ export default class SplashComponent extends Component {
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
-            onPress={() => {
-              if (currentDeck.length !== 0) {
-                this.navigate('deckView')
-              }
-            }}
-          >
-            <Text>Swipe</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor={'lightblue'}
-            onPress={() => {this.navigate('results')}}
-          >
-            <Text>Results</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor={'lightblue'}
             onPress={() => {this.navigate('camera')}}
           >
             <Text>Camera</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            underlayColor={'lightblue'}
+            onPress={() => {this.navigate('deckView')}}
+          >
+            <Text>Build Picture Deck</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.friend}
