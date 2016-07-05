@@ -234,6 +234,12 @@ export const showYelp = () => {
   }
 }
 
+export const resetCurrentDeck = () => {
+  return {
+    type: 'RESET_CURRENT_DECK'
+  }
+}
+
 //will get the current user's saved decks
 export const fetchUserDecks = (userid) => {
   return (dispatch, getState) => {
