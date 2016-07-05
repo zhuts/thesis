@@ -32,14 +32,14 @@ export default {
       })
   },
 
-  getFriends: (callback) => {
-    const url = `http://localhost:3000/users/friends/:user_id`;
+  getFriends: (callback, userid) => {
+    const url = `http://localhost:3000/users/friends/${userid}`;
     fetch(url)
       .then(function(response) {               
         return response.json() ;
       })
       .then(function(user) {
-        // console.log(data.businesses);
+        console.log(user);
         callback(user);
       })
       .catch(function(err) {
@@ -47,20 +47,20 @@ export default {
       })
   },
   
-  addFriend: (callback, userid) => {
+  addFriend: (callback, userid, user) => {
     const url = `http://localhost:3000/users/friends/${userid}`;
     fetch(url, {  
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-      }
+      },
+      body: JSON.stringify(user)
     })
       .then(function(response) {               
-        return response.json() ;
+        return response.json();
       })
       .then(function(user) {
-        // console.log(data.businesses);
         callback(user);
       })
       .catch(function(err) {

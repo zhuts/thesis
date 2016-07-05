@@ -114,11 +114,10 @@ export const getFriends = (friends) => {
   }
 }
 
-export const addFriend = (users, id) => {
+export const addFriend = (friendsList) => {
   return {
     type: 'ADD_FRIEND',
-    users,
-    id
+    friendsList
   }
 }
 

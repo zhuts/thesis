@@ -1,21 +1,10 @@
-import _ from 'underscore';
-
 export default (state = [], action) => {
   switch (action.type) {
-    case 'GET_FRIEND': 
+    case 'GET_FRIENDS': 
       return action.friends;
     case 'ADD_FRIEND':
-      var newFriend = {};
-      _.forEach(action.users, (user) => {
-        if (user.user_id === action.id) {
-          newFriend = Object.assign(user);
-        }
-      })
-      if (_.indexOf(state, newFriend) === -1) {
-        return [...state, newFriend];
-      }
+      return action.friendsList;
     default:
       return state;
   }
 }
-

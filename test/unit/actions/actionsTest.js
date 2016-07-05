@@ -56,10 +56,9 @@ describe ('Apex Swipe actions', () => {
 	});
 
 	it ('addFriend should create ADD_FRIEND action', () => {
-		expect(actions.addFriend([{userid:123}], '1321897')).toEqual({
+		expect(actions.addFriend([{userid:123}])).toEqual({
 			type: 'ADD_FRIEND',
-			users: [{userid:123}],
-			id: '1321897'
+			friendsList: [{userid:123}]
 		});
 	});
 	

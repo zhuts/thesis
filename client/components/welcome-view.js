@@ -46,14 +46,7 @@ var WelcomeView = React.createClass({
       }
       setProfile(profile);
       setToken(token);
-
-      this.props.navigator.push({
-        name: 'splash',
-        // passProps: {
-        //   profile: profile,
-        //   token: token,
-        // }
-      });
+      this.props.navigator.push({ name: 'splash' });
     });
   },
 });
