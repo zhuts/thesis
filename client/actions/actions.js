@@ -44,17 +44,17 @@ export const prevCard = () => {
 // toggleLike will search currentDeck, find matching id and will toggle like
 // and it will also toggle votedOn to true
 
-export const toggleLikeTrue = (id) => {
+export const toggleLikeTrue = (index) => {
   return {
     type: 'TOGGLE_LIKE_TRUE',
-    id
+    index
   }
 }
 
-export const toggleLikeFalse = (id) => {
+export const toggleLikeFalse = (index) => {
   return {
     type: 'TOGGLE_LIKE_FALSE',
-    id
+    index
   }
 }
 
