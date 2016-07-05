@@ -38,8 +38,10 @@
       const fetchParams = {
           first: this.props.numOfPics,
       };
-      CameraRoll.getPhotos(fetchParams)
-        .then((data) => this.storeImages(data), (e) => this.logImageError(e));
+      if (this.props.numOfPics > 0){
+        CameraRoll.getPhotos(fetchParams)
+          .then((data) => this.storeImages(data), (e) => this.logImageError(e));
+      }
     }
     render() {
       // IMAGECARD COMPONENT EXPECTS PROPS CALLED IMAGE TO BE PASSED TO IT
