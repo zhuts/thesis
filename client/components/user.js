@@ -7,21 +7,23 @@ import {
   StyleSheet 
 } from 'react-native';
 import * as action from '../actions/actions';
-
+import helpers from '../util/helpers';
 
 export default class User extends Component {
   componentDidMount() {
-    const { id, user, users, addFriend } = this.props;
+    const { id, user, users, addFriend, profile } = this.props;
     console.log(this.props);
   }
 
   render() {
-    const { id, user, users, addFriend } = this.props;
+    const { id, user, users, addFriend, profile } = this.props;
     return (
       <TouchableHighlight
         style={styles.user}
         underlayColor={'lightgreen'}
-        onPress={() => {addFriend(users, id)}}
+        onPress={() => {
+          helpers.addFriend((friendsList) => {addFriend(friendsList)}, profile.userId, user);
+        }}
       >
         <Text>{ user.email }</Text>
       </TouchableHighlight>

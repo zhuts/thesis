@@ -5,13 +5,13 @@ import * as action from '../actions/actions';
 
 const mapStateToProps = (state) => {
   return {
-    currentDeck: state.currentDeck
+    currentDeck: state.currentDeck,
+    profile: state.welcome.profile
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // toggleLikeClick: (id, liked) => { dispatch(action.toggleLike(id, liked)) },
     getUsers: (users) => { dispatch(action.getUsers(users)) },
     getFriends: (friends) => { dispatch(action.getFriends(friends)) }
   }

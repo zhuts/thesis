@@ -11,7 +11,7 @@ export default class SplashComponent extends Component {
   componentDidMount() {
     const { getUsers, getFriends, profile } = this.props;
     helpers.getUsers((users) => {getUsers(users)});
-    helpers.getFriends((friends) => {getFriends(friends)});
+    helpers.getFriends((friends) => {getFriends(friends)}, profile.userId);
   }
 
   constructor(props) {

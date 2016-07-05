@@ -151,11 +151,10 @@ describe('Reducers', () => {
       const beforeState = [];
       const action = {
         type: 'ADD_FRIEND',
-        users: [{email: '123@example.com', user_id: '123'}, { email: '456@example.com', user_id: '456' }],
-        id: '456'
+        friendsList: [{email: '123@example.com', user_id: '123'}, { email: '456@example.com', user_id: '456' }]
       };
       
-      const afterState = [ { email: '456@example.com', user_id: '456' } ];
+      const afterState = [{email: '123@example.com', user_id: '123'}, { email: '456@example.com', user_id: '456' }];
       df(beforeState);
       expect(friendsReducer(beforeState, action)).toEqual(afterState);
     });

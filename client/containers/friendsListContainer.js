@@ -6,7 +6,8 @@ import * as action from '../actions/actions';
 const mapStateToProps = (state) => {
   return { 
     users: state.users,
-    friends: state.friends
+    friends: state.friends,
+    profile: state.welcome.profile
   }
 }
 
