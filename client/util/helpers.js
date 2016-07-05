@@ -109,6 +109,31 @@ export default {
         console.log(err);
       })
   },
+
+  removeFriend: (callback, userid, friend) => {
+    const url = `http://localhost:3000/users/friends/${userid}`;
+    console.log(userid);
+    console.log(friend);
+    fetch(url, {  
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        friend_id: friend._id
+      })
+    })
+      .then(function(response) {               
+        return response.json();
+      })
+      .then(function(friend) {
+        callback(friend);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  },
   
   getUserCreatedDecks: (userid, callback) => {
     const url = `http://localhost:3000/decks/${userid}`;
