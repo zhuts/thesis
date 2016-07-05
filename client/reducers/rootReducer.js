@@ -12,6 +12,7 @@ import viewSharedDecksReducer from './viewSharedDecksReducer';
 import viewCurrentViewDeckReducer from './viewCurrentViewDeckReducer';
 import viewChangeCurrentViewCardReducer from './viewChangeCurrentViewCardReducer';
 import showYelpReducer from './viewShowYelpReducer';
+import shareReducer from './shareReducer';
 
 const rootReducer = combineReducers({
   currentDeck: buildDeck,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   currentViewDeck: viewCurrentViewDeckReducer,
   currentViewCard: viewChangeCurrentViewCardReducer,
   showYelp: showYelpReducer,
+  share: shareReducer
 });
 
 export default rootReducer;

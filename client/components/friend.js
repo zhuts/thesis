@@ -8,14 +8,19 @@ import {
 } from 'react-native';
 import * as action from '../actions/actions';
 
-
 export default class Friend extends Component {
+  sendDeck() { 
+    const { addToShared, friend } = this.props;
+    addToShared(friend);
+  }
+
   render() {
     const { id, friend } = this.props;
     return (
       <TouchableHighlight
         style={styles.user}
         underlayColor={'lightgreen'}
+        onPress={() => {this.sendDeck()}}
       >
         <Text>{ friend.email }</Text>
       </TouchableHighlight>

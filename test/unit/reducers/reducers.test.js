@@ -6,6 +6,7 @@ import currentCardReducer from '../../../client/reducers/currentCardReducer';
 import friendsReducer from '../../../client/reducers/friendsReducer';
 import cameraReducer from '../../../client/reducers/cameraReducer';
 import loadingReducer from '../../../client/reducers/loadingReducer';
+import shareReducer from '../../../client/reducers/shareReducer';
 
 describe('Reducers', () => {
 
@@ -260,6 +261,19 @@ describe('Reducers', () => {
       const stateAfter = false;
       df(stateBefore);
       expect(loadingReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+  });
+
+  describe('shareReducer', () => {
+    it('should add a friend to the shared list', () => {
+      const stateBefore = [];
+      const action = {
+        type: 'ADD_TO_SHARED',
+        user: {}
+      }
+      const stateAfter = [{}];
+      df(stateBefore);
+      expect(shareReducer(stateBefore, action)).toEqual(stateAfter);
     });
   });
 
