@@ -97,9 +97,7 @@ export default class viewDeckSwipe extends Component{
     if(liked !== undefined) {
       const deckid = currentViewDeck._id;
       const cardid = currentViewDeck.deck[currentViewCard]._id;
-      // console.log('deckid', deckid, 'cardid', cardid);
       helpers.updateLikeCount(deckid, cardid, (response) => {
-        console.log(response);
       });
     }
     if(currentViewCard < currentViewDeck.deck.length - 1) {
@@ -110,9 +108,7 @@ export default class viewDeckSwipe extends Component{
       const swiped = _.find(currentViewDeck.shared, (user) => {
         return user.user_id === userid;
       });
-      // console.log('deckid', deckid, 'userid', swiped._id)      
       helpers.updateSwipeStatus(deckid, swiped._id, (response) => {
-        console.log(response);
         fetchSharedDecks(userid, function() {
           console.log('fetched');
         });
@@ -124,7 +120,6 @@ export default class viewDeckSwipe extends Component{
   
   renderYelp() {
     const { currentViewDeck } = this.props;
-    console.log(currentViewDeck.type);
     if(currentViewDeck.type === 'yelp') {
       return (
         <View style={styles.searchResultsContainer}>
@@ -181,7 +176,6 @@ class ViewDeckSwipeCard extends Component {
   }
   render() {
     const { deck, card } = this.props;
-    console.log(card);
     return (
       <View style={styles.container}>
         <Image style={{height: 300, width: 300}} source={{uri:card.image_url}} />

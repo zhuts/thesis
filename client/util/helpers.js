@@ -1,20 +1,18 @@
 import _ from 'underscore';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'http://apex-swipe.herokuapp.com';
+// const baseUrl = 'http://localhost:3000';
 
 export default {
   
   searchYelp: (term, location, callback) => {
-    const url = `http://localhost:3000/yelpSearch?term=${term}&location=${location}`;
+    const url = `${baseUrl}/yelpSearch?term=${term}&location=${location}`;
     
     fetch(url)
       .then(function(response) {
-        // console.log(response);                   
         return response.json() 
       })
       .then(function(data) {
-        // console.log(data.businesses);
-        
         const businesses = data.businesses.map( business => {
           return {
             id: business.id,
@@ -36,11 +34,10 @@ export default {
   },
   
   getYelpBusiness: (id, callback) => {
-    const url = `http://localhost:3000/yelpSearch/business?id=${id}`;
+    const url = `${baseUrl}/yelpSearch/business?id=${id}`;
     
     fetch(url)
       .then(function(response) {
-        // console.log(response);                   
         return response.json() 
       })
       .then(function(business) {
@@ -54,7 +51,6 @@ export default {
           rating_img_url_large: business.rating_img_url_large,
           rating_img_url_small: business.rating_img_url_small
         }
-        // console.log(data);
         callback(data);
       })
       .catch(function(err) {
@@ -63,7 +59,7 @@ export default {
   },
 
   getUsers: (callback) => {
-    const url = `http://localhost:3000/users`;
+    const url = `${baseUrl}/users`;
     fetch(url)
       .then(function(response) {             
         return response.json() ;
@@ -78,7 +74,7 @@ export default {
   },
 
   getFriends: (callback, userid) => {
-    const url = `http://localhost:3000/users/friends/${userid}`;
+    const url = `${baseUrl}/users/friends/${userid}`;
     fetch(url)
       .then(function(response) {               
         return response.json() ;
@@ -93,7 +89,7 @@ export default {
   },
   
   addFriend: (callback, userid, user) => {
-    const url = `http://localhost:3000/users/friends/${userid}`;
+    const url = `${baseUrl}/users/friends/${userid}`;
     fetch(url, {  
       method: 'POST',
       headers: {
@@ -114,9 +110,7 @@ export default {
   },
 
   removeFriend: (callback, userid, friend) => {
-    const url = `http://localhost:3000/users/friends/${userid}`;
-    console.log(userid);
-    console.log(friend);
+    const url = `${baseUrl}/users/friends/${userid}`;
     fetch(url, {  
       method: 'DELETE',
       headers: {
@@ -130,8 +124,8 @@ export default {
       .then(function(response) {               
         return response.json();
       })
-      .then(function(friend) {
-        callback(friend);
+      .then(function(friendsList) {
+        callback(friendsList);
       })
       .catch(function(err) {
         console.log(err);
@@ -139,7 +133,7 @@ export default {
   },
   
   getUserCreatedDecks: (userid, callback) => {
-    const url = `http://localhost:3000/decks/${userid}`;
+    const url = `${baseUrl}/decks/${userid}`;
     fetch(url)
       .then(function(response) {
         return response.json() 
@@ -153,7 +147,7 @@ export default {
   },
   
   getUserSharedDecks: (userid, callback) => {
-    const url = `http://localhost:3000/decks/shared/${userid}`;
+    const url = `${baseUrl}/decks/shared/${userid}`;
     fetch(url)
       .then(function(response) {
         return response.json() 
@@ -167,7 +161,7 @@ export default {
   },
   
   updateLikeCount: (deckid, cardid, callback) => {
-    const url = `http://localhost:3000/decks/${deckid}`;
+    const url = `${baseUrl}/decks/${deckid}`;
     const request = new Request(url, {
       method: 'PUT',
       headers: new Headers({
@@ -190,7 +184,7 @@ export default {
   },
   
   updateSwipeStatus: (deckid, userId, callback) => {
-    const url = `http://localhost:3000/decks/shared/${deckid}`;
+    const url = `${baseUrl}/decks/shared/${deckid}`;
     const request = new Request(url, {
       method: 'PUT',
       headers: new Headers({
@@ -213,12 +207,8 @@ export default {
   },
   
   postYelpDeck: (user_id, name, deck, shared, callback) => {
-    // user_id: get from profile state
-    // name: get from some user text input
-    // deck: get from currentDeck state
-    // shared: get from users or friends state
     const builtDeck = deck.filter( card => card.like );
-    const url = `http://localhost:3000/decks`;
+    const url = `${baseUrl}/decks`;
     const body = {
       user_id,
       type: 'yelp',
