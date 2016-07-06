@@ -20,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleLikeFalse: (index) => { dispatch(action.toggleLikeFalse(index)) },
     buildImageDeck: (images) => { dispatch(action.buildImageDeck(images)) },
     togglePickTrue: (id) => { dispatch(action.togglePickTrue(id))},
-    togglePickFalse: (id) => { dispatch(action.togglePickFalse(id))}
+    togglePickFalse: (id) => { dispatch(action.togglePickFalse(id))},
+    changeLocAfterUpload: (index, uri) => { dispatch(action.changeLocAfterUpload(index, uri))}
   }
 };
 

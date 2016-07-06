@@ -12,6 +12,10 @@ import Card from './card';
 import ImageCard from '../containers/imageCardContainer';
 import * as action from '../actions/actions';
 import styles from '../assets/styles';
+import { RNS3 } from 'react-native-aws3';
+import s3Cred from "../util/s3credentials";
+import helpers from '../util/helpers';
+
 //dictates when swipe is registered
 let SWIPE_THRESHOLD = 120;
 //component for viewing decks of cards, images or yelpData
@@ -203,7 +207,9 @@ export default class deckView extends Component{
 
         <TouchableOpacity
           style={styles.rightSwipeBtn}
-          onPress={() => { if(cameraMode){togglePickTrue(currentCard)}{this._resetState(true)}}}>
+          onPress={() => { if(cameraMode){
+            togglePickTrue(currentCard); 
+            helpers.sendToS3(s3Cred, RNS3, currentCard, currentDeck[currentCard].uri, this.props.changeLocAfterUpload )}{this._resetState(true)}}}>
           <Text>RIGHT</Text>
         </TouchableOpacity>
 

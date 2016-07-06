@@ -1,7 +1,7 @@
 import _ from 'underscore';
-
 const baseUrl = 'http://apex-swipe.herokuapp.com';
 // const baseUrl = 'http://localhost:3000';
+
 
 export default {
   
@@ -34,8 +34,7 @@ export default {
   },
   
   getYelpBusiness: (id, callback) => {
-    const url = `${baseUrl}/yelpSearch/business?id=${id}`;
-    
+    const url = `${baseUrl}/yelpSearch/business?id=${id}`;    
     fetch(url)
       .then(function(response) {
         return response.json() 
@@ -44,6 +43,7 @@ export default {
         const data = {
           id: business.id,
           name: business.name,
+          like: 0,
           image_url: business.image_url,
           url: business.url,
           review_count: business.review_count,
@@ -51,6 +51,7 @@ export default {
           rating_img_url_large: business.rating_img_url_large,
           rating_img_url_small: business.rating_img_url_small
         }
+        // console.log(data);
         callback(data);
       })
       .catch(function(err) {
@@ -245,6 +246,34 @@ export default {
         console.log(err);
       })
   }
+
+  sendToS3: (s3Cred, RNS3, currentCard, uriOnPhone, callback)=>{
+      let file = {
+        // `uri` can also be a file system path (i.e. file://)
+        uri: uriOnPhone,
+        name: uriOnPhone.substring(36,44),
+        type: "image/png"
+      };
+
+      let options = {
+        keyPrefix: "uploads/",
+        bucket: "apexswipe",
+        region: "us-west-1",
+        accessKey: s3Cred.AWSAccessKeyId,
+        secretKey: s3Cred.AWSSecretKey,
+        successActionStatus: 201
+      };
+
+      RNS3.put(file, options).then(response => {
+      if (response.status !== 201){
+        throw new Error("Failed to upload image to S3");
+      }
+      console.log(response.body.postResponse.location);
+      callback(currentCard, response.body.postResponse.location);
+    })
+  },
+
+
 };
 
 
