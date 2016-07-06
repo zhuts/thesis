@@ -6,7 +6,7 @@ import helpers from '../util/helpers';
 
 //================================================
 
-//action to send the search term to yelp api query
+//will send the search term to yelp api query
 export const searchTerm = (term) => {
   return {
     type: 'SEARCH_TERM',
@@ -14,7 +14,7 @@ export const searchTerm = (term) => {
   };
 };
 
-//action to send the search location to yelp api query
+//will send the search location to yelp api query
 export const searchLocation = (location) => {
   return {
     type: 'SEARCH_LOCATION',
@@ -22,14 +22,14 @@ export const searchLocation = (location) => {
   };
 };
 
-//action to reset the search parameters to empty strings
+//will reset the search parameters to empty strings
 export const resetSearch = () => {
   return {
     type: 'RESET_SEARCH',
   };
 };
 
-//action to build a deck of yelp data
+//will build a deck of yelp data
 export const buildDeckYelp = (yelpData) => {
   return {
     type: 'BUILD_DECK_YELP',
@@ -43,21 +43,21 @@ export const buildDeckYelp = (yelpData) => {
 
 //================================================
 
-//action will increment currentCard by 1
+//will increment currentCard by 1
 export const nextCard = () => {
   return {
     type: 'NEXT_CARD'
   }
 }
-//action will decrement currentCard by 1
+//will decrement currentCard by 1
 export const prevCard = () => {
   return {
     type: 'PREV_CARD'
   }
 }
 
-//action will toggle like property of index of currentDeck to true
-// and it will also toggle votedOn to true
+//will toggle like property of index of currentDeck to true
+//and will also toggle votedOn to true
 export const toggleLikeTrue = (index) => {
   return {
     type: 'TOGGLE_LIKE_TRUE',
@@ -65,7 +65,7 @@ export const toggleLikeTrue = (index) => {
   }
 }
 
-//action will toggle like property of index of currentDeck to false
+//will toggle like property of index of currentDeck to false
 export const toggleLikeFalse = (index) => {
   return {
     type: 'TOGGLE_LIKE_FALSE',
@@ -79,7 +79,7 @@ export const toggleLikeFalse = (index) => {
 
 //================================================
 
-//takePictureSuccess will increment a counter by one, so that the proper
+//will increment a counter by one, so that the proper
 //number of pics are pulled from the cameraRoll in buildImageDeck
 export const takePictureSuccess = () => {
   return {
@@ -87,7 +87,7 @@ export const takePictureSuccess = () => {
   }
 }
 
-//cameraModeOn will set a state boolean so that the deckview will render
+//will set a state boolean so that the deckview will render
 //images instead of yelp cards- default is true
 export const cameraModeOn = () => {
   return {
@@ -95,7 +95,7 @@ export const cameraModeOn = () => {
   }
 }
 
-//changeToCameraMode will set a state boolean so that the deckview will render
+//will set a state boolean so that the deckview will render
 //yelpCards instead of images
 export const cameraModeOff = () => {
   return {
@@ -174,7 +174,7 @@ export const addFriend = (friendsList) => {
   }
 }
 
-//
+//will set a profile object to state when user logs in
 export const setProfile = (profile) => {
   return {
     type: 'SET_PROFILE',
@@ -182,7 +182,7 @@ export const setProfile = (profile) => {
   }
 }
 
-//
+//will set a token object to state when user logs in
 export const setToken = (token) => {
   return {
     type: 'SET_TOKEN',
@@ -190,7 +190,7 @@ export const setToken = (token) => {
   }
 }
 
-//
+//will set a user's deck when a user finishes swiping
 export const setUserDecks = (userDecks) => {
   return {
     type: 'SET_USER_DECKS',
@@ -198,6 +198,7 @@ export const setUserDecks = (userDecks) => {
   }
 }
 
+//will set a shared deck when a user shares a deck with friends
 export const setSharedDecks = (sharedDecks) => {
   return {
     type: 'SET_SHARED_DECKS',
@@ -205,7 +206,7 @@ export const setSharedDecks = (sharedDecks) => {
   }
 }
 
-//
+//will set a current deck when the user goes to the view deck page
 export const setCurrentViewDeck = (currentViewDeck) => {
   return {
     type: 'SET_CURRENT_VIEW_DECK',
@@ -213,27 +214,28 @@ export const setCurrentViewDeck = (currentViewDeck) => {
   }
 }
 
-//
+//will generate a new view card after the use swipes a previous card
 export const changeCurrentViewCard = () => {
   return {
     type: 'CHANGE_CURRENT_VIEW_CARD'
   }
 }
 
-//
+//will generate a card according to the user's search input
 export const resetCurrentViewCard = () => {
   return {
     type: 'RESET_CURRENT_VIEW_CARD'
   }
 }
 
-//
+//will show yelp when the user goes to the yelp page
 export const showYelp = () => {
   return {
     type: 'SHOW_YELP'
   }
 }
 
+//will reset the deck when the user decides to build a deck again
 export const resetCurrentDeck = () => {
   return {
     type: 'RESET_CURRENT_DECK'
@@ -336,6 +338,7 @@ export const fetchSharedDecks = (userid, callback) => {
   }
 }
 
+//will trigger when a user picks a friend to share deck with
 export const addToShared = (shareList) => {
   return {
     type: 'ADD_TO_SHARED',
