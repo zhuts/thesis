@@ -10,7 +10,8 @@ import * as action from '../actions/actions';
 import helpers from '../util/helpers';
 
 export default class Friend extends Component {
-
+  // will render a friend component after the user adds another user from the 'user list'
+  // the friend component has a 'delete' function so that the friend can be taken out when the user presses on a friend in the 'friend list'
   render() {
     const { id, friends, friend, profile, removeFriend, addFriend } = this.props;
     return (
