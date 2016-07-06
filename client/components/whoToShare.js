@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { 
   View,
   Text,
-<<<<<<< 577f50585208f85c0e6b84ae23b394ce89035e85
   TextInput,
   TouchableHighlight,
   TouchableOpacity,
