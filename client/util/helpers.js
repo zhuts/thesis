@@ -1,6 +1,6 @@
 import _ from 'underscore';
-const baseUrl = 'http://apex-swipe.herokuapp.com';
-// const baseUrl = 'http://localhost:3000';
+// const baseUrl = 'http://apex-swipe.herokuapp.com';
+const baseUrl = 'http://localhost:3000';
 
 
 export default {
@@ -206,18 +206,18 @@ export default {
         console.log(err);
       })
   },
-
-  postYelpDeck: (user_id, name, deck, shared, callback) => {
+  
+  postDeck: (user_id, name, deck, shared, type, callback) => {
     const builtDeck = deck.filter( card => card.like );
     const url = `${baseUrl}/decks`;
     const body = {
       user_id,
-      type: 'yelp',
+      type: type || 'camera',
       name,
       deck: builtDeck.map(card => {
         return {
-          name: card.id,
-          image_url: null,
+          name: card.id || '',
+          image_url: card.uri || null,
           likes: 0
         }
       }),

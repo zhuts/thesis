@@ -34,7 +34,7 @@ export default class WhoToShare extends Component {
   }
   
   render() {
-    const { user_id, friends, currentDeck, navigator } = this.props;
+    const { user_id, friends, currentDeck, navigator, resetCurrentDeck } = this.props;
     const display = _.reject(friends, (friend) => friend.user_id === user_id);
     return(
       <View style={styles.container}>
@@ -73,23 +73,19 @@ export default class WhoToShare extends Component {
         <TouchableOpacity
           onPress={() => {
             if(currentDeck.length > 0 && !!currentDeck[0].id) {
-              helpers.postYelpDeck(user_id, this.state.name, currentDeck, this.state.selected, () => {
+              helpers.postDeck(user_id, this.state.name, currentDeck, this.state.selected, 'yelp', () => {
                 console.log('deck has been uploaded');
-                // dispatch action to clear currentDeck
-                // dispatch action to clear
               })
             } else {
-              console.log('uploading camera deck');
-              // post
-              // helpers.postCameraDeck(user_id, this.state.name, currentDeck, this.state.selected, () => {
-              //   console.log('deck has been uploaded');
-              // })
+              helpers.postDeck(user_id, this.state.name, currentDeck, this.state.selected, null, () => {
+                console.log('deck has been uploaded');
+              })
             }
             this.setState({
               selected: [],
               name: ''
             });
-            navigator.immediatelyResetRouteStack([{ name: 'splash' }]);
+            navigator.push({ name: 'splash' });
           }}
         >
           <Text>Share</Text>
