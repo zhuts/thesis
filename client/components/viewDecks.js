@@ -14,7 +14,6 @@ export default class ViewDecks extends Component {
   componentDidMount() {
     const { fetchUserDecks, fetchSharedDecks } = this.props;
     const userid = this.props.user_id || '11111';
-    console.log(userid);
     fetchUserDecks(userid);
     fetchSharedDecks(userid);
   }
