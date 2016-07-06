@@ -15,7 +15,8 @@ export default class FriendsListComponent extends Component {
   constructor(props) {
     super(props)
   }
-
+  // the friend list component contains two lists: one for all the users that exist in the database
+  // and another for the friends that the user currently logged in has
   render() {
     var _scrollView: ScrollView;
     const { users, friends, addFriend, removeFriend, profile, addToShared, getFriends } = this.props;
