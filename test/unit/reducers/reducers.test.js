@@ -31,6 +31,18 @@ describe('Reducers', () => {
       expect(state.location).toEqual(action.location);
     });
 
+
+    it('should include the number of results to search for', () => {
+      const stateBefore = {term: '', location: '', num: 10}
+      const action = {
+        type: 'NUM_OF_CARDS',
+        num: 5
+      };
+      const stateAfter = {term: '', location: '', num: 5}
+      df(stateBefore);
+      expect(searchReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+
     it('should reset all search parameters', () => {
       const action = {
         type: 'RESET_SEARCH'

@@ -6,7 +6,8 @@ import * as actions from '../actions/actions';
 const mapStateToProps = (state) => {
   return {
     term: state.search.term,
-    location: state.search.location
+    location: state.search.location,
+    num: state.search.num
   }
 };
 
@@ -15,7 +16,8 @@ const mapDispatchToProps = (dispatch) => {
     searchTerm: (term) => {dispatch(actions.searchTerm(term))},
     searchLocation: (location) => {dispatch(actions.searchLocation(location))},
     buildDeckYelp: (data) => {dispatch(actions.buildDeckYelp(data))},
-    cameraModeOff: () => {dispatch(actions.cameraModeOff())}
+    cameraModeOff: () => {dispatch(actions.cameraModeOff())},
+    numOfCards: (num) => {dispatch(actions.numOfCards(num))}
   }
 };
 
