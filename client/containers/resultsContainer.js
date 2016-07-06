@@ -9,4 +9,10 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(Results);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sortCurrentViewDeck: () => { dispatch(actions.sortCurrentViewDeck())}
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

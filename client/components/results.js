@@ -11,12 +11,36 @@ import {
 import ScrollCard from './scrollCard';
 import helpers from '../util/helpers';
 import * as actions from '../actions/actions';
+import Accordion from 'react-native-collapsible/Accordion';
 
 export default class ResultsComponent extends Component {
   constructor(props) {
     super(props);
   }
-  
+
+  componentDidMount() {
+    const { sortCurrentViewDeck } = this.props; 
+    sortCurrentViewDeck();
+  }
+
+  _renderHeader(section){
+    return (
+      <ScrollView
+       style={styles.scrollView}
+       automaticallyAdjustContentInsets={false}    
+       scrollEventThrottle={200}
+     >
+       <ScrollCard key={section._id} card={section} />
+     </ScrollView>
+    )
+  }
+
+  _renderContent(section){
+    return (
+      <Text> {section.like} </Text>
+    )
+  }
+
   renderYelpLogo() {
     const { currentViewDeck } = this.props;
     
@@ -31,29 +55,31 @@ export default class ResultsComponent extends Component {
       )
     }
   }
-  
-  render() {
+
+  render (){
     const { currentViewDeck, navigator } = this.props;
-    const sorted = currentViewDeck.deck.sort( (a, b) => {
+    const sortedDeck = currentViewDeck.deck.sort( (a, b) => {
       return a.likes - b.likes;
     }).reverse();
-    
-    return (  
-      <View style={[styles.container, {marginTop: 60}]}>
-      
-        { this.renderYelpLogo() }
-        
+
+    return (
+       <View style={[styles.container, {marginTop: 60}]}>      
+        { this.renderYelpLogo() }        
         <View style={styles.results}>
           <ScrollView
             style={[styles.scrollView]}
             automaticallyAdjustContentInsets={false}    
             scrollEventThrottle={200}
           >
-            {sorted.map((card, i) => <ScrollCard key={card._id} card={card} position={i}/>)}
+            <Accordion 
+              sections = { sortedDeck }
+              renderHeader={this._renderHeader}
+              renderContent={this._renderContent}
+            />
           </ScrollView>
         </View>
       </View>
-    );
+    )
   }
 }
 

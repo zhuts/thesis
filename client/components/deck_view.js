@@ -145,11 +145,14 @@ export default class deckView extends Component{
   // }
   //resets state after swipe or button push
   _resetState(liked, picked){
-    const { currentCard, currentDeck, changeCardSwipe } = this.props;
+    const { currentCard, currentDeck, changeCardSwipe, cameraMode } = this.props;
     // this.props.toggleLikeClick(liked);
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
     liked ? this.props.toggleLikeTrue(this.props.currentCard) : this.props.toggleLikeFalse(this.props.currentCard);
+    if (liked && cameraMode) {
+      helpers.sendToS3(s3Cred, RNS3, currentCard, currentDeck[currentCard].uri, this.props.changeLocAfterUpload );
+    }
     if(currentCard < currentDeck.length - 1) {
       changeCardSwipe();
       this._animateEntrance();
@@ -201,8 +204,10 @@ export default class deckView extends Component{
         <TouchableOpacity
           style={styles.rightSwipeBtn}
           onPress={() => { if(cameraMode){
-            togglePickTrue(currentCard); 
-            helpers.sendToS3(s3Cred, RNS3, currentCard, currentDeck[currentCard].uri, this.props.changeLocAfterUpload )}{this._resetState(true)}}}>
+              togglePickTrue(currentCard); 
+            }
+            {this._resetState(true)}
+          }}>
           <Text>RIGHT</Text>
         </TouchableOpacity>
 

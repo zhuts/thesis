@@ -211,4 +211,10 @@ describe ('Apex Swipe actions', () => {
 			num: 10
 		});
 	});
+
+	it ('sortCurrentViewDeck should create SORT_CURRENT_VIEW_DECK action', () => {
+		expect(actions.sortCurrentViewDeck()).toEqual({
+			type: 'SORT_CURRENT_VIEW_DECK'
+		});
+	});
 });
