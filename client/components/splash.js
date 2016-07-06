@@ -33,7 +33,7 @@ export default class SplashComponent extends Component {
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('search')}}
            >
-            <Text>Search</Text>
+            <Text>Build Yelp Deck</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.button}
