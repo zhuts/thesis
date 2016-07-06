@@ -4,13 +4,13 @@ const baseUrl = 'http://apex-swipe.herokuapp.com';
 
 
 export default {
-  
+
   searchYelp: (term, location, callback) => {
     const url = `${baseUrl}/yelpSearch?term=${term}&location=${location}`;
-    
+
     fetch(url)
       .then(function(response) {
-        return response.json() 
+        return response.json()
       })
       .then(function(data) {
         const businesses = data.businesses.map( business => {
@@ -32,12 +32,12 @@ export default {
         console.log(err);
       })
   },
-  
+
   getYelpBusiness: (id, callback) => {
-    const url = `${baseUrl}/yelpSearch/business?id=${id}`;    
+    const url = `${baseUrl}/yelpSearch/business?id=${id}`;
     fetch(url)
       .then(function(response) {
-        return response.json() 
+        return response.json()
       })
       .then(function(business) {
         const data = {
@@ -62,7 +62,7 @@ export default {
   getUsers: (callback) => {
     const url = `${baseUrl}/users`;
     fetch(url)
-      .then(function(response) {             
+      .then(function(response) {
         return response.json() ;
       })
       .then(function(user) {
@@ -77,7 +77,7 @@ export default {
   getFriends: (callback, userid) => {
     const url = `${baseUrl}/users/friends/${userid}`;
     fetch(url)
-      .then(function(response) {               
+      .then(function(response) {
         return response.json() ;
       })
       .then(function(user) {
@@ -88,10 +88,10 @@ export default {
         console.log(err);
       })
   },
-  
+
   addFriend: (callback, userid, user) => {
     const url = `${baseUrl}/users/friends/${userid}`;
-    fetch(url, {  
+    fetch(url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -99,7 +99,7 @@ export default {
       },
       body: JSON.stringify(user)
     })
-      .then(function(response) {               
+      .then(function(response) {
         return response.json();
       })
       .then(function(user) {
@@ -112,7 +112,7 @@ export default {
 
   removeFriend: (callback, userid, friend) => {
     const url = `${baseUrl}/users/friends/${userid}`;
-    fetch(url, {  
+    fetch(url, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -122,7 +122,7 @@ export default {
         friend_id: friend._id
       })
     })
-      .then(function(response) {               
+      .then(function(response) {
         return response.json();
       })
       .then(function(friendsList) {
@@ -132,12 +132,12 @@ export default {
         console.log(err);
       })
   },
-  
+
   getUserCreatedDecks: (userid, callback) => {
     const url = `${baseUrl}/decks/${userid}`;
     fetch(url)
       .then(function(response) {
-        return response.json() 
+        return response.json()
       })
       .then(function(userDecks) {
         callback(userDecks);
@@ -146,12 +146,12 @@ export default {
         console.log(err);
       })
   },
-  
+
   getUserSharedDecks: (userid, callback) => {
     const url = `${baseUrl}/decks/shared/${userid}`;
     fetch(url)
       .then(function(response) {
-        return response.json() 
+        return response.json()
       })
       .then(function(sharedDecks) {
         callback(sharedDecks);
@@ -160,7 +160,7 @@ export default {
         console.log(err);
       })
   },
-  
+
   updateLikeCount: (deckid, cardid, callback) => {
     const url = `${baseUrl}/decks/${deckid}`;
     const request = new Request(url, {
@@ -174,7 +174,7 @@ export default {
     })
     fetch(request)
       .then(function(response) {
-        return response.json() 
+        return response.json()
       })
       .then(function(response) {
         callback(response);
@@ -183,7 +183,7 @@ export default {
         console.log(err);
       })
   },
-  
+
   updateSwipeStatus: (deckid, userId, callback) => {
     const url = `${baseUrl}/decks/shared/${deckid}`;
     const request = new Request(url, {
@@ -197,7 +197,7 @@ export default {
     })
     fetch(request)
       .then(function(response) {
-        return response.json() 
+        return response.json()
       })
       .then(function(response) {
         callback(response);
@@ -206,7 +206,7 @@ export default {
         console.log(err);
       })
   },
-  
+
   postYelpDeck: (user_id, name, deck, shared, callback) => {
     const builtDeck = deck.filter( card => card.like );
     const url = `${baseUrl}/decks`;
@@ -226,7 +226,7 @@ export default {
           user_id: user.user_id,
           swiped: false
         }
-      }) 
+      })
     };
     const request = new Request(url, {
       method: 'POST',
@@ -237,7 +237,7 @@ export default {
     });
     fetch(request)
       .then(function(response) {
-        return response.json() 
+        return response.json()
       })
       .then(function(response) {
         callback(response);
@@ -245,9 +245,9 @@ export default {
       .catch(function(err) {
         console.log(err);
       })
-  }
+  },
 
-  sendToS3: (s3Cred, RNS3, currentCard, uriOnPhone, callback)=>{
+  sendToS3: (s3Cred, RNS3, currentCard, uriOnPhone, callback) => {
       let file = {
         // `uri` can also be a file system path (i.e. file://)
         uri: uriOnPhone,
@@ -275,5 +275,3 @@ export default {
 
 
 };
-
-

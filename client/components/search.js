@@ -4,7 +4,9 @@ import {
   TextInput,
   Text,
   TouchableHighlight,
-  Image
+  Image,
+  Slider,
+  StyleSheet
 } from 'react-native';
 import helpers from '../util/helpers';
 import * as actions from '../actions/actions';
@@ -13,15 +15,16 @@ import styles from '../assets/styles';
 export default class SearchComponent extends Component {
 
   onSearch(term, location) {
-    const { navigator, buildDeckYelp, cameraModeOff } = this.props;
+    const { navigator, buildDeckYelp, cameraModeOff, num } = this.props;
     if (term !== '' && location !== '') {
       helpers.searchYelp(term, location, (yelpData) => {
-        const data = yelpData.map( (business) => {
+        let data = yelpData.map( (business) => {
           return {
             ...business,
             like: undefined
           }
         });
+        data = data.slice(0, num);
         buildDeckYelp(data);
         cameraModeOff();
         navigator.push({ name: 'deckView' });
@@ -30,7 +33,7 @@ export default class SearchComponent extends Component {
   }
 
   render() {
-    const { term, location, searchTerm, searchLocation, onSearch } = this.props;
+    const { term, location, searchTerm, searchLocation, onSearch, numOfCards } = this.props;
     return (
       <View style={styles.container}>
         <TouchableHighlight
@@ -58,6 +61,19 @@ export default class SearchComponent extends Component {
             value={location}
             onChangeText={(location) => { searchLocation(location) }}
           />
+
+          <View>
+            <Text>
+              Number of Options: {this.props.num}
+            </Text>
+            <Slider
+              minimumValue={2}
+              maximumValue={20}
+              value={10}
+              step={1}
+              onValueChange={(value) => numOfCards(value)}
+            />
+          </View>
 
           <TouchableHighlight
             style={styles.search}

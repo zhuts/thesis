@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { 
-  StyleSheet 
+import {
+  StyleSheet
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   searchResults:{
     padding: 30,
-    fontSize: 20,   
+    fontSize: 20,
     textAlign: 'left',
     margin: 10
   },
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 40,
     width: 200,
-    borderColor: 'black', 
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
     margin: 4
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     height: 40,
-    borderColor: 'black', 
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
     marginTop: 10
@@ -98,10 +98,14 @@ const styles = StyleSheet.create({
     width: 60,
     height: 20,
     alignItems: 'center',
-    alignSelf: 'flex-start', 
+    alignSelf: 'flex-start',
     borderColor: 'blue',
     borderWidth: 1,
     borderRadius: 5,
+  },
+  slider: {
+    height: 10,
+    margin: 10,
   },
 
 //used in nav

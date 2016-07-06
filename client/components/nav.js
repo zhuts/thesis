@@ -21,7 +21,6 @@ import Camera from '../containers/cameraContainer';
 import ViewDecks from '../containers/viewDecksContainer';
 import ViewDeckResults from '../containers/viewDeckResultsContainer';
 import ViewDeckSwipe from '../containers/viewDeckSwipeContainer';
-import ImageCard from '../containers/imageCardContainer';
 import WhoToShare from '../containers/whoToShareContainer';
 
 
@@ -37,7 +36,6 @@ const Routes = {
   saved: ViewDecks,
   viewDeckResult: ViewDeckResults,
   viewDeckSwipe: ViewDeckSwipe,
-  imageCard: ImageCard,
   whoToShare: WhoToShare
 }
 

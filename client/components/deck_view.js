@@ -138,18 +138,11 @@ export default class deckView extends Component{
   }
   //called to change user view when deck is finished, conditional specifies where it redirects to
   _changePage(){
-    if (this.props.cameraMode) {
-      //const deck = this.props.currentDeck.filter(item => item.pick)
       this.props.navigator.push({ name: 'whoToShare' });
-      // this._pickImageDeck(deck);
-    }
-    else if(this.props.currentCard >= 15) {
-      this.props.navigator.push({ name: 'whoToShare' });
-    }
   }
-  _pickImageDeck(deck){
-    this.props.buildImageDeck(deck);
-  }
+  // _pickImageDeck(deck){
+  //   this.props.buildImageDeck(deck);
+  // }
   //resets state after swipe or button push
   _resetState(liked, picked){
     const { currentCard, currentDeck, changeCardSwipe } = this.props;

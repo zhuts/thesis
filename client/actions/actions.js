@@ -146,6 +146,13 @@ export const pickImageDeck = (deck) => {
   }
 }
 
+export const numOfCards = (num) => {
+  return {
+    type: 'NUM_OF_CARDS',
+    num
+  }
+}
+
 //================================================
 
 //User Actions
@@ -346,6 +353,7 @@ export const addToShared = (shareList) => {
   return {
     type: 'ADD_TO_SHARED',
     shareList
+  }
 }
 
 export const removeFromShared = (user) => {

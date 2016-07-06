@@ -1,6 +1,6 @@
-export default (state = {term: '', location: ''}, action) => {
+export default (state = {term: '', location: '', num: 10}, action) => {
   switch (action.type) {
-    case 'SEARCH_TERM': 
+    case 'SEARCH_TERM':
       return {
         ...state,
         term: action.term
@@ -13,7 +13,13 @@ export default (state = {term: '', location: ''}, action) => {
     case 'RESET_SEARCH':
       return {
         term: '',
-        location: ''
+        location: '',
+        num: 10
+      }
+    case 'NUM_OF_CARDS':
+      return {
+        ...state,
+        num: action.num
       }
     default:
       return state;

@@ -204,4 +204,11 @@ describe ('Apex Swipe actions', () => {
 			uri: 'http://s3bucket.com'
 		});
 	});
+
+	it ('numOfCards should create NUM_OF_CARDS action', () => {
+		expect(actions.numOfCards(10)).toEqual({
+			type: 'NUM_OF_CARDS',
+			num: 10
+		});
+	});
 });

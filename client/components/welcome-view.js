@@ -32,6 +32,12 @@ var WelcomeView = React.createClass({
           onPress={this._onLogin}>
           <Text>Log In</Text>
         </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.signInButton}
+          underlayColor='#949494'
+          onPress={this._onLogin}>
+          <Text>Sign Up</Text>
+        </TouchableHighlight>
       </View>
     );
   },
