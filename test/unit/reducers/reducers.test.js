@@ -276,13 +276,13 @@ describe('Reducers', () => {
   });
 
   describe('shareReducer', () => {
-    it('should add a friend to the shared list', () => {
+    it('should add a list to the shared list', () => {
       const stateBefore = [];
       const action = {
         type: 'ADD_TO_SHARED',
-        user: {}
+        shareList: [{}, {}]
       }
-      const stateAfter = [{}];
+      const stateAfter = [{}, {}];
       df(stateBefore);
       expect(shareReducer(stateBefore, action)).toEqual(stateAfter);
     });

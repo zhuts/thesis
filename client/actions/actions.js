@@ -311,7 +311,8 @@ export const fetchSharedDecks = (userid, callback) => {
             helpers.getYelpBusiness(card.name, (business) => {
               deck.deck[j] = {
                 ...business,
-                _id: card._id
+                _id: card._id,
+                likes: card.likes
               };
               done++;
               if(done === length) {
@@ -335,16 +336,9 @@ export const fetchSharedDecks = (userid, callback) => {
   }
 }
 
-export const addToShared = (user) => {
+export const addToShared = (shareList) => {
   return {
     type: 'ADD_TO_SHARED',
-    user
-  }
-}
-
-export const removeFromShared = (user) => {
-  return {
-    type: 'REMOVE_FROM_SHARED',
-    user
+    shareList
   }
 }

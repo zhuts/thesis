@@ -185,9 +185,9 @@ describe ('Apex Swipe actions', () => {
 	});
 
 	it ('addToShared should create ADD_TO_SHARED action', () => {
-		expect(actions.addToShared({})).toEqual({
+		expect(actions.addToShared([])).toEqual({
 			type: 'ADD_TO_SHARED',
-			user: {}
+			shareList: []
 		});
 	});
 
