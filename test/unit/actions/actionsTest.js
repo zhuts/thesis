@@ -217,4 +217,12 @@ describe ('Apex Swipe actions', () => {
 			type: 'SORT_CURRENT_VIEW_DECK'
 		});
 	});
+
+
+	it ('deleteCard should create DELETE_CARD action', () => {
+		expect(actions.deleteCard(10)).toEqual({
+			type: 'DELETE_CARD',
+			index: 10
+		});
+	});
 });

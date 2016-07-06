@@ -14,7 +14,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUsers: (users) => { dispatch(action.getUsers(users)) },
-    getFriends: (friends) => { dispatch(action.getFriends(friends)) }
+    getFriends: (friends) => { dispatch(action.getFriends(friends)) },
+    cameraModeOn: () => { dispatch(action.cameraModeOn())},
+    resetCurrentDeck: () => { dispatch(action.resetCurrentDeck())}
   }
 };
 

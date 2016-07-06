@@ -21,7 +21,9 @@ const mapDispatchToProps = (dispatch) => {
     buildImageDeck: (images) => { dispatch(action.buildImageDeck(images)) },
     togglePickTrue: (id) => { dispatch(action.togglePickTrue(id))},
     togglePickFalse: (id) => { dispatch(action.togglePickFalse(id))},
-    changeLocAfterUpload: (index, uri) => { dispatch(action.changeLocAfterUpload(index, uri))}
+    changeLocAfterUpload: (index, uri) => { dispatch(action.changeLocAfterUpload(index, uri))},
+    deleteCard: (index) => { dispatch(action.deleteCard(index))},
+    prevCard: () => { dispatch(action.prevCard())}
   }
 };
 

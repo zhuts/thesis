@@ -41,25 +41,55 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300
   },
+  spacing:{
+    padding: 20
+  },
+  swipeBtnText:{
+    textAlign: 'center',
+  },
   leftSwipeBtn:{
     borderColor: 'red',
     borderWidth: 2,
-    position: 'absolute',
     bottom: 20,
     padding: 20,
     borderRadius: 5,
     left: 20,
+    flex:1,
+    justifyContent: 'space-between',
+    margin: 10,
+    alignSelf: 'center'
   },
   leftSwipeText:{
   },
   rightSwipeBtn:{
     borderColor: 'green',
     borderWidth: 2,
-    position: 'absolute',
     padding: 20,
     bottom: 20,
     borderRadius: 5,
     right: 20,
+    flex:1,
+    justifyContent: 'space-between',
+    margin: 10,
+    alignSelf: 'center'
+  },
+  deleteBtn:{
+    borderColor: 'blue',
+    borderWidth: 2,
+    padding: 20,
+    borderRadius: 5,
+    flex:1,
+    margin: 20,
+    bottom: 20,
+    alignSelf: 'center'
+  },
+  swipeBtns:{
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 5,
+    left: 0,
+    right: 0,
+    height: 50
   },
   rightSwipeText:{
   },

@@ -71,6 +71,10 @@ export default (state = [], action) => {
         .slice(0,action.index)
         .concat(togglePickFalse(state[action.index]))
         .concat(state.slice(action.index+1))
+    case 'DELETE_CARD':
+      return state
+        .slice(0,action.index)
+        .concat(state.slice(action.index+1))
     default:
       return state
   }

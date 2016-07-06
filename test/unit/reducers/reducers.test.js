@@ -215,6 +215,27 @@ describe('Reducers', () => {
       df(stateBefore);
       expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
     });
+
+    it('should delete current card from the current deck', () => {
+      const stateBefore = [
+        {like: false},
+        {like: false},
+        {like: false}
+      ];
+
+      const action = {
+        type: 'DELETE_CARD',
+        index: 1
+      };
+
+      const stateAfter = [
+        {like: false},
+        {like: false}
+      ];
+
+      df(stateBefore);
+      expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
+    });
   });
 
   describe('currentCardReducer', () => {
@@ -247,6 +268,17 @@ describe('Reducers', () => {
 
       df(stateBefore);
       expect(currentCardReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+    it('should not go back to the previous card if currentCard is 0', () => {
+      const stateBefore = 0;
+
+      const action = {
+        type: 'PREV_CARD',
+      };
+
+      const stateAfter = 0;
+      df(stateBefore);
+      expect(deckReducer(stateBefore, action)).toEqual(stateAfter);
     });
   });
 
