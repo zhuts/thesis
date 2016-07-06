@@ -74,21 +74,29 @@ var NavigationBarRouteMapper = {
       return (
         <TouchableHighlight
           underlayColor="transparent"
-          onPress={() => { if (route.name === 'friends' && index === 4) {
-            for (var i=0; i<4; i++) {
-              navigator.pop();
-            }
-          } else {
+          onPress={() => { 
             navigator.pop();
-          }  }}>
+          }}>
           <Text style={ styles.leftNavButtonText }>Back</Text>
-        </TouchableHighlight>)
+        </TouchableHighlight>
+      )
+    } else { 
+      return null;
     }
-    else { return null }
   },
 
   RightButton(route, navigator, index, navState) {
-    return null
+    if (index > 0) {
+      return (
+        <TouchableHighlight
+          underlayColor="transparent"
+          onPress={() => { navigator.immediatelyResetRouteStack([{ name:'splash' }])}}>
+          <Text style={ styles.rightNavButtonText }>Home</Text>
+        </TouchableHighlight>
+      )
+    } else {
+      return null;
+    }
   },
 
   Title(route, navigator, index, navState) {
