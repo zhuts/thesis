@@ -3,6 +3,7 @@ import {
   View,
   Text,
   TextInput,
+  Image,
   TouchableHighlight,
   TouchableOpacity,
   StyleSheet,
@@ -38,29 +39,8 @@ export default class WhoToShare extends Component {
     const display = _.reject(friends, (friend) => friend.user_id === user_id);
     return(
       <View style={styles.container}>
-        <Text>Who Would You Like to Share With?</Text>
-        <View style={{height: 400}}>
-          <ScrollView
-            style={[styles.userView]}
-            ref={(scrollView) => { _scrollView = scrollView; }}
-            automaticallyAdjustContentInsets={false}    
-            scrollEventThrottle={200}
-          >
-            {display.map((friend, i) => {
-              return (
-                <TouchableHighlight
-                  key={i}
-                  style={this.state.selected.indexOf(friend) === -1 ? styles.user : [styles.user, styles.userSelected]}
-                  underlayColor={'lightgreen'}
-                  onPress={() => { this.addToSelected(friend) }}>
-                  <Text>{ friend.email }</Text>
-                </TouchableHighlight>
-              )
-            })}
-          </ScrollView>
-        </View>
         <View>
-          <Text>Give your deck a name</Text>
+          <Text style={styles.share}>Give your deck a name</Text>
           <TextInput 
             style={styles.input}
             autoCapitalize='none'
@@ -70,7 +50,34 @@ export default class WhoToShare extends Component {
           />
         </View>
         
+        <Text style={styles.share}>Who Would You Like to Share With?</Text>
+        <View style={{flex: 1, paddingLeft: 10, paddingRight: 10}}>
+          <ScrollView
+            style={{height: 400}}
+            automaticallyAdjustContentInsets={false}    
+            scrollEventThrottle={200}
+          >
+            {display.map((friend, i) => {
+              return (
+                <View style={this.state.selected.indexOf(friend) === -1 ? styles.userContainer : [styles.userContainer, styles.userSelected]} key={i}>
+                  <Image 
+                    source={{uri: friend.picture}}
+                    style={{height: 40, width: 40}}
+                  />
+                  <TouchableHighlight
+                    style={styles.user}
+                    underlayColor={'lightgreen'}
+                    onPress={() => { this.addToSelected(friend) }}>
+                    <Text>{ friend.email }</Text>
+                  </TouchableHighlight>
+                </View>
+              )
+            })}
+          </ScrollView>
+        </View>
+        
         <TouchableOpacity
+          style={[styles.share, styles.shareButton]}
           onPress={() => {
             if(currentDeck.length > 0 && !!currentDeck[0].id) {
               helpers.postDeck(user_id, this.state.name, currentDeck, this.state.selected, 'yelp', () => {
@@ -98,26 +105,25 @@ export default class WhoToShare extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    marginTop: 70,
-    padding: 5,
+    marginTop: 60,
+    padding: 10,
   },
-  userView: {
-    marginTop: 5,
-    height: 25,
-  },
-  user: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
-    height: 40,
+  userContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    margin: 5,
     borderColor: 'black', 
     borderWidth: 1,
-    borderRadius: 50,
-    marginTop: 10
+    borderRadius: 5,
+  },
+  user: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 5,
+    height: 40,
   },
   userSelected: {
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: 'green'
   },
   input: {
@@ -127,5 +133,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     margin: 4
+  },
+  share: {
+    alignSelf: 'center',
+    padding: 5,
+    margin: 10,
+  },
+  shareButton: {
+    borderRadius: 50,
+    padding: 20,
+    backgroundColor: 'lightblue',
+    marginBottom: 20,
   },
 })

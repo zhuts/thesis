@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { 
   View, 
-  TextInput,
   Text,
   TouchableHighlight, 
   StyleSheet,
@@ -9,6 +8,7 @@ import {
 } from 'react-native';
 import User from './user';
 import Friend from './friend';
+import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 // import styles from '../assets/styles';
 
 export default class FriendsListComponent extends Component {
@@ -18,48 +18,64 @@ export default class FriendsListComponent extends Component {
   // the friend list component contains two lists: one for all the users that exist in the database
   // and another for the friends that the user currently logged in has
   render() {
-    var _scrollView: ScrollView;
     const { users, friends, addFriend, removeFriend, profile, addToShared, getFriends } = this.props;
+    const sortedFriends = friends.sort( (a,b) => a.email > b.email );
+    const sortedUsers = users.sort( (a,b) => a.email > b.email );
     return (
-      <View style={styles.container}>
-        <Text>Users List</Text>
-        <ScrollView
-          style={[styles.userView]}
-          ref={(scrollView) => { _scrollView = scrollView; }}
-          automaticallyAdjustContentInsets={false}    
-          scrollEventThrottle={200}
-        >
-        {users.map((user, i) => {return (
-          <User
-            key={i}
-            user={user} 
-            users={users}
-            id={user.user_id}
-            profile={profile}
-            addFriend={addFriend} 
-          />)})}
-        </ScrollView>
-        <Text style={styles.friendTitle}>Friends List</Text>
-        <ScrollView
-          style={[styles.userView]}
-          ref={(scrollView) => { _scrollView = scrollView; }}
-          automaticallyAdjustContentInsets={false}    
-          scrollEventThrottle={200}
-        >
-        {friends.map((friend, i) => {return (
-          <Friend
-            key={i}
-            friend={friend}
-            friends={friends} 
-            id={friend.user_id}
-            profile={profile}
-            removeFriend={removeFriend}
-            addFriend={addFriend}
-          />
-          )})}
-        </ScrollView>
+      <ScrollableTabView
+        style={{marginTop: 20, }}
+        initialPage={0}
+        tabBarPosition={"bottom"}
+        renderTabBar={() => <ScrollableTabBar />}
+        scrollWithoutAnimation={true}
+      >
+      
+        <View tabLabel='Friends' style={styles.container}>
+          <Text style={styles.header}>Friends</Text>
+          <ScrollView
+            style={[styles.userView]}
+            automaticallyAdjustContentInsets={false}    
+            scrollEventThrottle={200}
+          >
+            {sortedFriends.map((friend, i) => {
+              return (
+                <Friend
+                  key={i}
+                  friends={friends} 
+                  friend={friend}
+                  id={friend.user_id}
+                  profile={profile}
+                  removeFriend={removeFriend}
+                  addFriend={addFriend}
+                />
+              )
+            })}
+          </ScrollView>
+        </View>
         
-      </View>
+        <View tabLabel='Users' style={styles.container}>
+          <Text style={styles.header}>Users</Text>
+          <ScrollView
+            style={[styles.userView]}
+            automaticallyAdjustContentInsets={false}    
+            scrollEventThrottle={200}
+          >
+            {sortedUsers.map((user, i) => {
+              console.log('user is called');
+              return (
+                <User
+                  key={i}
+                  users={users}
+                  user={user} 
+                  id={user.user_id}
+                  profile={profile}
+                  addFriend={addFriend} 
+                />
+              )
+            })}
+          </ScrollView>
+        </View>
+      </ScrollableTabView>
     )
   }
 }
@@ -67,36 +83,13 @@ export default class FriendsListComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 70
+    padding: 10,
+    marginTop: 60,
   },
   userView: {
-    marginTop: 5,
-    height: 25,
-    borderColor: 'blue'
+    height: 400,
   },
-  friendTitle: {
-    justifyContent: 'center',
-    alignItems: 'center'
+  header: {
+    alignSelf: 'center'
   },
-  input: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 40,
-    width: 240,
-    borderColor: 'black', 
-    borderWidth: 1,
-    borderRadius: 5
-  },
-  add: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
-    height: 40,
-    borderColor: 'black', 
-    borderWidth: 1,
-    borderRadius: 5,
-    marginTop: 10
-  }
 })

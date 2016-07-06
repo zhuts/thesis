@@ -25,6 +25,7 @@
     "react-native-aws3": "0.0.1",
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
     "react-native-lock": "^0.3.0",
+    "react-native-scrollable-tab-view": "^0.5.2",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",

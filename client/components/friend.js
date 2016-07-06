@@ -15,28 +15,40 @@ export default class Friend extends Component {
   render() {
     const { id, friends, friend, profile, removeFriend, addFriend } = this.props;
     return (
-      <TouchableHighlight
-        style={styles.user}
-        underlayColor={'lightgreen'}
-        onPress={() => {
-          helpers.removeFriend((friends) => {addFriend(friends)}, profile.userId, friend);
-        }}
-      >
-        <Text>{ friend.email }</Text>
-      </TouchableHighlight>
+      <View style={styles.container}>
+        <Image 
+          source={{uri: friend.picture}}
+          style={{height: 40, width: 40}}
+        />
+        <TouchableHighlight
+          style={styles.user}
+          underlayColor={'lightgreen'}
+          onPress={() => {
+            helpers.removeFriend((friends) => {addFriend(friends)}, profile.userId, friend);
+          }}
+        >
+          <Text style={{marginLeft: 5}}>{ friend.email }</Text>
+        </TouchableHighlight>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  user: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
-    height: 40,
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
     borderColor: 'black', 
     borderWidth: 1,
-    borderRadius: 50,
-    marginTop: 10
+    borderRadius: 5,
+  },
+  user: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 5,
+    height: 40,
   }
 })
