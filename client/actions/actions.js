@@ -215,11 +215,25 @@ export const setSharedDecks = (sharedDecks) => {
   }
 }
 
+//================================================
+
+//currentViewDeck Actions
+
+//================================================
+
+
 //will set a current deck when the user goes to the view deck page
 export const setCurrentViewDeck = (currentViewDeck) => {
   return {
     type: 'SET_CURRENT_VIEW_DECK',
     currentViewDeck
+  }
+}
+
+//will sort the current view deck in descending order of likes
+export const sortCurrentViewDeck = () => {
+  return {
+    type: 'SORT_CURRENT_VIEW_DECK'
   }
 }
 
@@ -370,3 +384,4 @@ export const changeLocAfterUpload = (index, uri) => {
     uri
   }
 }
+

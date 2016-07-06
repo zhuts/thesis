@@ -7,6 +7,7 @@ import friendsReducer from '../../../client/reducers/friendsReducer';
 import cameraReducer from '../../../client/reducers/cameraReducer';
 import loadingReducer from '../../../client/reducers/loadingReducer';
 import shareReducer from '../../../client/reducers/shareReducer';
+import viewCurrentViewDeckReducer from '../../../client/reducers/viewCurrentViewDeckReducer';
 
 describe('Reducers', () => {
 
@@ -318,5 +319,43 @@ describe('Reducers', () => {
       expect(shareReducer(stateBefore, action)).toEqual(stateAfter);
     });
   });
+/** ViewCurrentViewDeckReducer Tests (deck currently loaded to results page) **/  
+  describe('viewCurrentViewDeckReducer', () => {
 
+    it('should set the current view deck', () => {
+      const stateBefore = {};
+      const action = {
+        type:'SET_CURRENT_VIEW_DECK',
+        currentViewDeck: {deck:["hi"]}
+      };
+      const stateAfter = {deck:["hi"]};
+      df(stateBefore);
+      expect(viewCurrentViewDeckReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+
+    it('should sort the deck within CurrentViewDeck descending by # of likes', () => {
+      const stateBefore = {
+        deck:[
+          {like:1},
+          {like:3},
+          {like:0}
+        ]
+      };
+
+      const action = {
+        type:'SORT_CURRENT_VIEW_DECK'
+      };
+
+      const stateAfter = {
+        deck:[
+          {like:3},
+          {like:1},
+          {like:0}
+        ]
+      };
+
+      df(stateBefore);
+      expect(viewCurrentViewDeckReducer(stateBefore, action)).toEqual(stateAfter);
+    });
+  });
 })

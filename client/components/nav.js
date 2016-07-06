@@ -19,7 +19,7 @@ import Welcome from '../containers/welcomeContainer';
 import Friends from '../containers/friendsListContainer';
 import Camera from '../containers/cameraContainer';
 import ViewDecks from '../containers/viewDecksContainer';
-import ViewDeckResults from '../containers/viewDeckResultsContainer';
+// import ViewDeckResults from '../containers/viewDeckResultsContainer';
 import ViewDeckSwipe from '../containers/viewDeckSwipeContainer';
 import WhoToShare from '../containers/whoToShareContainer';
 
@@ -34,7 +34,7 @@ const Routes = {
   friends: Friends,
   camera: Camera,
   saved: ViewDecks,
-  viewDeckResult: ViewDeckResults,
+  // viewDeckResult: ViewDeckResults,
   viewDeckSwipe: ViewDeckSwipe,
   whoToShare: WhoToShare
 }
