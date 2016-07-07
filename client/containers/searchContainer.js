@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch) => {
     searchLocation: (location) => {dispatch(actions.searchLocation(location))},
     buildDeckYelp: (data) => {dispatch(actions.buildDeckYelp(data))},
     cameraModeOff: () => {dispatch(actions.cameraModeOff())},
-    numOfCards: (num) => {dispatch(actions.numOfCards(num))}
+    numOfCards: (num) => {dispatch(actions.numOfCards(num))},
+    resetSearch: () => {dispatch(actions.resetSearch())}
   }
 };
 

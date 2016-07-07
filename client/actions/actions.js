@@ -301,7 +301,8 @@ export const fetchUserDecks = (userid) => {
             helpers.getYelpBusiness(card.name, (business) => {
               deck.deck[j] = {
                 ...business,
-                _id: card._id
+                _id: card._id,
+                likes: card.likes
               };
               done++;
               if(done === length) {

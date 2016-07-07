@@ -13,6 +13,24 @@ export default class ScrollCard extends Component {
     return false;
   }
   
+  renderYelpDesc() {
+    const { card } = this.props;
+    if(card.review_count) {
+      return (
+        <View>
+          <Text>{ card.review_count } Reviews</Text>
+          <TouchableOpacity
+            style={{height: 40}}
+            onPress={() => { Linking.openURL(card.url).catch(err => console.error('An error occurred', err)) }}
+           >
+            <Text>Check Reviews</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+  }
+
+  
   render() {
     const { card, position } = this.props;
     const style = position === 0 ? [styles.card, styles.top] : styles.card;
@@ -25,13 +43,10 @@ export default class ScrollCard extends Component {
         <View style={styles.description}>
           <Text>{ card.name }</Text>
           <Image style={styles.rating} source={{uri:card.rating_img_url}} />
-          <Text>{ card.review_count } Reviews</Text>
-          <TouchableOpacity
-            style={{height: 40}}
-            onPress={() => { Linking.openURL(card.url).catch(err => console.error('An error occurred', err)) }}
-           >
-            <Text>Check Reviews</Text>
-          </TouchableOpacity>
+          {this.renderYelpDesc()}
+          <View style={styles.likes}>
+            <Text style={styles.likeText}>Likes: {card.likes}</Text>
+          </View>
         </View>
       </View>
     );
@@ -65,5 +80,13 @@ const styles = StyleSheet.create({
   rating: {
     width: 84, 
     height: 17,
-  }
+  },
+  likes: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 20,
+  },
+  likeText: {
+    fontSize: 18,
+  },
 });
