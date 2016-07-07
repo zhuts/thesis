@@ -35,35 +35,35 @@ export default class SplashComponent extends Component {
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('search')}}
            >
-            <Text>Build Yelp Deck</Text>
+            <Text style={styles.text}>Build Yelp Deck</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
             onPress={() => {{this.props.resetCurrentDeck()}{this.props.resetCardCount()}{this.navigate('camera')}}}
           >
-            <Text>Camera</Text>
+            <Text style={styles.text}>Camera</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
             onPress={() => {{this.props.cameraModeOn()}{this.navigate('deckView')}}}
           >
-            <Text>Build Picture Deck</Text>
+            <Text style={styles.text}>Build Picture Deck</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.friend}
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('friends')}}
           >
-            <Text>Friends List</Text>
+            <Text style={styles.text2}>Friends List</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.saved}
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('saved')}}
           >
-            <Text>View Decks</Text>
+            <Text style={styles.text2}>View Decks</Text>
           </TouchableHighlight>
         </View>
         </Image>
@@ -91,16 +91,15 @@ const styles = StyleSheet.create({
     width: 300,
     height: 75,
     borderColor: 'black',
-    borderWidth: 1,
     borderRadius: 5,
     marginTop: 10,
-    backgroundColor: 'white'
+    backgroundColor: '#80b3ff'
   },
   friend: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
-    width: 100,
+    width: 110,
     height: 75,
     borderColor: 'black',
     borderWidth: 1,
@@ -110,13 +109,13 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 5,
     left: 20,
-    backgroundColor: 'white'
+    backgroundColor: '#80b3ff'
   },
   saved: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
-    width: 100,
+    width: 110,
     height: 75,
     borderColor: 'black',
     borderWidth: 1,
@@ -126,10 +125,17 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 5,
     right: 20,
-    backgroundColor: 'white'
+    backgroundColor: '#80b3ff'
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover', // or 'stretch'
+  },
+  text: {
+    fontSize: 30
+  },
+  text2: {
+    fontSize: 20,
+    textAlign: 'center'
   }
 })
