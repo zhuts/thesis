@@ -197,6 +197,12 @@ describe ('Apex Swipe actions', () => {
 		});
 	});
 
+	it ('resetCardCount should create RESET_CARD_COUNT action', () => {
+		expect(actions.resetCardCount()).toEqual({
+			type: 'RESET_CARD_COUNT'
+		});
+	});
+
 	it ('changeLocAfterUpload should create CHANGE_LOC_AFTER_UPLOAD action', () => {
 		expect(actions.changeLocAfterUpload(4,'http://s3bucket.com')).toEqual({
 			type: 'CHANGE_LOC_AFTER_UPLOAD',

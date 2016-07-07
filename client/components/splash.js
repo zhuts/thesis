@@ -38,7 +38,7 @@ export default class SplashComponent extends Component {
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
-            onPress={() => {{this.props.resetCurrentDeck()}this.navigate('camera')}}
+            onPress={() => {{this.props.resetCurrentDeck()}{this.props.resetCardCount()}{this.navigate('camera')}}}
           >
             <Text>Camera</Text>
           </TouchableHighlight>

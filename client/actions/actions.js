@@ -272,6 +272,13 @@ export const resetCurrentDeck = () => {
   }
 }
 
+//will reset the deck when the user decides to build a deck again
+export const resetCardCount = () => {
+  return {
+    type: 'RESET_CARD_COUNT'
+  }
+}
+
 //will get the current user's saved decks
 export const fetchUserDecks = (userid) => {
   return (dispatch, getState) => {
@@ -391,4 +398,3 @@ export const changeLocAfterUpload = (index, uri) => {
     uri
   }
 }
-
