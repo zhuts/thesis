@@ -218,7 +218,7 @@ export default {
         return {
           name: card.id || '',
           image_url: card.uri || null,
-          likes: 0
+          likes: 1
         }
       }),
       shared: shared.map(user => {
