@@ -153,6 +153,13 @@ export const numOfCards = (num) => {
   }
 }
 
+export const deleteCard = (index) => {
+  return {
+    type: 'DELETE_CARD',
+    index
+  }
+}
+
 //================================================
 
 //User Actions

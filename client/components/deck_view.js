@@ -140,16 +140,13 @@ export default class deckView extends Component{
   _changePage(){
       this.props.navigator.push({ name: 'whoToShare' });
   }
-  // _pickImageDeck(deck){
-  //   this.props.buildImageDeck(deck);
-  // }
   //resets state after swipe or button push
-  _resetState(liked, picked){
+  _resetState(liked){
     const { currentCard, currentDeck, changeCardSwipe, cameraMode } = this.props;
     // this.props.toggleLikeClick(liked);
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
-    liked ? this.props.toggleLikeTrue(this.props.currentCard) : this.props.toggleLikeFalse(this.props.currentCard);
+    if(liked !== undefined){liked ? this.props.toggleLikeTrue(this.props.currentCard) : this.props.toggleLikeFalse(this.props.currentCard);}
     if (liked && cameraMode) {
       helpers.sendToS3(s3Cred, RNS3, currentCard, currentDeck[currentCard].uri, this.props.changeLocAfterUpload );
     }
@@ -159,13 +156,12 @@ export default class deckView extends Component{
     } else {
         this._changePage();
     }
-
-
   }
+
   //renders user view for card swiping
   render() {
     const { pan, enter } = this.state;
-    const { currentDeck, currentCard, cameraMode, togglePickTrue, togglePickFalse } = this.props;
+    const { currentDeck, currentCard, cameraMode, togglePickTrue, togglePickFalse, deleteCard, prevCard } = this.props;
 
     let [translateX, translateY] = [pan.x, pan.y];
     let rotate = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]});
@@ -195,21 +191,26 @@ export default class deckView extends Component{
           }
         </Animated.View>
         {/*buttons with same functionality as swipe*/}
-        <TouchableOpacity
-          style={styles.leftSwipeBtn}
-          onPress={() => { if(cameraMode){togglePickFalse(currentCard)}{this._resetState(false)}}}>
-          <Text>LEFT</Text>
-        </TouchableOpacity>
+        <View style={styles.swipeBtns}>
+          <TouchableOpacity
+            style={styles.leftSwipeBtn}
+            onPress={() => { if(cameraMode){togglePickFalse(currentCard);}{this._resetState(false)}}}>
+            <Text style={styles.swipeBtnText}>LEFT</Text>
+          </TouchableOpacity>
+          {!cameraMode ?
+          <TouchableOpacity
+            style={styles.deleteBtn}
+            onPress={() => { if(!cameraMode){deleteCard(currentCard);prevCard();}{this._resetState()}}}>
+            <Text style={styles.swipeBtnText}>DELETE</Text>
+          </TouchableOpacity> : <View style={styles.spacing}></View>
+          }
+          <TouchableOpacity
+            style={styles.rightSwipeBtn}
+            onPress={() => { if(cameraMode){togglePickTrue(currentCard);}{this._resetState(true)}}}>
+            <Text style={styles.swipeBtnText}>RIGHT</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-          style={styles.rightSwipeBtn}
-          onPress={() => { if(cameraMode){
-              togglePickTrue(currentCard); 
-            }
-            {this._resetState(true)}
-          }}>
-          <Text>RIGHT</Text>
-        </TouchableOpacity>
 
       </View>
     )
