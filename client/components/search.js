@@ -22,7 +22,7 @@ export default class SearchComponent extends Component {
   }
 
   onSearch(term, location) {
-    const { navigator, buildDeckYelp, cameraModeOff, num } = this.props;
+    const { navigator, buildDeckYelp, cameraModeOff, resetSearch, num } = this.props;
     if (term !== '' && location !== '') {
       this.setState({loading: true});
       helpers.searchYelp(term, location, (yelpData) => {
@@ -35,6 +35,7 @@ export default class SearchComponent extends Component {
         });
         data = data.slice(0, num);
         buildDeckYelp(data);
+        resetSearch();
         cameraModeOff();
         navigator.push({ name: 'deckView' });
       });
