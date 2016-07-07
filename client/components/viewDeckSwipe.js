@@ -114,7 +114,7 @@ export default class viewDeckSwipe extends Component{
         });
         resetCurrentViewCard();
       });
-      navigator.immediatelyResetRouteStack([{ name: 'saved' }]);
+      navigator.push({ name: 'saved' });
     }
   }
   
@@ -124,7 +124,9 @@ export default class viewDeckSwipe extends Component{
       return (
         <View style={styles.searchResultsContainer}>
           <Image 
-            source={require('../assets/yelp-logo-medium.png')}/>
+            source={require('../assets/yelp-logo-small.png')}
+            style={{margin: 5}}
+          />
         </View>
       )
     }

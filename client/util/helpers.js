@@ -1,6 +1,6 @@
 import _ from 'underscore';
-// const baseUrl = 'http://apex-swipe.herokuapp.com';
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'http://apex-swipe.herokuapp.com';
+// const baseUrl = 'http://localhost:3000';
 
 
 export default {
