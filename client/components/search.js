@@ -3,6 +3,7 @@ import {
   View,
   TextInput,
   Text,
+  ActivityIndicator,
   TouchableHighlight,
   Image,
   Slider,
@@ -13,11 +14,19 @@ import * as actions from '../actions/actions';
 import styles from '../assets/styles';
 
 export default class SearchComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    }
+  }
 
   onSearch(term, location) {
     const { navigator, buildDeckYelp, cameraModeOff, num } = this.props;
     if (term !== '' && location !== '') {
+      this.setState({loading: true});
       helpers.searchYelp(term, location, (yelpData) => {
+        this.setState({loading: false});
         let data = yelpData.map( (business) => {
           return {
             ...business,
@@ -29,6 +38,14 @@ export default class SearchComponent extends Component {
         cameraModeOff();
         navigator.push({ name: 'deckView' });
       });
+    }
+  }
+  
+  renderLoad() {
+    if(this.state.loading) {
+      return (
+        <ActivityIndicator style={{width: 30, marginTop: 10}}/>
+      )
     }
   }
 
@@ -48,17 +65,19 @@ export default class SearchComponent extends Component {
             source={require('../assets/yelp-logo-large.png')}
             style={{width: 166, height: 40, padding: 40}}
           />
-          <Text style={styles.label}>Search</Text>
           <TextInput
+            autoCapitalize='none'
             style={styles.input}
             value={term}
+            placeholder={'search'}
             onChangeText={(text) => { searchTerm(text) }}
           />
 
-          <Text style={styles.label}>Location</Text>
           <TextInput
+            autoCapitalize='none'
             style={styles.input}
             value={location}
+            placeholder={'location'}
             onChangeText={(location) => { searchLocation(location) }}
           />
 
@@ -82,6 +101,9 @@ export default class SearchComponent extends Component {
           >
             <Text>Build</Text>
           </TouchableHighlight>
+          
+          {this.renderLoad()}
+          
         </View>
       </View>
     );

@@ -85,10 +85,12 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 40,
     width: 200,
+    backgroundColor: 'white',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
-    margin: 4
+    margin: 10,
+    textAlign: 'center',
   },
   search: {
     justifyContent: 'center',
