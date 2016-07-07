@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import Auth0Lock from 'react-native-lock';
+import Shimmer from 'react-native-shimmer';
 
 var credentials = require('./auth0-credentials');
 
@@ -19,11 +20,9 @@ var WelcomeView = React.createClass({
     return (
       <View style={styles.container}>
         <View style={styles.messageBox}>
-          <Image
-            style={styles.badge}
-            source={require('../img/badge.png')}
-          />
-          <Text style={styles.title}>ApexSwipe</Text>
+          <Shimmer>
+            <Text style={styles.title}>ApexSwipe</Text>
+          </Shimmer>
           <Text style={styles.subtitle}>Make life choices easier!</Text>
         </View>
         <TouchableHighlight
@@ -68,7 +67,7 @@ var styles = StyleSheet.create({
     width: 151,
   },
   title: {
-    fontSize: 17,
+    fontSize: 58,
     textAlign: 'center',
     marginTop: 8,
     color: '#FFFFFF',
