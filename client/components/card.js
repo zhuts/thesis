@@ -23,7 +23,9 @@ class Card extends Component {
     return (
       <View style={styles.container}>
 
-        <Image style={styles.img} source={{uri:business.image_url}} />
+        <Image style={styles.img} source={{uri:business.image_url}}>
+          <Image style={styles.yelp} source={require('../assets/yelp-logo-small.png')} />
+        </Image>
 
         <Text style={{fontSize: 35}}>
           { business.name }

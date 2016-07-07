@@ -72,6 +72,12 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300
   },
+  yelp: {
+    width: 100,                                                                                                                                                                                                   
+    height: 50,                                                                                                                                                                                                  
+    left: 10,                                                                                                                                                                                                    
+    top: 10, 
+  },
 
 //used in search
 

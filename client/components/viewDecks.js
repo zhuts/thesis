@@ -34,10 +34,11 @@ export default class ViewDecks extends Component {
               <Card 
                 key={deck._id} 
                 deck={deck}
+                type={deck.type}
                 user_id={userid}
                 setCurrentViewDeck={setCurrentViewDeck} 
                 created={'user'}
-                navigator={navigator}/>  
+                navigator={navigator}/>
             )
           })}
         </ScrollView>
@@ -80,16 +81,9 @@ export default class ViewDecks extends Component {
     }
   }
   
-  renderYelpLogo() {
-    return <Image 
-      source={require('../assets/yelp-logo.small.png')} 
-      style={styles.img}/>
-  }
-  
   render() {
     return (
       <View style={[styles.container]}>
-        {this.renderYelpLogo()}
         <View style={styles.decks}>
           <Text>You Created: </Text>
           {this.renderUserDecks()}
@@ -123,4 +117,10 @@ const styles = StyleSheet.create({
     marginRight: 5,
     alignSelf: 'flex-end',
   },
+  yelp: {
+    width: 100,                                                                                                                                                                                                   
+    height: 50,                                                                                                                                                                                                  
+    left: 10,                                                                                                                                                                                                    
+    top: 10, 
+  }
 });
