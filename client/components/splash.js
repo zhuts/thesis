@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Image
 } from 'react-native';
 import helpers from '../util/helpers'
 
@@ -27,6 +28,7 @@ export default class SplashComponent extends Component {
     const { currentDeck, cameraMode } = this.props;
     return (
       <View style={styles.container}>
+        <Image source={require('../img/background.jpg')}  style={styles.backgroundImage}>
         <View style={styles.container}>
           <TouchableHighlight
             style={styles.button}
@@ -64,6 +66,7 @@ export default class SplashComponent extends Component {
             <Text>View Decks</Text>
           </TouchableHighlight>
         </View>
+        </Image>
       </View>
     );
   }
@@ -90,7 +93,8 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
-    marginTop: 10
+    marginTop: 10,
+    backgroundColor: 'white'
   },
   friend: {
     justifyContent: 'center',
@@ -105,7 +109,8 @@ const styles = StyleSheet.create({
     bottom: 20,
     padding: 20,
     borderRadius: 5,
-    left: 20
+    left: 20,
+    backgroundColor: 'white'
   },
   saved: {
     justifyContent: 'center',
@@ -120,6 +125,11 @@ const styles = StyleSheet.create({
     bottom: 20,
     padding: 20,
     borderRadius: 5,
-    right: 20
+    right: 20,
+    backgroundColor: 'white'
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // or 'stretch'
   }
 })
