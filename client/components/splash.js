@@ -91,10 +91,9 @@ const styles = StyleSheet.create({
     width: 300,
     height: 75,
     borderColor: 'black',
-    borderWidth: 1,
     borderRadius: 5,
     marginTop: 10,
-    backgroundColor: 'white'
+    backgroundColor: '#80b3ff'
   },
   friend: {
     justifyContent: 'center',
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 5,
     left: 20,
-    backgroundColor: 'white'
+    backgroundColor: '#80b3ff'
   },
   saved: {
     justifyContent: 'center',
@@ -126,10 +125,17 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 5,
     right: 20,
-    backgroundColor: 'white'
+    backgroundColor: '#80b3ff'
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover', // or 'stretch'
+  },
+  text: {
+    fontSize: 30
+  },
+  text2: {
+    fontSize: 20,
+    textAlign: 'center'
   }
 })

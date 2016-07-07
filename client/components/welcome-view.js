@@ -23,7 +23,7 @@ var WelcomeView = React.createClass({
           <Shimmer>
             <Text style={styles.title}>ApexSwipe</Text>
           </Shimmer>
-          <Text style={styles.subtitle}>Make life choices easier!</Text>
+          <Text style={styles.subtitle}>Make everyday decisions easier!</Text>
         </View>
         <TouchableHighlight
           style={styles.signInButton}
