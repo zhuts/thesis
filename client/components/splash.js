@@ -35,35 +35,35 @@ export default class SplashComponent extends Component {
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('search')}}
            >
-            <Text>Build Yelp Deck</Text>
+            <Text style={styles.text}>Build Yelp Deck</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
             onPress={() => {{this.props.resetCurrentDeck()}{this.props.resetCardCount()}{this.navigate('camera')}}}
           >
-            <Text>Camera</Text>
+            <Text style={styles.text}>Camera</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.button}
             underlayColor={'lightblue'}
             onPress={() => {{this.props.cameraModeOn()}{this.navigate('deckView')}}}
           >
-            <Text>Build Picture Deck</Text>
+            <Text style={styles.text}>Build Picture Deck</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.friend}
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('friends')}}
           >
-            <Text>Friends List</Text>
+            <Text style={styles.text}>Friends List</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.saved}
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('saved')}}
           >
-            <Text>View Decks</Text>
+            <Text style={styles.text}>View Decks</Text>
           </TouchableHighlight>
         </View>
         </Image>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
-    width: 100,
+    width: 110,
     height: 75,
     borderColor: 'black',
     borderWidth: 1,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
-    width: 100,
+    width: 110,
     height: 75,
     borderColor: 'black',
     borderWidth: 1,
