@@ -6,41 +6,19 @@ mongoose.Promise = require('bluebird');
 module.exports = {
   
   getAll: function(user_id, callback) {
-
-    Deck.find({user_id: user_id}, function(err, decks) {
-      if(err) {
-        callback(err)
-      } else {
-        callback(null, decks);
-      }
-    })
+    Deck.find({user_id: user_id}, callback)
   },
   
   getShared: function(user_id, callback) {
-    
     Deck.where('shared.user_id').equals(user_id)
-      .exec(function(err, decks) {
-        if(err) {
-          callback(err)
-        } else {
-          callback(null, decks);
-        }
-      })
+      .exec(callback)
   },
   
   addDeck: function(deck, callback) {
-
-    new Deck(deck).save(function(err, deck) {
-      if(err) {
-        callback(err);
-      } else {
-        callback(null, deck);
-      }
-    });
+    new Deck(deck).save(callback);
   },
   
   updateOneCard: function(deckId, cardId, callback) {
-    
     Deck.findById(deckId, function(err, deck) {
       if(err) {
         callback(err);
@@ -49,19 +27,11 @@ module.exports = {
       var card = deck.deck.id(cardId);
       var likes = card.likes;
       card.likes = likes + 1;
-      deck.save(function(err, deck) {
-        if(err) {
-          callback(err);
-        } else {
-          callback(null, deck);
-        }
-      });
-      
+      deck.save(callback);
     })
   },
   
   updateDeckSwiped: function(deckId, userId, callback) {
-    
     Deck.findById(deckId, function(err, deck) {
       if(err) {
         callback(err);
@@ -69,25 +39,11 @@ module.exports = {
       }
       var swiped = deck.shared.id(userId);
       swiped.swiped = true;
-      deck.save(function(err, deck) {
-        if(err) {
-          callback(err);
-        } else {
-          callback(null, deck);
-        }
-      });
-      
+      deck.save(callback);
     })
   },
   
   deleteOneDeck: function(deckId, user_id, callback) {
-    
-    Deck.findOneAndRemove({_id: deckId, user_id: user_id}, function(err, deck) {
-      if(err) {
-        callback(err);
-      } else {
-        callback(null, deck);
-      }
-    })
+    Deck.findOneAndRemove({_id: deckId, user_id: user_id}, callback)
   }
 }
