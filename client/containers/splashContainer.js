@@ -16,7 +16,8 @@ const mapDispatchToProps = (dispatch) => {
     getUsers: (users) => { dispatch(action.getUsers(users)) },
     getFriends: (friends) => { dispatch(action.getFriends(friends)) },
     cameraModeOn: () => { dispatch(action.cameraModeOn())},
-    resetCurrentDeck: () => { dispatch(action.resetCurrentDeck())}
+    resetCurrentDeck: () => { dispatch(action.resetCurrentDeck())},
+    resetCardCount: () => { dispatch(action.resetCardCount())}
   }
 };
 

@@ -13,6 +13,8 @@ export default (state = 0, action) => {
       return tilZero(state);
     case 'NEXT_CARD':
       return state + 1
+    case 'RESET_CARD_COUNT':
+      return 0
     default:
       return state;
   }
