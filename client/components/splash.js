@@ -56,14 +56,14 @@ export default class SplashComponent extends Component {
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('friends')}}
           >
-            <Text style={styles.text}>Friends List</Text>
+            <Text style={styles.text2}>Friends List</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.saved}
             underlayColor={'lightblue'}
             onPress={() => {this.navigate('saved')}}
           >
-            <Text style={styles.text}>View Decks</Text>
+            <Text style={styles.text2}>View Decks</Text>
           </TouchableHighlight>
         </View>
         </Image>
